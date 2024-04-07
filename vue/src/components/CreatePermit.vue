@@ -1,5 +1,6 @@
 <template>
     <div>
+        
         <h1>Create a Permit</h1>
         <form v-on:submit.prevent="createPermit">
             <div>
@@ -20,7 +21,7 @@
 
             <!--Show if user creating the permit is admin/employee, otherwise don't show-->
 
-            <div v-show="userRole == 'user' ? false : true">
+            <div v-if="userRole == 'user' ? false : true">
                 <label for="customer-id">Customer ID:</label>
                 <input id="customer-id" name="customer-id" type="number" v-model="newPermit.customerId">
             </div>
@@ -32,14 +33,13 @@
 <script>
 import PermitService from "../services/PermitService.js";
 import AuthService from "../services/AuthService.js";
-import { createHydrationRenderer } from "vue";
 
 export default {
     components: {},
     name: "CreatePermit",
     data() {
         return {
-            userRole: "",
+            // userRole2: "",
             // showCustomerId: false,
             newPermit: {
                 customerId: 1001,
@@ -47,7 +47,9 @@ export default {
                 permitAddress: "",
                 isCommercial: false,
                 isActive: true,
-            }
+            },
+            userToken: this.$store.state.token,
+            userRole: this.$store.state.user.role,            
         }
     },
     computed: {
@@ -133,13 +135,13 @@ export default {
         // console.log("Reached created")
         // this.userRole = this.getCurrentUserRole();
         // console.log(this.userRole)
-        AuthService.getRole()
-            .then(response => {
-                this.userRole = response.data;
-            })
-            .catch(error => {
-                console.error("Failed to fetch user role: ", error);
-            });
+        // AuthService.getRole()
+        //     .then(response => {
+        //         this.userRole2 = response.data;
+        //     })
+        //     .catch(error => {
+        //         console.error("Failed to fetch user role: ", error);
+        //     });
     }
 }
 </script>
