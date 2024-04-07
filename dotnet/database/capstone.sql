@@ -20,6 +20,7 @@ CREATE TABLE users (
     username varchar(50) NOT NULL,
     password_hash varchar(200) NOT NULL,
     salt varchar(200) NOT NULL,
+	user_role varchar(50) NOT NULL,
     employee BIT NOT NULL,  --0 indicates employee; 1 is customer.
 	email varchar(75) UNIQUE NOT NULL,
 	active BIT NOT NULL, --0 indicates inactive, 1 is active (instead of deleting acct, set as inactive)
@@ -28,7 +29,6 @@ CREATE TABLE users (
 
 CREATE TABLE employee (
     employee_id int IDENTITY(1001,1) NOT NULL,
-    username varchar(50) NOT NULL,
     user_id INT NOT NULL,
     employee_type varchar(50) NOT NULL, --inspector or admin
     CONSTRAINT PK_employee_id PRIMARY KEY (employee_id),
@@ -56,14 +56,14 @@ CREATE TABLE permit (
     CONSTRAINT FK_customer_id FOREIGN KEY (customer_id) REFERENCES customer(customer_id) -- Add REFERENCES clause for foreign key
 );
 
-
-
 -- populate default data
 -- password for these is "password"
-INSERT INTO users (username, password_hash, salt, employee, email, active) VALUES ('John Kevin Patrick','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=', 0, 'testdata@te.com',1);
-INSERT INTO users (username, password_hash, salt, employee, email, active) VALUES ('Dio Moe Jeff','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=', 1, 'employeeemail@company.com', 1);
+INSERT INTO users (username, password_hash, salt, user_role, employee, email, active) VALUES ('John Kevin Patrick','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=', 'user',0 , 'testdata@te.com',1);
+INSERT INTO users (username, password_hash, salt, user_role, employee, email, active) VALUES ('Dio Moe Jeff','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=', 'admin', 1, 'employeeemail1@company.com', 1);
+INSERT INTO users (username, password_hash, salt, user_role, employee, email, active) VALUES ('otherAdmin','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=', 'admin', 1,'employeeemail2@company.com', 1);
 
---INSERT INTO employee (username, user_id, employee_type) VALUES ('Dio Moe Jeff', 2, 'inspector');
 
---INSERT INTO employee (username, user_id, employee_type) VALUES ('user', 1, 'inspector')
+INSERT INTO employee (user_id, employee_type) VALUES (2, 'admin');
+INSERT INTO employee (user_id, employee_type) VALUES ( 3, 'admin');
+
 GO
