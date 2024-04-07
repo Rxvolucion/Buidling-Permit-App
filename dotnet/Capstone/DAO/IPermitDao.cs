@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Capstone.Models;
 
 namespace Capstone.DAO
@@ -11,11 +10,4 @@ namespace Capstone.DAO
 
     }
 }
-=======
-﻿namespace Capstone.DAO
-{
-    public interface IPermitDao
-    {
-    }
-}
->>>>>>> 47df3f27a349438ca20fb646c8225d682bbe1d32
+
