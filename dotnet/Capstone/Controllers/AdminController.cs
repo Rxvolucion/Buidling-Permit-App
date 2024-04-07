@@ -52,10 +52,10 @@ namespace Capstone.Controllers
             if (user != null && passwordHasher.VerifyHashMatch(user.PasswordHash, userParam.Password, user.Salt))
             {
                 // Create an authentication token
-                string token = tokenGenerator.GenerateToken(user.UserId, user.Username, user.Role);
+                string token = tokenGenerator.GenerateToken(user.UserId, user.Username/*, user.Role*/);
 
                 // Create a ReturnUser object to return to the client
-                LoginResponse retUser = new LoginResponse() { User = new ReturnUser() { UserId = user.UserId, Username = user.Username, Role = user.Role }, Token = token };
+                LoginResponse retUser = new LoginResponse() { User = new ReturnUser() { UserId = user.UserId, Username = user.Username/*, Role = user.Role*/ }, Token = token };
 
                 // Switch to 200 OK
                 result = Ok(retUser);
@@ -91,7 +91,7 @@ namespace Capstone.Controllers
             User newUser;
             try
             {
-                newUser = userDao.CreateUser(userParam.Username, userParam.Password, userParam.Role);
+                newUser = userDao.CreateUser(userParam.Username, userParam.Password, userParam.Role, userParam.IsEmployee, userParam.Email, userParam.Active);
             }
             catch (DaoException)
             {

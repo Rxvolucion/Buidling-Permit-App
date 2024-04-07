@@ -6,6 +6,12 @@
         public string Username { get; set; }
         public string PasswordHash { get; set; }
         public string Salt { get; set; }
+<<<<<<< HEAD
+=======
+        public bool IsEmployee { get; set; } = false;
+        public string Email { get; set; }
+        public bool Active { get; set; }
+>>>>>>> 47df3f27a349438ca20fb646c8225d682bbe1d32
         public string Role { get; set; }
     }
 
@@ -46,5 +52,12 @@
         public string Password { get; set; }
         public string ConfirmPassword { get; set; }
         public string Role { get; set; }
+<<<<<<< HEAD
+=======
+        public bool IsEmployee { get; set; } = false;
+        public string Email { get; set; }
+        public bool Active { get; set; }
+>>>>>>> 47df3f27a349438ca20fb646c8225d682bbe1d32
     }
+
 }
