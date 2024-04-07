@@ -90,7 +90,6 @@ namespace Capstone.DAO
             permit.Commercial = Convert.ToBoolean(reader["commercial"]);
             
             return permit;
-
         }
     }
 }

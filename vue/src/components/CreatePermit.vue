@@ -21,7 +21,10 @@
                 <label for="customer-id">Customer ID:</label>
                 <input id="customer-id" name="customer-id" type="number" v-model="newPermit.customerId">
             </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 66753a99278bf640f550c37b4634b1bb15c2c493
             <button type="submit">Create Permit</button>
         </form>
     </div>
@@ -44,8 +47,12 @@ export default {
     },
     methods: {
         createPermit() {
+<<<<<<< HEAD
             console.log("Reached create permit method.")
             console.log(newPermit)
+=======
+            console.log("Reached create permit method.");
+>>>>>>> 66753a99278bf640f550c37b4634b1bb15c2c493
             PermitService.createPermit(this.newPermit)
                 .then(response => {
                     this.$router.push({ name: 'home' });
@@ -71,7 +78,6 @@ export default {
         }
     }
 }
-
 </script>
 
 <style></style>
