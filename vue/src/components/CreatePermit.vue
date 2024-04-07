@@ -2,17 +2,26 @@
     <div>
         <h1>Create a Permit</h1>
         <form v-on:submit.prevent="createPermit">
-            <label for="permit-type">Permit Type</label>
-            <input id="permit-type" type="text" v-model="newPermit.permitType">
-            <label for="permit-address">Permit Address</label>
-            <input id="permit-address" type="text" v-model="newPermit.permitAddress">
-            <label for="is-commercial">Is it commercial?</label>
-            <select v-model="newPermit.isCommercial" id="is-commercial">
-                <option value="true">Yes</option>
-                <option value="false">No</option>
-            </select>
-            <label for="customer-id">Customer ID:</label>
-            <input id="customer-id" type="number" v-model="newPermit.customerId">
+            <div>
+                <label for="permit-type">Permit Type</label>
+                <input id="permit-type" name="permit-type" type="text" v-model="newPermit.permitType">
+            </div>
+            <div>
+                <label for="permit-address">Permit Address</label>
+                <input id="permit-address" name="permit-address" type="text" v-model="newPermit.permitAddress">
+            </div>
+            <div>
+                <label for="is-commercial">Is it commercial?</label>
+                <select v-model="newPermit.isCommercial" id="is-commercial" name="is-commercial">
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+            </div>
+            <div>
+                <label for="customer-id">Customer ID:</label>
+                <input id="customer-id" name="customer-id" type="number" v-model="newPermit.customerId">
+            </div>
+
             <button type="submit">Create Permit</button>
         </form>
     </div>
@@ -35,9 +44,9 @@ export default {
     },
     methods: {
         createPermit() {
-            PermitService
             console.log("Reached create permit method.")
-                .createPermit(this.newPermit)
+            console.log(newPermit)
+            PermitService.createPermit(this.newPermit)
                 .then(response => {
                     this.$router.push({ name: 'home' });
                 })
