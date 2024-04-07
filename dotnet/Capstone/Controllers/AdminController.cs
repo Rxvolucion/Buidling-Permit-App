@@ -124,6 +124,17 @@ namespace Capstone.Controllers
             }
         }
 
+        //GET /admin/role
+        [HttpGet("role")]
+        public ActionResult<string> GetRole()
+        {
+            User currentUser = new User();
+            string userName = User.Identity.Name;
+            currentUser = userDao.GetUserByUsername(userName);
+
+            return Ok(currentUser.Role);
+        }
+
         //GET /admin
         [HttpGet]
         public ActionResult<string> Ready()
