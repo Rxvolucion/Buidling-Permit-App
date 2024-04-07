@@ -7,6 +7,7 @@ import LoginView from '../views/LoginView.vue';
 import LogoutView from '../views/LogoutView.vue';
 import RegisterView from '../views/RegisterView.vue';
 import NotFoundView from "../views/NotFoundView.vue";
+import PermitView from "../views/PermitView.vue";
 
 /**
  * The Vue Router is used to "direct" the browser to render a specific view component
@@ -55,6 +56,12 @@ const routes = [
     name: "notFound",
     component: NotFoundView,
   },
+
+  {
+    path: '/permit',
+    name: "permit",
+    component: PermitView,
+  }
 
 ];
 
