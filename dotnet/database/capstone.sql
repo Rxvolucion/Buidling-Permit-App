@@ -48,25 +48,12 @@ CREATE TABLE permit (
     CONSTRAINT PK_permit_id PRIMARY KEY (permit_id),
     CONSTRAINT FK_customer_id FOREIGN KEY (customer_id) REFERENCES customer(customer_id) -- Add REFERENCES clause for foreign key
 );
-<<<<<<< HEAD
-
-=======
->>>>>>> 47df3f27a349438ca20fb646c8225d682bbe1d32
 -- populate default data
 -- password for these is "password"
 INSERT INTO users (username, password_hash, salt, user_role, employee, email, active) VALUES ('John Kevin Patrick','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=', 'user',0 , 'testdata@te.com',1);
 INSERT INTO users (username, password_hash, salt, user_role, employee, email, active) VALUES ('Dio Moe Jeff','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=', 'admin', 1, 'employeeemail1@company.com', 1);
 INSERT INTO users (username, password_hash, salt, user_role, employee, email, active) VALUES ('otherAdmin','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=', 'admin', 1,'employeeemail2@company.com', 1);
-<<<<<<< HEAD
-
-
 INSERT INTO employee (user_id, employee_type) VALUES (2, 'admin');
 INSERT INTO employee (user_id, employee_type) VALUES ( 3, 'admin');
-
+INSERT INTO customer (username, user_id, contractor, address) VALUES ('John Kevin Patrick', 1, 1, 'something st.');
 GO
-=======
-INSERT INTO employee (user_id, employee_type) VALUES (2, 'admin');
-INSERT INTO employee (user_id, employee_type) VALUES ( 1, 'admin')
-INSERT INTO employee (user_id, employee_type) VALUES ( 3, 'admin')
-GO
->>>>>>> 47df3f27a349438ca20fb646c8225d682bbe1d32
