@@ -24,7 +24,7 @@
                 <label for="customer-id">Customer ID:</label>
                 <input id="customer-id" name="customer-id" type="number" v-model="newPermit.customerId">
             </div>
-            <button type="submit">Create Permit</button>
+            <button type="submit">Submit</button>
         </form>
     </div>
 </template>
