@@ -7,7 +7,10 @@ import LoginView from '../views/LoginView.vue';
 import LogoutView from '../views/LogoutView.vue';
 import RegisterView from '../views/RegisterView.vue';
 import NotFoundView from "../views/NotFoundView.vue";
-import PermitView from "../views/PermitView.vue";
+import PermitCreateView from "../views/PermitCreateView.vue";
+import PermitSearchView from "../views/PermitSearchView.vue";
+import EmployeeHomeView from "../views/EmployeeHomeView.vue";
+import CustomerHomeView from "../views/CustomerHomeView.vue";
 
 /**
  * The Vue Router is used to "direct" the browser to render a specific view component
@@ -57,12 +60,33 @@ const routes = [
     component: NotFoundView,
   },
 
+  // {
+  //   path: '/permit',
+  //   name: "permit",
+  //   component: PermitView,
+  // },
   {
-    path: '/permit',
-    name: "permit",
-    component: PermitView,
-  }
+    path: '/permit/create',
+    name: "createPermit",
+    component: PermitCreateView,
+  },
+  {
+    path: '/permit/search',
+    name: "searchPermit",
+    component: PermitSearchView,
+  },
 
+  {
+    path: '/employee',
+    name: "employee",
+    component: EmployeeHomeView,
+  },
+
+  {
+    path: '/customer',
+    name: "customer",
+    component: CustomerHomeView,
+  },
 ];
 
 // Create the router

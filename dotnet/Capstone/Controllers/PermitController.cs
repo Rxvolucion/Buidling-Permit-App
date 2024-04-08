@@ -42,6 +42,14 @@ namespace Capstone.Controllers
             {
                 return Ok(newPermit);
             }
+
+        }
+
+        //Get/permits
+        [HttpGet()]
+        public ActionResult<List<Permit>> GetPermits()
+        {
+            return Ok(permitDao.ListPermits());
         }
     }
 }

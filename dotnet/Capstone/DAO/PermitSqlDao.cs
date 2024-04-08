@@ -20,7 +20,9 @@ namespace Capstone.DAO
              "VALUES (@active, @customer_id, @permit_address, @permit_type, @commercial)";
 
         private string GetPermitByIdSql = "SELECT permit_id, active, customer_id, permit_address, permit_type, commercial " +
-            "FROM permit WHERE permit_id = @permit_id"; 
+            "FROM permit WHERE permit_id = @permit_id";
+
+        private string GetAllPermits = "SELECT permit_id, active, customer_id, permit_address, permit_type, commercial FROM permit;";
         public PermitSqlDao(string dbConnectionString)
         {
             connectionString = dbConnectionString;
@@ -78,6 +80,27 @@ namespace Capstone.DAO
 
             return newPermit;
         }
+        public List<Permit> ListPermits()
+        {
+            List<Permit> permits = new List<Permit>();
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(GetAllPermits, conn))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Permit permit = new Permit();
+                            permit = MapRowToPermit(reader);
+                            permits.Add(permit);
+                        }
+                    }
+                }
+            }
+            return permits;
+        }
 
         private Permit MapRowToPermit(SqlDataReader reader)
         {
@@ -91,6 +114,7 @@ namespace Capstone.DAO
             
             return permit;
         }
+
     }
 }
 
