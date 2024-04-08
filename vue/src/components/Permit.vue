@@ -5,6 +5,8 @@
 <p>Commercial: {{ item.commercial}}</p>
 <p>PermitAddress: {{ item.permitAddress}}</p>
 <p>PermitType: {{ item.permitType}}</p>
+<p>PermitStatus: {{ item.permitStatus}}</p> 
+<p>-----------------------------------</p>
 </template>
 
 <script>

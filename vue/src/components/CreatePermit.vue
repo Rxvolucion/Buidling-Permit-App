@@ -47,6 +47,7 @@ export default {
                 permitAddress: "",
                 isCommercial: false,
                 isActive: true,
+                permitStatus: "Pending",
             },
             userToken: this.$store.state.token,
             userRole: this.$store.state.user.role,            
@@ -81,7 +82,13 @@ export default {
             console.log("Reached create permit method.");
             PermitService.createPermit(this.newPermit)
                 .then(response => {
-                    this.$router.push({ name: 'home' });
+                    if(this.$store.state.user.role == 'user'){
+                        this.$router.push({ name: 'customer' });
+                    }
+                    else{
+                        this.$router.push({ name: 'employee' });
+                    }
+                    
                 })
                 .catch((error) => {
                     if (error.response) {

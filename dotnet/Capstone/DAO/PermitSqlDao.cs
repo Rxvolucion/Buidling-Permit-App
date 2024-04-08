@@ -15,14 +15,14 @@ namespace Capstone.DAO
     {
         private readonly string connectionString;
 
-        private string CreatePermitSql = "INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial) " +
+        private string CreatePermitSql = "INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status) " +
              "OUTPUT INSERTED.permit_id " +
-             "VALUES (@active, @customer_id, @permit_address, @permit_type, @commercial)";
+             "VALUES (@active, @customer_id, @permit_address, @permit_type, @commercial, @permit_status)";
 
-        private string GetPermitByIdSql = "SELECT permit_id, active, customer_id, permit_address, permit_type, commercial " +
+        private string GetPermitByIdSql = "SELECT permit_id, active, customer_id, permit_address, permit_type, commercial, permit_status " +
             "FROM permit WHERE permit_id = @permit_id";
 
-        private string GetAllPermits = "SELECT permit_id, active, customer_id, permit_address, permit_type, commercial FROM permit;";
+        private string GetAllPermits = "SELECT permit_id, active, customer_id, permit_address, permit_type, commercial, permit_status FROM permit;";
         public PermitSqlDao(string dbConnectionString)
         {
             connectionString = dbConnectionString;
@@ -67,6 +67,7 @@ namespace Capstone.DAO
                     cmd.Parameters.AddWithValue("@permit_address", permit.PermitAddress);
                     cmd.Parameters.AddWithValue("@permit_type", permit.PermitType);
                     cmd.Parameters.AddWithValue("@commercial", permit.Commercial);
+                    cmd.Parameters.AddWithValue("@permit_status", permit.PermitStatus);
 
                     newPermitId = Convert.ToInt32(cmd.ExecuteScalar());
 
@@ -111,7 +112,8 @@ namespace Capstone.DAO
             permit.PermitAddress = Convert.ToString(reader["permit_address"]);
             permit.PermitType = Convert.ToString(reader["permit_type"]);
             permit.Commercial = Convert.ToBoolean(reader["commercial"]);
-            
+            permit.PermitStatus = Convert.ToString(reader["permit_status"]);
+
             return permit;
         }
 

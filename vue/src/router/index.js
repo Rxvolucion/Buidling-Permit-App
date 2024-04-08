@@ -25,9 +25,9 @@ const routes = [
     path: '/',
     name: 'home',
     component: HomeView,
-    meta: {
-      requiresAuth: true
-    }
+    // meta: {
+    //   requiresAuth: true
+    // }
   },
   {
     path: "/login",
@@ -69,23 +69,37 @@ const routes = [
     path: '/permit/create',
     name: "createPermit",
     component: PermitCreateView,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/permit/search',
     name: "searchPermit",
     component: PermitSearchView,
+    meta: {
+      requiresAuth: true
+    }
   },
 
   {
     path: '/employee',
     name: "employee",
     component: EmployeeHomeView,
+    meta: {
+      requiresAuth: true,
+      requiresEmployeeAuth: true
+    }
   },
 
   {
     path: '/customer',
     name: "customer",
     component: CustomerHomeView,
+    meta: {
+      requiresAuth: true,
+      requiresCustomerAuth: true
+    }
   },
 ];
 
@@ -102,8 +116,22 @@ router.beforeEach((to) => {
 
   // Determine if the route requires Authentication
   const requiresAuth = to.matched.some(x => x.meta.requiresAuth);
+  
+  // Determine if the route requires Employee Authentication
+  const requiresEmployeeAuth = to.matched.some(x => x.meta.requiresEmployeeAuth);
+
+    // Determine if the route requires Customer Authentication
+  const requiresCustomerAuth = to.matched.some(x => x.meta.requiresCustomerAuth);
 
   // If it does and they are not logged in, send the user to "/login"
+  if (store.state.user.role != 'admin' && requiresEmployeeAuth) {
+    console.log("Not signed in as employee. Redirected to login view.")
+    return {name: "login"};
+  }
+  if (store.state.user.role != 'user' && requiresCustomerAuth) {
+    console.log("Not signed in as customer. Redirected to login view.")
+    return {name: "login"};
+  }
   if (requiresAuth && store.state.token === '') {
     console.log("Not logged in. Redirected to login view.")
     return {name: "login"};

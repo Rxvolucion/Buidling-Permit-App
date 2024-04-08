@@ -52,6 +52,8 @@ CREATE TABLE permit (
 	permit_address varchar(125) NOT NULL,
     permit_type varchar(50) NOT NULL,
     commercial BIT NOT NULL, --0 indicates residential; 1 is commercial.
+	permit_status varchar(50) NOT NULL,
+	CONSTRAINT CK_permit_status CHECK (permit_status IN ('Pending', 'Approved', 'Rejected')),
     CONSTRAINT PK_permit_id PRIMARY KEY (permit_id),
     CONSTRAINT FK_customer_id FOREIGN KEY (customer_id) REFERENCES customer(customer_id) -- Add REFERENCES clause for foreign key
 );
