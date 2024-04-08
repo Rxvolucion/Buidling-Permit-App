@@ -37,7 +37,7 @@ CREATE TABLE employee (
 
 CREATE TABLE customer (
     customer_id int IDENTITY(1001,1) NOT NULL,
-    username varchar(50) NOT NULL,
+    
     user_id INT NOT NULL,
 	contractor BIT NOT NULL, --0 indicates not contractor; 1 is contractor.
 	address varchar(125) NOT NULL,
@@ -67,7 +67,7 @@ INSERT INTO users (username, password_hash, salt, user_role, employee, email, ac
 INSERT INTO employee (user_id, employee_type) VALUES (2, 'admin');
 INSERT INTO employee (user_id, employee_type) VALUES ( 3, 'admin');
 
-INSERT INTO customer (username, user_id, contractor, address) VALUES ('user1', 1, 1, 'something st.');
+INSERT INTO customer (user_id, contractor, address) VALUES (1, 1, 'something st.');
 
 GO
 

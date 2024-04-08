@@ -92,6 +92,8 @@ namespace Capstone.Controllers
             try
             {
                 newUser = userDao.CreateUser(userParam.Username, userParam.Password, userParam.Role, userParam.IsEmployee, userParam.Email, userParam.Active);
+                
+                //newCustomer = userDao.CreateCustomer(newUser.UserId, Contractor, customerTo.Address);
             }
             catch (DaoException)
             {
@@ -103,7 +105,7 @@ namespace Capstone.Controllers
                 // Create a ReturnUser object to return to the client
                 ReturnUser returnUser = new ReturnUser() { UserId = newUser.UserId, Username = newUser.Username, Role = newUser.Role };
 
-                result = Created("/login", returnUser);
+                result = Ok(returnUser);
             }
 
             return result;
@@ -133,6 +135,16 @@ namespace Capstone.Controllers
             currentUser = userDao.GetUserByUsername(userName);
 
             return Ok(currentUser.Role);
+        }
+
+        [HttpGet("user")]
+        public ActionResult<User> GetUser()
+        {
+            User currentUser = new User();
+            string userName = User.Identity.Name;
+            currentUser = userDao.GetUserByUsername(userName);
+
+            return Ok(currentUser);
         }
 
         //GET /admin

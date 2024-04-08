@@ -14,4 +14,8 @@ export default {
     return axios.get('/admin/role')
   },
 
+  createCustomer(customerDTO) {
+    return axios.post('/customer', customerDTO)
+  }
+
 }
