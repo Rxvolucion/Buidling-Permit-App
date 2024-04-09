@@ -6,17 +6,17 @@
 <p>PermitAddress: {{ item.permitAddress}}</p>
 <p>PermitType: {{ item.permitType}}</p>
 <p>PermitStatus: {{ item.permitStatus}}</p> 
+<p>-----------------------------------</p>
 
-<!--Show if customer-->
+<!-- Show if customer
 <RouterLink>Edit</RouterLink>
 <RouterLink>Request Inspection</RouterLink>
 
-<!--Show if employee-->
+Show if employee
 <RouterLink>Edit</RouterLink>
 <RouterLink>Update Status</RouterLink>
-<RouterLink>Complete Inspection</RouterLink>
+<RouterLink>Complete Inspection</RouterLink> -->
 
-<p>-----------------------------------</p>
 </template>
 
 <script>

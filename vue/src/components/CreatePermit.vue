@@ -24,8 +24,8 @@
             <div v-if="userRole == 'user' ? false : true">
                 <label for="customer-id-select" >Customer ID:</label>
 
-                <select name="customer-ids" id="customer-id-select">
-                    <option value="">Please select an owner ID</option>
+                <select name="customer-ids" id="customer-id-select" v-model="newPermit.customerId" required>
+                    <option value="">Please select a customer ID</option>
                     <option v-for="customerId in customerIds" v-bind:value="customerId" v-bind:item="customerId">{{ customerId }}</option>
                 </select>
                 <!-- <input id="customer-id" name="customer-id" type="number" v-model="newPermit.customerId"> -->

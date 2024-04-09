@@ -24,8 +24,8 @@ namespace Capstone.DAO
 
         private string GetAllPermits = "SELECT permit_id, active, customer_id, permit_address, permit_type, commercial, permit_status FROM permit;";
 
-        private string permitsByUserId = "SELECT permit.permit_id, permit.active, permit.customer_id, permit.permit_address, permit.permit_type, permit.commercial, permit.permit_status FROM customer " +
-        "JOIN permit ON customer.customer_id = permit.customer_id " + "WHERE customer_id = @customer_id;";
+        private string permitsByUserId = "SELECT permit.permit_id, permit.active, customer.customer_id, permit.permit_address, permit.permit_type, permit.commercial, permit.permit_status FROM customer " +
+        "JOIN permit ON customer.customer_id = permit.customer_id " + "WHERE permit.customer_id = @customer_id;";
         public PermitSqlDao(string dbConnectionString)
         {
             connectionString = dbConnectionString;

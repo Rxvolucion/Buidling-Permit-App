@@ -10,7 +10,7 @@ export default {
         return axios.get('/permit')
     },
 
-    listPermitsByUser(customerId) {
+    listPermitsByCustomer(customerId) {
         return axios.get(`/permit/customer/${customerId}`);
     }
 }

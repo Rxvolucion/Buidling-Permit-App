@@ -60,14 +60,18 @@ CREATE TABLE permit (
 
 -- populate default data
 -- password for these is "password"
-INSERT INTO users (username, password_hash, salt, user_role, employee, email, active) VALUES ('user1','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=', 'user',0 , 'testdata@te.com',1);
+INSERT INTO users (username, password_hash, salt, user_role, employee, email, active) VALUES ('user1','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=', 'user',0 , 'testdata1@te.com',1);
+INSERT INTO users (username, password_hash, salt, user_role, employee, email, active) VALUES ('user2','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=', 'user',0 , 'testdata2@te.com',1);
+INSERT INTO users (username, password_hash, salt, user_role, employee, email, active) VALUES ('user3','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=', 'user',0 , 'testdata3@te.com',1);
 INSERT INTO users (username, password_hash, salt, user_role, employee, email, active) VALUES ('admin1','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=', 'admin', 1, 'employeeemail1@company.com', 1);
 INSERT INTO users (username, password_hash, salt, user_role, employee, email, active) VALUES ('admin2','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=', 'admin', 1,'employeeemail2@company.com', 1);
 
-INSERT INTO employee (user_id, employee_type) VALUES (2, 'admin');
-INSERT INTO employee (user_id, employee_type) VALUES ( 3, 'admin');
+INSERT INTO employee (user_id, employee_type) VALUES (4, 'admin');
+INSERT INTO employee (user_id, employee_type) VALUES ( 5, 'admin');
 
 INSERT INTO customer (user_id, contractor, address) VALUES (1, 1, 'something st.');
+INSERT INTO customer (user_id, contractor, address) VALUES (2, 1, 'something st.');
+INSERT INTO customer (user_id, contractor, address) VALUES (3, 1, 'something st.');
 
 GO
 
