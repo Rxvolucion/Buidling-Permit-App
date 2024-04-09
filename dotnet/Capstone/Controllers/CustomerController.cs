@@ -44,5 +44,21 @@ namespace Capstone.Controllers
             return Created("/customer", newCustomer);
             
         }
+
+        [HttpGet("{userId}")]
+        public ActionResult<Customer> GetCustomerByUserId(int userId)
+        {
+        
+            return Ok(userDao.GetCustomerByUserId(userId));
+
+        }
+
+        [HttpGet("customerIds")]
+        public ActionResult<Customer> GetAllUserIds(int userId)
+        {
+
+            return Ok(userDao.GetAllCustomerIds());
+
+        }
     }
 }

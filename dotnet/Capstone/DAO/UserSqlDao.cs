@@ -7,6 +7,7 @@ using Capstone.Exceptions;
 using Capstone.Models;
 using Capstone.Security;
 using Capstone.Security.Models;
+using Microsoft.AspNetCore.Mvc.Formatters;
 
 namespace Capstone.DAO
 {
@@ -48,6 +49,44 @@ namespace Capstone.DAO
 
             return users;
         }
+
+        public IList<int> GetAllCustomerIds()
+        {
+            IList<Customer> customers = new List<Customer>();
+            IList<int> customerIds = new List<int>();
+
+            string sql = "SELECT customer_id, user_id, contractor, address FROM customer";
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Customer customer = MapRowToCustomer(reader);
+                        customers.Add(customer);
+                        
+                    }
+                    foreach (Customer customer in customers)
+                    {
+                        customerIds.Add(customer.CustomerId);
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new DaoException("SQL exception occurred", ex);
+            }
+
+            return customerIds;
+        }
+
+
 
         public User GetUserById(int userId)
         {
@@ -216,7 +255,35 @@ namespace Capstone.DAO
             return newCustomer;
         }
 
+        public Customer GetCustomerByUserId(int userId)
+        {
+            Customer customer = null;
 
+            string sql = "SELECT customer_id, user_id, contractor, address FROM customer WHERE user_id = @user_id";
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@user_id", userId);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        customer = MapRowToCustomer(reader);
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new DaoException("SQL exception occurred", ex);
+            }
+
+            return customer;
+        }
 
 
         private User MapRowToUser(SqlDataReader reader)
