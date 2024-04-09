@@ -14,6 +14,14 @@ export default {
     return axios.get('/admin/role')
   },
 
+  getCustomerByUserId(userId) {
+    return axios.get(`/customer/${userId}`);
+  },
+
+  getCustomerIds() {
+    return axios.get('/customer/customerIds');
+  },
+
   createCustomer(customerDTO) {
     return axios.post('/customer', customerDTO)
   }

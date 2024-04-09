@@ -7,11 +7,14 @@ import LoginView from '../views/LoginView.vue';
 import LogoutView from '../views/LogoutView.vue';
 import RegisterView from '../views/RegisterView.vue';
 import NotFoundView from "../views/NotFoundView.vue";
+
 import PermitCreateView from "../views/PermitCreateView.vue";
 import PermitSearchView from "../views/PermitSearchView.vue";
+import PermitCustomerView from "../views/PermitCustomerView.vue";
+
+
 import EmployeeHomeView from "../views/EmployeeHomeView.vue";
 import CustomerHomeView from "../views/CustomerHomeView.vue";
-import PermitCustomerView from "../views/PermitCustomerView.vue";
 
 /**
  * The Vue Router is used to "direct" the browser to render a specific view component
