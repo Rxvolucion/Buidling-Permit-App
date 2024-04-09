@@ -8,7 +8,7 @@ namespace Capstone.DAO
         public Permit GetPermitById(int permitId);
         public Permit CreatePermit(Permit permit);
         public List<Permit> ListPermits();
-        public List<Permit> GetPermitsByUserId(int userId);
+        public List<Permit> GetPermitsByCustomerId(int customerId);
 
     }
 }

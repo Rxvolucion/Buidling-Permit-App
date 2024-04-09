@@ -53,13 +53,16 @@ namespace Capstone.Controllers
         {
             return Ok(permitDao.ListPermits());
         }
-        
-        [HttpGet("customer/{userId}")]
-        public ActionResult<List<Permit>> GetPermitsByUserId()
+
+
+        [HttpGet("customer/{customrId}")]
+        public ActionResult<List<Permit>> GetPermitsByCustomerId()
         {
+
             string result = User.Identity.Name;
-            User me = userDao.GetUserByUsername(result);
-            return Ok(permitDao.GetPermitsByUserId(me.UserId));
+            User user = userDao.GetUserByUsername(result);
+            Customer me = userDao.GetCustomerByUserId(user.UserId);
+            return Ok(permitDao.GetPermitsByCustomerId(me.CustomerId));
         }
     }
 }
