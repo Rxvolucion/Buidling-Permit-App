@@ -15,13 +15,15 @@ namespace Capstone.Controllers
     public class PermitController : ControllerBase
     {
         private readonly IPermitDao permitDao;
+        private readonly IUserDao userDao;
 
-        public PermitController(IPermitDao permitDao)
+        public PermitController(IPermitDao permitDao, IUserDao userDao)
         {
             this.permitDao = permitDao;
+            this.userDao = userDao;
         }
 
-        //GET /pet/3
+        //GET /permit/3
         [HttpGet("{permitId}")]
         public ActionResult<List<Permit>> GetPermit(int permitId)
         {
@@ -29,7 +31,7 @@ namespace Capstone.Controllers
         }
 
 
-        //POST /pet
+        //POST /permit
         [HttpPost()]
         public ActionResult<Permit> AddPermit(Permit permit)
         {
@@ -50,6 +52,17 @@ namespace Capstone.Controllers
         public ActionResult<List<Permit>> GetPermits()
         {
             return Ok(permitDao.ListPermits());
+        }
+
+
+        [HttpGet("customer/{customrId}")]
+        public ActionResult<List<Permit>> GetPermitsByCustomerId()
+        {
+
+            string result = User.Identity.Name;
+            User user = userDao.GetUserByUsername(result);
+            Customer me = userDao.GetCustomerByUserId(user.UserId);
+            return Ok(permitDao.GetPermitsByCustomerId(me.CustomerId));
         }
     }
 }

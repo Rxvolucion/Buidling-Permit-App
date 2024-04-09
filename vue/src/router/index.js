@@ -7,8 +7,13 @@ import LoginView from '../views/LoginView.vue';
 import LogoutView from '../views/LogoutView.vue';
 import RegisterView from '../views/RegisterView.vue';
 import NotFoundView from "../views/NotFoundView.vue";
+
 import PermitCreateView from "../views/PermitCreateView.vue";
 import PermitSearchView from "../views/PermitSearchView.vue";
+import PermitCustomerView from "../views/PermitCustomerView.vue";
+import PermitInspectionCreateView from "../views/PermitInspectionCreateView.vue";
+
+
 import EmployeeHomeView from "../views/EmployeeHomeView.vue";
 import CustomerHomeView from "../views/CustomerHomeView.vue";
 
@@ -73,12 +78,33 @@ const routes = [
       requiresAuth: true
     }
   },
+
   {
     path: '/permit/search',
     name: "searchPermit",
     component: PermitSearchView,
     meta: {
       requiresAuth: true
+    }
+  },
+
+  {
+    path: '/permit/user/:userId',
+    name: "customerPermits",
+    component: PermitCustomerView,
+    meta: {
+      requiresAuth: true,
+      requiresCustomerAuth: true
+    }
+  },
+
+  {
+    path: '/permit/:permitId/inspection',
+    name: "permitCreateInspection",
+    component: PermitInspectionCreateView,
+    meta: {
+      requiresAuth: true,
+      requiresCustomerAuth: true
     }
   },
 

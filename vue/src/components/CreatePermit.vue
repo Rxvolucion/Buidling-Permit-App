@@ -1,7 +1,5 @@
 <template>
     <div>
-        
-        <h1>Create a Permit</h1>
         <form v-on:submit.prevent="createPermit">
             <div>
                 <label for="permit-type">Permit Type</label>
@@ -19,11 +17,16 @@
                 </select>
             </div>
 
-            <!--Show if user creating the permit is admin/employee, otherwise don't show-->
+            <!--Show if user creating the permit is admin/employee, otherwise don't show. Select from existing customer ID-->
 
             <div v-if="userRole == 'user' ? false : true">
-                <label for="customer-id">Customer ID:</label>
-                <input id="customer-id" name="customer-id" type="number" v-model="newPermit.customerId">
+                <label for="customer-id-select" >Customer ID:</label>
+
+                <select name="customer-ids" id="customer-id-select" v-model="newPermit.customerId" required>
+                    <option value="">Please select a customer ID</option>
+                    <option v-for="customerId in customerIds" v-bind:value="customerId" v-bind:item="customerId">{{ customerId }}</option>
+                </select>
+                <!-- <input id="customer-id" name="customer-id" type="number" v-model="newPermit.customerId"> -->
             </div>
             <button type="submit">Submit</button>
         </form>
@@ -42,13 +45,16 @@ export default {
             // userRole2: "",
             // showCustomerId: false,
             newPermit: {
-                customerId: 1001,
+                customerId: "",
                 permitType: "",
                 permitAddress: "",
                 isCommercial: false,
                 isActive: true,
                 permitStatus: "Pending",
             },
+            customerIds: [
+
+            ],
             userToken: this.$store.state.token,
             userRole: this.$store.state.user.role,            
         }
@@ -139,6 +145,57 @@ export default {
     },
 
     created() {
+        //service call to get customerId by username (set customerId in data)
+        console.log("Reached created.")
+        AuthService
+            .getCustomerByUserId(this.$store.state.user.userId)
+            .then((response) => {
+                console.log("Success on getting customer by username.");
+                // if new customer ID is empty, means it hasn't been set by the employee creating it
+                if (this.newPermit.customerId === "") {
+                    this.newPermit.customerId = response.data.customerId;
+                }
+                
+            })
+            .catch((error) => {
+                if (error.response) {
+                    // error.response exists
+                    // Request was made, but response has error status (4xx or 5xx)
+                    console.log("Error getting customer: ", error.response.status);
+                } else if (error.request) {
+                    // There is no error.response, but error.request exists
+                    // Request was made, but no response was received
+                    console.log("Error getting customer: unable to communicate to server");
+                } else {
+                    // Neither error.response and error.request exist
+                    // Request was *not* made
+                    console.log("Error getting customer: error making request");
+                }
+            });
+        AuthService
+            .getCustomerIds()
+            .then((response => {
+                console.log("Reached get customer ids.");
+                this.customerIds = response.data;
+            }))
+            .catch((error) => {
+                if (error.response) {
+                    // error.response exists
+                    // Request was made, but response has error status (4xx or 5xx)
+                    console.log("Error getting customer ids: ", error.response.status);
+                } else if (error.request) {
+                    // There is no error.response, but error.request exists
+                    // Request was made, but no response was received
+                    console.log("Error getting customer ids: unable to communicate to server");
+                } else {
+                    // Neither error.response and error.request exist
+                    // Request was *not* made
+                    console.log("Error getting customer ids: error making request");
+                }
+            });
+
+
+        // this.newPermit.userId = this.$store.state.user.userId;
         // console.log("Reached created")
         // this.userRole = this.getCurrentUserRole();
         // console.log(this.userRole)

@@ -1,23 +1,60 @@
 <template>
-<p>PermitId: {{ item.permitId}}</p>
-<p>Active: {{ item.active}}</p>
-<p>CustomerId: {{ item.customerId}}</p>
-<p>Commercial: {{ item.commercial}}</p>
-<p>PermitAddress: {{ item.permitAddress}}</p>
-<p>PermitType: {{ item.permitType}}</p>
-<p>PermitStatus: {{ item.permitStatus}}</p> 
-<p>-----------------------------------</p>
+    <section class="permit">
+        <p>Permit Id: {{ item.permitId }}</p>
+        <p>Active: {{ item.active }}</p>
+        <p>Customer Id: {{ item.customerId }}</p>
+        <p>Commercial: {{ item.commercial }}</p>
+        <p>Permit Address: {{ item.permitAddress }}</p>
+        <p>Permit Type: {{ item.permitType }}</p>
+        <p>Permit Status: {{ item.permitStatus }}</p>
+
+        <!-- Show if customer -->
+        <div v-if="userRole == 'user' ? false : true">
+            <button v-on:click="this.$router.push({ name: 'permitCreateInspection', params: { permitId: this.item.permitId } })">Request Inspection</button>
+        </div>
+
+        <!-- <p>-----------------------------------</p> -->
+    </section>
+
+
+<!-- Show if customer -->
+<!-- <RouterLink>Edit</RouterLink> -->
+<!-- <RouterLink>Request Inspection</RouterLink> -->
+
+<!--Show if employee
+<RouterLink>Edit</RouterLink>
+<RouterLink>Update Status</RouterLink>
+<RouterLink>Complete Inspection</RouterLink> -->
+
+
 </template>
 
 <script>
+import { RouterLink } from 'vue-router';
 
-export default{
-    name:"permit",
-    props:["item"]
+
+export default {
+    name: "permit",
+    props: ["item"],
+    components: { RouterLink },
+    data() {
+        return {
+            userRole: this.$store.state.user,
+        }
+    }
 }
 </script>
 
 
-<style>
+<style scoped>
+section.permit {
+  flex-wrap: wrap;
+  display: inline-block;
+  height: 20rem;
+  min-width: 300px;
+  border: 2px solid black;
+  border-radius: 10px;
+  margin: 20px;
+}
 
 </style>

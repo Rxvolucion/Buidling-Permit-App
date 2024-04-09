@@ -10,7 +10,13 @@ namespace Capstone.DAO
         User GetUserByUsername(string username);
         User CreateUser(string username, string password, string role, bool isEmployee, string email, bool active);
         Customer CreateCustomer(int userId, bool isContractor, string Address);
+        //Customer GetCustomerById(int customerId);
         Customer GetCustomerById(int customerId);
+
+        Customer GetCustomerByUserId(int userId);
+
+        IList<int> GetAllCustomerIds();
+
     }
-    
+
 }

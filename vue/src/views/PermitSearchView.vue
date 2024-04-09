@@ -1,8 +1,11 @@
 <template>
     <div class="permit">
-        <h1>Welcome to the Permit View</h1>
+        <h1>Search Permits</h1>
         <!--load create permit or edit permit component based on user selection-->
-        <permit v-for="permit in permits" v-bind:key = "permit.permitId" v-bind:item = "permit" />
+        <section class="container">
+            <permit v-for="permit in permits" v-bind:key = "permit.permitId" v-bind:item = "permit" />
+        </section>
+        
     </div>
 </template>
 
