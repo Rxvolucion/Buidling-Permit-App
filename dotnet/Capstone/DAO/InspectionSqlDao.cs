@@ -19,6 +19,8 @@ namespace Capstone.DAO
         private string GetInspectionStatuses = "SELECT inspection_status_type_id, inspection_type FROM inspection_status_type;";
 
         private string GetInspectionTypes = "SELECT inspection_type_id, inspections_type FROM inspection_type";
+
+        private string GetInspectionTypes1 = "SELECT inspection_type_id, inspections_type FROM inspection_type";
         public InspectionSqlDao(string dbConnectionString)
         {
             connectionString = dbConnectionString;
@@ -67,11 +69,46 @@ namespace Capstone.DAO
             return types;
         }
 
+        public IList<string> GetSpecificInspectionTypes()
+        {
+            IList<InspectionType> inspections = new List<InspectionType>();
+            IList<string> inspectionString = new List<string>();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(GetInspectionTypes1, conn);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        InspectionType type = MapRowToType(reader);
+                        inspections.Add(type);
+
+                    }
+                    foreach (InspectionType type in inspections)
+                    {
+                        inspectionString.Add(type.Type);
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new DaoException("SQL exception occurred", ex);
+            }
+
+            return inspectionString;
+        }
+
         private InspectionType MapRowToType(SqlDataReader reader)
         {
             InspectionType type = new InspectionType();
-            type.InspectionTypeId = Convert.ToInt32(reader["inspection_type_id"]);
             type.Type = Convert.ToString(reader["inspections_type"]);
+            type.InspectionTypeId = Convert.ToInt32(reader["inspection_type_id"]);
+            
 
             return type;
         }
