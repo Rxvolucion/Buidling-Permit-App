@@ -20,3 +20,8 @@ public class InspectionStatusType
     public string StatusType {get; set;}
 }
 
+public class InspectionType
+{
+    public int InspectionTypeId { get; set; }
+    public string Type { get; set; }
+}

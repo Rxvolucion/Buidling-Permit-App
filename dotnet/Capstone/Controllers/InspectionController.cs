@@ -20,11 +20,17 @@ namespace Capstone.Controllers
             this.inspectionDao = inspectionDao;
         }
 
-        [HttpGet("{inspection_status_type_id}")]
+        [HttpGet("status_type")]
         public ActionResult<InspectionStatusType> GetInspectionStatusTypes()
-        {
-        
+        {       
             return Ok(inspectionDao.GetInspectionStatusTypes());
+        }
+
+        [HttpGet("type")]
+        public ActionResult<InspectionType> GetInspectionAllTypes()
+        {
+
+            return Ok(inspectionDao.GetAllInspectionTypes());
 
         }
     }

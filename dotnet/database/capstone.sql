@@ -57,10 +57,18 @@ CREATE TABLE permit (
     CONSTRAINT FK_customer_id FOREIGN KEY (customer_id) REFERENCES customer(customer_id) -- Add REFERENCES clause for foreign key
 );
 
-CREATE TABLE inspection_status_type (
+CREATE TABLE inspection_type (
 	inspection_type_id int IDENTITY (5001,1) NOT NULL,
-	inspection_type varchar(50) NOT NULL,
+	inspections_type varchar(50) NOT NULL,
 	CONSTRAINT PK_inspection_type_id PRIMARY KEY (inspection_type_id),
+	CONSTRAINT CK_inspection_type CHECK (inspections_type IN ('Pluming', 'Electrical', 'Structural', 'HVAC'))
+
+);
+
+CREATE TABLE inspection_status_type (
+	inspection_status_type_id int IDENTITY (6001,1) NOT NULL,
+	inspection_type varchar(50) NOT NULL,
+	CONSTRAINT PK_inspection_status_type_id PRIMARY KEY (inspection_status_type_id),
 	CONSTRAINT CK_type CHECK (inspection_type IN ('Pass', 'Fail', 'Pending'))
 
 );
@@ -73,13 +81,21 @@ CREATE TABLE inspections (
     date datetime NOT NULL,
     CONSTRAINT PK_inspection_id PRIMARY KEY (inspection_id),
     CONSTRAINT FK_permit_id FOREIGN KEY (permit_id) REFERENCES permit(permit_id),
-    CONSTRAINT FK_inspection_type_id FOREIGN KEY (inspection_type_id) REFERENCES inspection_status_type(inspection_type_id)
+    CONSTRAINT FK_inspection_type_id FOREIGN KEY (inspection_type_id) REFERENCES inspection_status_type(inspection_status_type_id)
 	
 );
+INSERT INTO inspection_type (inspections_type) VALUES ('Pluming')
+INSERT INTO inspection_type (inspections_type) VALUES ('Electrical')
+INSERT INTO inspection_type (inspections_type) VALUES ('Structural')
+INSERT INTO inspection_type (inspections_type) VALUES ('HVAC')
 
 
 -- populate default data
 -- password for these is "password"
+INSERT INTO inspection_status_type (inspection_type) VALUES ('Pending')
+INSERT INTO inspection_status_type (inspection_type) VALUES ('Pass')
+INSERT INTO inspection_status_type (inspection_type) VALUES ('Fail')
+
 INSERT INTO users (username, password_hash, salt, user_role, employee, email, active) VALUES ('user1','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=', 'user',0 , 'testdata1@te.com',1);
 INSERT INTO users (username, password_hash, salt, user_role, employee, email, active) VALUES ('user2','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=', 'user',0 , 'testdata2@te.com',1);
 INSERT INTO users (username, password_hash, salt, user_role, employee, email, active) VALUES ('user3','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=', 'user',0 , 'testdata3@te.com',1);

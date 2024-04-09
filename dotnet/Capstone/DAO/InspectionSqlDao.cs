@@ -17,6 +17,8 @@ namespace Capstone.DAO
         private readonly string connectionString;
 
         private string GetInspectionStatuses = "SELECT inspection_status_type_id, inspection_type FROM inspection_status_type;";
+
+        private string GetInspectionTypes = "SELECT inspection_type_id, inspections_type FROM inspection_type";
         public InspectionSqlDao(string dbConnectionString)
         {
             connectionString = dbConnectionString;
@@ -35,6 +37,27 @@ namespace Capstone.DAO
                         while (reader.Read())
                         {
                             InspectionStatusType type = new InspectionStatusType();
+                            type = MapRowToStatusType(reader);
+                            types.Add(type);
+                        }
+                    }
+                }
+            }
+            return types;
+        }
+        public List<InspectionType> GetAllInspectionTypes()
+        {
+            List<InspectionType> types = new List<InspectionType>();
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(GetInspectionTypes, conn))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            InspectionType type = new InspectionType();
                             type = MapRowToType(reader);
                             types.Add(type);
                         }
@@ -44,7 +67,15 @@ namespace Capstone.DAO
             return types;
         }
 
-        private InspectionStatusType MapRowToType(SqlDataReader reader)
+        private InspectionType MapRowToType(SqlDataReader reader)
+        {
+            InspectionType type = new InspectionType();
+            type.InspectionTypeId = Convert.ToInt32(reader["inspection_type_id"]);
+            type.Type = Convert.ToString(reader["inspections_type"]);
+
+            return type;
+        }
+        private InspectionStatusType MapRowToStatusType(SqlDataReader reader)
         {
             InspectionStatusType type = new InspectionStatusType();
             type.InspectionStatusTypeId = Convert.ToInt32(reader["inspection_status_type_id"]);
