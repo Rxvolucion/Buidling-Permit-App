@@ -56,6 +56,7 @@ export default {
         // }
     },
     methods: {
+        
         createInspection() {
             console.log("Reached create inspection method.");
             PermitService.createPermitInspection(this.newInspection)

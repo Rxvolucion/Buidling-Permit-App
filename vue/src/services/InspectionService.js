@@ -3,6 +3,6 @@ import axios from 'axios';
 export default {
 
     listInspectionTypes() {
-        return axios.get('/inspection/type')
+        return axios.get('/inspection/types')
     }
 }
