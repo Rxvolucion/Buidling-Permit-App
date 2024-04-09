@@ -11,6 +11,7 @@ import NotFoundView from "../views/NotFoundView.vue";
 import PermitCreateView from "../views/PermitCreateView.vue";
 import PermitSearchView from "../views/PermitSearchView.vue";
 import PermitCustomerView from "../views/PermitCustomerView.vue";
+import PermitInspectionCreateView from "../views/PermitInspectionCreateView.vue";
 
 
 import EmployeeHomeView from "../views/EmployeeHomeView.vue";
@@ -91,6 +92,16 @@ const routes = [
     path: '/permit/user/:userId',
     name: "customerPermits",
     component: PermitCustomerView,
+    meta: {
+      requiresAuth: true,
+      requiresCustomerAuth: true
+    }
+  },
+
+  {
+    path: '/permit/:permitId/inspection',
+    name: "permitCreateInspection",
+    component: PermitInspectionCreateView,
     meta: {
       requiresAuth: true,
       requiresCustomerAuth: true

@@ -12,5 +12,11 @@ export default {
 
     listPermitsByCustomer(customerId) {
         return axios.get(`/permit/customer/${customerId}`);
+    },
+
+    createPermitInspection(inspection) {
+        return axios.post()
     }
+
+    
 }

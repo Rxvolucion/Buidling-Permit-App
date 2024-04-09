@@ -1,5 +1,6 @@
 <template>
   <div id="capstone-app">
+    <!-- <img> -->
     <PageNav />
 
     <!-- <div id="nav">
@@ -23,3 +24,29 @@ export default{
   }
 }
 </script>
+
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+
+section.container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+}
+
+@media (max-width: 800px) {
+  section.container {
+    flex-direction: column;
+  }
+}
+
+
+</style>

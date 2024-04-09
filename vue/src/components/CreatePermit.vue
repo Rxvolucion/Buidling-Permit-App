@@ -1,7 +1,5 @@
 <template>
     <div>
-        
-        <h1>Create a Permit</h1>
         <form v-on:submit.prevent="createPermit">
             <div>
                 <label for="permit-type">Permit Type</label>
