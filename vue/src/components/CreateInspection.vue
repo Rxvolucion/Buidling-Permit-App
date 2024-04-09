@@ -1,5 +1,5 @@
 <template>
-    <div>        
+    <div>
         <p>Permit ID: {{ newInspection.permitId }}</p>
         <form v-on:submit.prevent="createInspection">
             <div>
@@ -11,10 +11,11 @@
                 <select name="inspection-type-select" id="inspection-type-select" v-model="newInspection.type" required>
                     <!--use service call to get all inspection types-->
                     <option value="">Please select an inspection type</option>
-                    <option v-for="inspectionType in inspectionTypes" v-bind:value="inspectionType" v-bind:item="inspectionType">{{ inspectionType }}</option>
+                    <option v-for="inspectionType in inspectionTypes" v-bind:value="inspectionType"
+                        v-bind:item="inspectionType">{{ inspectionType }}</option>
                 </select>
             </div>
-            
+
 
             <button type="submit">Submit</button>
         </form>
@@ -33,6 +34,7 @@ export default {
         return {
             // userRole2: "",
             // showCustomerId: false,
+            // inspections: [],
             inspectionTypes: [],
             newInspection: {
                 permitId: this.$route.params.permitId,
@@ -41,11 +43,17 @@ export default {
                 type: "",
             },
             userToken: this.$store.state.token,
-            userRole: this.$store.state.user.role,            
+            userRole: this.$store.state.user.role,
         }
     },
     computed: {
-        
+        // getInspectionTypes() {
+        //     return this.inspections.map(() => {
+        //         this.inspections.type;
+        //         console.log(this.inspections.type);
+
+        //     })
+        // }
     },
     methods: {
         createInspection() {
@@ -73,13 +81,16 @@ export default {
     },
 
     created() {
-        
+
         console.log("Reached created.")
         InspectionService
             .listInspectionTypes()
             .then((response => {
-                console.log("Success getting inspection types.")
+                console.log("Success getting inspection types.");
+                console.log(response.data);
                 this.inspectionTypes = response.data;
+
+
             }))
             .catch((error) => {
                 if (error.response) {
@@ -96,7 +107,7 @@ export default {
                     console.log("Error getting inspection types: error making request");
                 }
             });
-        
+
     }
 }
 </script>
