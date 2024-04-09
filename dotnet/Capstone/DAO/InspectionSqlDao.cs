@@ -20,7 +20,7 @@ namespace Capstone.DAO
 
         private string GetInspectionTypes = "SELECT inspection_type_id, inspections_type FROM inspection_type";
 
-        private string GetInspectionTypes1 = "SELECT inspections_type FROM inspection_type";
+        private string GetInspectionTypes1 = "SELECT inspection_type_id, inspections_type FROM inspection_type";
         public InspectionSqlDao(string dbConnectionString)
         {
             connectionString = dbConnectionString;
@@ -106,8 +106,9 @@ namespace Capstone.DAO
         private InspectionType MapRowToType(SqlDataReader reader)
         {
             InspectionType type = new InspectionType();
-            type.InspectionTypeId = Convert.ToInt32(reader["inspection_type_id"]);
             type.Type = Convert.ToString(reader["inspections_type"]);
+            type.InspectionTypeId = Convert.ToInt32(reader["inspection_type_id"]);
+            
 
             return type;
         }
