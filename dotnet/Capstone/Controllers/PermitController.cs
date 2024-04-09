@@ -15,10 +15,12 @@ namespace Capstone.Controllers
     public class PermitController : ControllerBase
     {
         private readonly IPermitDao permitDao;
+        private readonly IUserDao userDao;
 
-        public PermitController(IPermitDao permitDao)
+        public PermitController(IPermitDao permitDao, IUserDao userDao)
         {
             this.permitDao = permitDao;
+            this.userDao = userDao;
         }
 
         //GET /pet/3
@@ -50,6 +52,14 @@ namespace Capstone.Controllers
         public ActionResult<List<Permit>> GetPermits()
         {
             return Ok(permitDao.ListPermits());
+        }
+        
+        [HttpGet("customer/{userId}")]
+        public ActionResult<List<Permit>> GetPermitsByUserId()
+        {
+            string result = User.Identity.Name;
+            User me = userDao.GetUserByUsername(result);
+            return Ok(permitDao.GetPermitsByUserId(me.UserId));
         }
     }
 }
