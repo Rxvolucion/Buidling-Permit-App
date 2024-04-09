@@ -11,6 +11,7 @@ import PermitCreateView from "../views/PermitCreateView.vue";
 import PermitSearchView from "../views/PermitSearchView.vue";
 import EmployeeHomeView from "../views/EmployeeHomeView.vue";
 import CustomerHomeView from "../views/CustomerHomeView.vue";
+import PermitCustomerView from "../views/PermitCustomerView.vue";
 
 /**
  * The Vue Router is used to "direct" the browser to render a specific view component
@@ -73,12 +74,23 @@ const routes = [
       requiresAuth: true
     }
   },
+
   {
     path: '/permit/search',
     name: "searchPermit",
     component: PermitSearchView,
     meta: {
       requiresAuth: true
+    }
+  },
+
+  {
+    path: '/permit/user/:userId',
+    name: "customerPermits",
+    component: PermitCustomerView,
+    meta: {
+      requiresAuth: true,
+      requiresCustomerAuth: true
     }
   },
 

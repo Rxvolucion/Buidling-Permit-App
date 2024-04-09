@@ -8,5 +8,9 @@ export default {
     
     listPermits(){
         return axios.get('/permit')
+    },
+
+    listPermitsByUser(userId) {
+        return axios.get(`/user/${userId}`);
     }
 }

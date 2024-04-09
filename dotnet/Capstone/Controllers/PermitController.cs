@@ -21,7 +21,7 @@ namespace Capstone.Controllers
             this.permitDao = permitDao;
         }
 
-        //GET /pet/3
+        //GET /permit/3
         [HttpGet("{permitId}")]
         public ActionResult<List<Permit>> GetPermit(int permitId)
         {
@@ -29,7 +29,7 @@ namespace Capstone.Controllers
         }
 
 
-        //POST /pet
+        //POST /permit
         [HttpPost()]
         public ActionResult<Permit> AddPermit(Permit permit)
         {
