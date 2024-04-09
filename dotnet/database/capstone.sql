@@ -61,7 +61,7 @@ CREATE TABLE inspection_type (
 	inspection_type_id int IDENTITY (5001,1) NOT NULL,
 	inspections_type varchar(50) NOT NULL,
 	CONSTRAINT PK_inspection_type_id PRIMARY KEY (inspection_type_id),
-	CONSTRAINT CK_inspection_type CHECK (inspections_type IN ('Pluming', 'Electrical', 'Structural', 'HVAC'))
+	CONSTRAINT CK_inspection_type CHECK (inspections_type IN ('Plumbing', 'Electrical', 'Structural', 'HVAC'))
 
 );
 
@@ -84,7 +84,7 @@ CREATE TABLE inspections (
     CONSTRAINT FK_inspection_type_id FOREIGN KEY (inspection_type_id) REFERENCES inspection_status_type(inspection_status_type_id)
 	
 );
-INSERT INTO inspection_type (inspections_type) VALUES ('Pluming')
+INSERT INTO inspection_type (inspections_type) VALUES ('Plumbing')
 INSERT INTO inspection_type (inspections_type) VALUES ('Electrical')
 INSERT INTO inspection_type (inspections_type) VALUES ('Structural')
 INSERT INTO inspection_type (inspections_type) VALUES ('HVAC')

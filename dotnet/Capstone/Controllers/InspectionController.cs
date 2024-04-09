@@ -33,5 +33,13 @@ namespace Capstone.Controllers
             return Ok(inspectionDao.GetAllInspectionTypes());
 
         }
+
+        [HttpGet("types")]
+        public ActionResult<InspectionType> GetInspectionSpecTypes()
+        {
+
+            return Ok(inspectionDao.GetSpecificInspectionTypes());
+
+        }
     }
 }
