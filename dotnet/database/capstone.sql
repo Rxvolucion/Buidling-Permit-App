@@ -28,7 +28,7 @@ CREATE TABLE users (
 );
 
 CREATE TABLE employee (
-    employee_id int IDENTITY(1001,1) NOT NULL,
+    employee_id int IDENTITY(4001,1) NOT NULL,
     user_id INT NOT NULL,
     employee_type varchar(50) NOT NULL, --inspector or admin
     CONSTRAINT PK_employee_id PRIMARY KEY (employee_id),
@@ -37,7 +37,6 @@ CREATE TABLE employee (
 
 CREATE TABLE customer (
     customer_id int IDENTITY(1001,1) NOT NULL,
-    
     user_id INT NOT NULL,
 	contractor BIT NOT NULL, --0 indicates not contractor; 1 is contractor.
 	address varchar(125) NOT NULL,
@@ -57,6 +56,27 @@ CREATE TABLE permit (
     CONSTRAINT PK_permit_id PRIMARY KEY (permit_id),
     CONSTRAINT FK_customer_id FOREIGN KEY (customer_id) REFERENCES customer(customer_id) -- Add REFERENCES clause for foreign key
 );
+
+CREATE TABLE inspection_status_type (
+	inspection_type_id int IDENTITY (5001,1) NOT NULL,
+	inspection_type varchar(50) NOT NULL,
+	CONSTRAINT PK_inspection_type_id PRIMARY KEY (inspection_type_id),
+	CONSTRAINT CK_type CHECK (inspection_type IN ('Pass', 'Fail', 'Pending'))
+
+);
+
+CREATE TABLE inspections (
+    inspection_id int IDENTITY(3001,1) NOT NULL,
+    permit_id INT NOT NULL,
+    inspection_type_id int NOT NULL,
+    address varchar(125) NOT NULL,
+    date datetime NOT NULL,
+    CONSTRAINT PK_inspection_id PRIMARY KEY (inspection_id),
+    CONSTRAINT FK_permit_id FOREIGN KEY (permit_id) REFERENCES permit(permit_id),
+    CONSTRAINT FK_inspection_type_id FOREIGN KEY (inspection_type_id) REFERENCES inspection_status_type(inspection_type_id)
+	
+);
+
 
 -- populate default data
 -- password for these is "password"
