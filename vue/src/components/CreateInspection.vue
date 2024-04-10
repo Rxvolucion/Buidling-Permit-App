@@ -39,7 +39,7 @@ export default {
             newInspection: {
                 permitId: this.$route.params.permitId,
                 status: "",
-                date: "",
+                dateTime: "",
                 type: "",
             },
             userToken: this.$store.state.token,
