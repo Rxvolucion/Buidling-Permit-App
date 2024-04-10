@@ -14,6 +14,7 @@ import PermitCustomerView from "../views/PermitCustomerView.vue";
 import PermitInspectionCreateView from "../views/PermitInspectionCreateView.vue";
 
 import InspectionEmployeeView from "../views/InspectionEmployeeView.vue";
+import InspectionEditView from "../views/InspectionEditView.vue";
 
 
 import EmployeeHomeView from "../views/EmployeeHomeView.vue";
@@ -80,6 +81,16 @@ const routes = [
     meta: {
       requiresAuth: true,
       requiresEmployeeAuth: true
+    }
+  },
+
+  {
+    path: '/inspection/:inspectionId',
+    name: "inspectionEdit",
+    component: InspectionEditView,
+    meta: {
+      requiresAuth: true,
+      requiresEmployeeAuth: true,
     }
   },
 

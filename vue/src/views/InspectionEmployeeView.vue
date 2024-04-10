@@ -3,6 +3,7 @@
         <h1>Inspection Requests</h1>
         <section class="container">
             <inspection v-for="inspection in inspections" v-bind:key="inspection.inspectionId" v-bind:item="inspection"/>
+            
         </section>
     </div>
 
