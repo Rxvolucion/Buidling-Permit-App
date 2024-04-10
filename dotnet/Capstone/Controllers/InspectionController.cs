@@ -23,7 +23,7 @@ namespace Capstone.Controllers
 
         [HttpGet("status_type")]
         public ActionResult<InspectionStatusType> GetInspectionStatusTypes()
-        {       
+        {
             return Ok(inspectionDao.GetInspectionStatusTypes());
         }
 
@@ -43,6 +43,12 @@ namespace Capstone.Controllers
 
         }
 
+        [HttpGet("{inspectionId}")]
+        public ActionResult<Inspection> GetInspectionById(int inspectionId)
+        {
+            return Ok(inspectionDao.GetInspectionById(inspectionId));
+        }
+
         [HttpGet()]
         public ActionResult<Inspection> GetAllInspections()
         {
@@ -52,7 +58,7 @@ namespace Capstone.Controllers
         }
 
         [HttpPut("{inspectionId}")]
-        public ActionResult<Inspection> ChangeInspectionStatus(Inspection changedInspection)
+        public ActionResult<Inspection> ChangeInspectionStatus(Inspection changedInspection, int inspectionId)
         {
             Inspection newInspection = inspectionDao.UpdateInspectionStatus(changedInspection);
             if (newInspection == null)
