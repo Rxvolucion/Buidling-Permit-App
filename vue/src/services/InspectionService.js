@@ -7,6 +7,6 @@ export default {
     },
     
     listInspections() {
-        return axios.get()
+        return axios.get('/inspection')
     }
 }

@@ -1,10 +1,10 @@
 <template>
     <section class="inspection">
         
-        <p>Id: {{ item.inspectionId }}</p>
-        <p>Type: {{ item.type }}</p>
-        <p>Date/Time: {{ item.customerId }}</p>
-        <p>Status: {{ item.commercial }}</p>
+        <p>Inspection Id: {{ item.inspectionId }}</p>
+        <p>Type: {{ item.inspectionType }}</p>
+        <p>Date/Time: {{ item.dateVariable }}</p>
+        <p>Status: {{ item.inspectionStatus }}</p>
 
     </section>
 
@@ -33,7 +33,7 @@ export default {
 section.inspection {
   flex-wrap: wrap;
   display: inline-block;
-  height: 20rem;
+  height: 15rem;
   min-width: 300px;
   border: 2px solid black;
   border-radius: 10px;

@@ -51,6 +51,20 @@ namespace Capstone.Controllers
 
         }
 
+        [HttpPut("{inspectionId}")]
+        public ActionResult<Inspection> ChangeInspectionStatus(Inspection changedInspection)
+        {
+            Inspection newInspection = inspectionDao.UpdateInspectionStatus(changedInspection);
+            if (newInspection == null)
+            {
+                return BadRequest();
+            }
+            else
+            {
+                return Ok(newInspection);
+            }
+        }
+
         [HttpPost()]
         public ActionResult<Inspection> AddInspection(InspectionDTO inspectDTO)
         {
