@@ -4,7 +4,7 @@
         <form v-on:submit.prevent="createInspection">
             <div>
                 <label for="inspection-date">Inspection Request Date </label>
-                <input id="inspection-date" name="inspection-date" type="date" v-model="newInspection.date">
+                <input id="inspection-date" name="inspection-date" type="datetime-local" v-model="newInspection.date">
             </div>
             <div>
                 <label for="inspection-type-select">Inspection Type</label>

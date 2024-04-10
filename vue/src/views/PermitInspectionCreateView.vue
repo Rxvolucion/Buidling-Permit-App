@@ -1,5 +1,5 @@
 <template>
-    <div class="inspection">
+    <div class="create-inspection">
         <h1>Request an Inspection</h1>
         <!--load create permit or edit permit component based on user selection-->
         <CreateInspection />
