@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 public class Inspection
 {
     public int InspectionId { get; set; }
+    public int InspectionStatusTypeId { get; set; } = 6001;
     public int PermitId { get; set; }
     public int InspectionTypeId { get; set; }
 
@@ -28,6 +29,7 @@ public class InspectionType
 public class InspectionDTO
 {
     public int PermitId { get; set; }
+    public int InspectionStatusTypeId { get; set; } = 6001;
     public string InspectionType { get; set; }
 
     [Display(Name = "Date")]
