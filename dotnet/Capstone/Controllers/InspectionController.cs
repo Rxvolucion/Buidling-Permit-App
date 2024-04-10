@@ -52,7 +52,7 @@ namespace Capstone.Controllers
         }
 
         [HttpPut("{inspectionId}")]
-        public ActionResult<Inspection> ChangeInspectionStatus(Inspection changedInspection)
+        public ActionResult<Inspection> ChangeInspectionStatus(Inspection changedInspection, int inspectionId)
         {
             Inspection newInspection = inspectionDao.UpdateInspectionStatus(changedInspection);
             if (newInspection == null)
