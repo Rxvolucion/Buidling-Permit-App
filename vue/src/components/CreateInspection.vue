@@ -4,7 +4,7 @@
         <form v-on:submit.prevent="createInspection">
             <div>
                 <label for="inspection-date">Inspection Request Date </label>
-                <input id="inspection-date" name="inspection-date" type="datetime-local" v-model="newInspection.date">
+                <input id="inspection-date" name="inspection-date" type="datetime-local" v-model="newInspection.dateTime">
             </div>
             <div>
                 <label for="inspection-type-select">Inspection Type</label>
@@ -38,7 +38,7 @@ export default {
             inspectionTypes: [],
             newInspection: {
                 permitId: this.$route.params.permitId,
-                status: "",
+                status: "Pending",
                 dateTime: "",
                 type: "",
             },
@@ -55,12 +55,19 @@ export default {
         //     })
         // }
     },
-    methods: {
-        
+    methods: {        
         createInspection() {
+
             console.log("Reached create inspection method.");
+            console.log(this.$route.params.permitId);
+            console.log(this.newInspection.permitId);
+            console.log(this.newInspection.status);
+            console.log(this.newInspection.dateTime);
+            console.log(this.newInspection.type);
+
             PermitService.createPermitInspection(this.newInspection)
                 .then((response) => {
+                    console.log(newInspection)
                     this.$router.push({ name: 'customer' });
                 })
                 .catch((error) => {
