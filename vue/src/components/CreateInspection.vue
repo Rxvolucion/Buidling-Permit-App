@@ -4,11 +4,11 @@
         <form v-on:submit.prevent="createInspection">
             <div>
                 <label for="inspection-date">Inspection Request Date </label>
-                <input id="inspection-date" name="inspection-date" type="datetime-local" v-model="newInspection.dateTime">
+                <input id="inspection-date" name="inspection-date" type="datetime-local" v-model="newInspection.DateVariable">
             </div>
             <div>
                 <label for="inspection-type-select">Inspection Type</label>
-                <select name="inspection-type-select" id="inspection-type-select" v-model="newInspection.type" required>
+                <select name="inspection-type-select" id="inspection-type-select" v-model="newInspection.InspectionType" required>
                     <!--use service call to get all inspection types-->
                     <option value="">Please select an inspection type</option>
                     <option v-for="inspectionType in inspectionTypes" v-bind:value="inspectionType"
@@ -29,7 +29,7 @@ import PermitService from "../services/PermitService.js";
 
 export default {
     components: {},
-    name: "CreatePermit",
+    name: "CreateInspection",
     data() {
         return {
             // userRole2: "",
@@ -37,13 +37,12 @@ export default {
             // inspections: [],
             inspectionTypes: [],
             newInspection: {
-                permitId: this.$route.params.permitId,
-                status: "Pending",
-                dateTime: "",
-                type: "",
+                permitId: parseInt(this.$route.params.permitId),
+                // status: "Pending",
+                DateVariable: "",
+                InspectionType: "",
             },
-            userToken: this.$store.state.token,
-            userRole: this.$store.state.user.role,
+            
         }
     },
     computed: {
@@ -59,18 +58,18 @@ export default {
         createInspection() {
 
             console.log("Reached create inspection method.");
-            console.log(this.$route.params.permitId);
             console.log(this.newInspection.permitId);
-            console.log(this.newInspection.status);
-            console.log(this.newInspection.dateTime);
-            console.log(this.newInspection.type);
+            // console.log(this.newInspection.status);
+            console.log(this.newInspection.DateVariable);
+            console.log(this.newInspection.InspectionType);
 
             PermitService.createPermitInspection(this.newInspection)
                 .then((response) => {
-                    console.log(newInspection)
+                    console.log(this.newInspection)
                     this.$router.push({ name: 'customer' });
                 })
                 .catch((error) => {
+                    console.log("in new inspection of create inspection: ", error)
                     if (error.response) {
                         // error.response exists
                         // Request was made, but response has error status (4xx or 5xx)
