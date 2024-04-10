@@ -44,14 +44,13 @@ namespace Capstone.Controllers
         }
 
         [HttpPost()]
-        public ActionResult<Inspection> AddInspection(string inspectionType, int permitId, string address, DateTime dateVariable)
+        public ActionResult<Inspection> AddInspection(InspectionDTO inspectDTO)
         {
             Inspection inspection = new Inspection();
 
-            inspection.PermitId = permitId;
-            inspection.Address = address;
-            inspection.DateVariable = dateVariable;
-            inspection.InspectionId = inspectionDao.GetInspectionIdByType(inspectionType).InspectionTypeId;
+            inspection.PermitId = inspectDTO.PermitId;
+            inspection.DateVariable = inspectDTO.DateVariable;
+            inspection.InspectionTypeId = inspectionDao.GetInspectionIdByType(inspectDTO.InspectionType).InspectionTypeId;
            
             Inspection newInspection = inspectionDao.CreateInspection(inspection);
             if (newInspection == null || newInspection.InspectionId == 0)
