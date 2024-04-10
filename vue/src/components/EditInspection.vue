@@ -4,13 +4,11 @@
         <form v-on:submit.prevent="editInspection">
             <div>
                 <label for="inspection-date">New Request Date </label>
-                <input id="inspection-date" name="inspection-date" type="datetime-local" v-model="newInspection.DateVariable">
+                <input id="inspection-date" name="inspection-date" type="datetime-local" v-model="updatedInspection.DateVariable">
             </div>
-            
-            
             <div>
                 <label for="inspection-status-select">New Status</label>
-                    <select name="inspection-status-select" id="inspection-status-select" v-model="newInspection.InspectionStatusId" required>
+                    <select name="inspection-status-select" id="inspection-status-select" v-model="updatedInspection.inspectionStatusTypeId" required>
                         <!--use service call to get all inspection types-->
                         <option value="">Please select the status</option>
                         <option v-for="inspectionStatusType in inspectionStatusTypes" v-bind:value="inspectionStatusType.inspectionStatusTypeId"
