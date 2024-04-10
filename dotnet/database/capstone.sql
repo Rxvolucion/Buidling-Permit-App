@@ -78,7 +78,7 @@ CREATE TABLE inspections (
     permit_id INT NOT NULL,
     inspection_type_id int NOT NULL,
     address varchar(125),
-    date_variable datetime NOT NULL,
+    date_variable datetime,
     CONSTRAINT PK_inspection_id PRIMARY KEY (inspection_id),
     CONSTRAINT FK_permit_id FOREIGN KEY (permit_id) REFERENCES permit(permit_id),
     CONSTRAINT FK_inspection_type_id FOREIGN KEY (inspection_type_id) REFERENCES inspection_type(inspection_type_id)
@@ -108,6 +108,10 @@ INSERT INTO employee (user_id, employee_type) VALUES ( 5, 'admin');
 INSERT INTO customer (user_id, contractor, address) VALUES (1, 1, 'something st.');
 INSERT INTO customer (user_id, contractor, address) VALUES (2, 1, 'something st.');
 INSERT INTO customer (user_id, contractor, address) VALUES (3, 1, 'something st.');
+
+INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status) VALUES (1, 1001, '31 Spooner St.', 'house', 0, 'Pending');
+
+INSERT INTO inspections (permit_id, inspection_type_id, address, date_variable) VALUES (2001, 5001, '31 Spooner St.', NULL)
 
 GO
 

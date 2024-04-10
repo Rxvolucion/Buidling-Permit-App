@@ -24,7 +24,7 @@ namespace Capstone.DAO
              "OUTPUT INSERTED.inspection_id " +
              "VALUES (@permit_id, @inspection_type_id, @date)";
 
-        private string GetInspectionByIdSql = "SELECT inspection_id, permit_id, inspection_type_id, address, date_variable FROM inspections " +
+        private string GetInspectionByIdSql = "SELECT inspection_id, permit_id, inspection_type_id, date_variable FROM inspections " +
             "WHERE inspection_id = @inspection_id;";
 
         private string GetInspectionIdByTypeSql = "SELECT inspection_type_id, inspections_type FROM inspection_type " +
@@ -209,6 +209,7 @@ namespace Capstone.DAO
             Inspection inspection = new Inspection();
             inspection.InspectionId = Convert.ToInt32(reader["inspection_id"]);
             inspection.PermitId = Convert.ToInt32(reader["permit_id"]);
+            inspection.InspectionTypeId = Convert.ToInt32(reader["inspection_type_id"]);
             //inspection.Address = Convert.ToString(reader["address"]);
             inspection.DateVariable = Convert.ToDateTime(reader["date_variable"]);
 
