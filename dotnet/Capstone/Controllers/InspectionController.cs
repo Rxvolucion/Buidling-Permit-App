@@ -5,6 +5,7 @@ using Capstone.Security;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace Capstone.Controllers
 {
@@ -39,6 +40,42 @@ namespace Capstone.Controllers
         {
 
             return Ok(inspectionDao.GetSpecificInspectionTypes());
+
+        }
+
+        [HttpPost()]
+        public ActionResult<Inspection> AddInspection(string inspectionType, int permitId, string address, DateTime dateVariable)
+        {
+            Inspection inspection = new Inspection();
+
+            inspection.PermitId = permitId;
+            inspection.Address = address;
+            inspection.DateVariable = dateVariable;
+            inspection.InspectionId = inspectionDao.GetInspectionIdByType(inspectionType).InspectionTypeId;
+           
+            Inspection newInspection = inspectionDao.CreateInspection(inspection);
+            if (newInspection == null || newInspection.InspectionId == 0)
+            {
+                return BadRequest();
+            }
+            else
+            {
+                return Ok(newInspection);
+            }
+
+
+            //[HttpPost()]
+            //public ActionResult<Inspection> AddInspection(Inspection inspection)
+            //{
+            //    Inspection newInspection = inspectionDao.CreateInspection(inspection);
+            //    if (newInspection == null || newInspection.InspectionId == 0)
+            //    {
+            //        return BadRequest();
+            //    }
+            //    else
+            //    {
+            //        return Ok(newInspection);
+            //    }
 
         }
     }
