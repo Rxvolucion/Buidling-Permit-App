@@ -8,6 +8,9 @@ namespace Capstone.DAO
         public List<InspectionStatusType> GetInspectionStatusTypes();
         public List<InspectionType> GetAllInspectionTypes();
         public IList<string> GetSpecificInspectionTypes();
+        public Inspection CreateInspection(Inspection inspection);
+        public Inspection GetInspectionById(int inspectionId);
+        public InspectionType GetInspectionIdByType(string inspectionType);
     }
 
 }
