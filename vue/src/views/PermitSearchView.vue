@@ -15,14 +15,17 @@ import permitService from '../services/PermitService.js';
 
 export default {
     name: "SearchPermits",
+    
     data() {
         return {
             permits: [],
         }
     },
+
     computed: {
 
     },
+
     components: {
         Permit,
     },
@@ -51,11 +54,12 @@ export default {
           }
         });
     }
-},
-created(){ 
-    console.log ("reached created")
-    this.getPermits();
-}
+    },
+
+    created(){ 
+        console.log ("reached created")
+        this.getPermits();
+    }
 
 }
 

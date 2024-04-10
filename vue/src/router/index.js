@@ -13,6 +13,8 @@ import PermitSearchView from "../views/PermitSearchView.vue";
 import PermitCustomerView from "../views/PermitCustomerView.vue";
 import PermitInspectionCreateView from "../views/PermitInspectionCreateView.vue";
 
+import InspectionEmployeeView from "../views/InspectionEmployeeView.vue";
+
 
 import EmployeeHomeView from "../views/EmployeeHomeView.vue";
 import CustomerHomeView from "../views/CustomerHomeView.vue";
@@ -70,6 +72,19 @@ const routes = [
   //   name: "permit",
   //   component: PermitView,
   // },
+
+  {
+    path: '/inspection',
+    name: "inspectionRequests",
+    component: InspectionEmployeeView,
+    meta: {
+      requiresAuth: true,
+      requiresEmployeeAuth: true
+    }
+  },
+
+
+
   {
     path: '/permit/create',
     name: "createPermit",
