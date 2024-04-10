@@ -15,7 +15,7 @@ export default {
     },
 
     createPermitInspection(inspection) {
-        return axios.post('/inspection')
+        return axios.post('/inspection', inspection)
     },
 
     
