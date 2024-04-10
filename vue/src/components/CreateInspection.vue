@@ -58,7 +58,6 @@ export default {
         createInspection() {
 
             console.log("Reached create inspection method.");
-            console.log(this.$route.params.permitId);
             console.log(this.newInspection.permitId);
             // console.log(this.newInspection.status);
             console.log(this.newInspection.DateVariable);
@@ -66,10 +65,11 @@ export default {
 
             PermitService.createPermitInspection(this.newInspection)
                 .then((response) => {
-                    console.log(newInspection)
+                    console.log(this.newInspection)
                     this.$router.push({ name: 'customer' });
                 })
                 .catch((error) => {
+                    console.log("in new inspection of create inspection: ", error)
                     if (error.response) {
                         // error.response exists
                         // Request was made, but response has error status (4xx or 5xx)

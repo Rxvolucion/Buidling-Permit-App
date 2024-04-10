@@ -80,7 +80,7 @@ CREATE TABLE inspections (
 
     permit_id INT NOT NULL,
     inspection_type_id int NOT NULL,
-    address varchar(125),
+    --address varchar(125),
     date_variable datetime,
     CONSTRAINT PK_inspection_id PRIMARY KEY (inspection_id),
     CONSTRAINT FK_permit_id FOREIGN KEY (permit_id) REFERENCES permit(permit_id),
