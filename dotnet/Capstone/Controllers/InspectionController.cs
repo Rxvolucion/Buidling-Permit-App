@@ -91,18 +91,7 @@ namespace Capstone.Controllers
             }
 
 
-            //[HttpPost()]
-            //public ActionResult<Inspection> AddInspection(Inspection inspection)
-            //{
-            //    Inspection newInspection = inspectionDao.CreateInspection(inspection);
-            //    if (newInspection == null || newInspection.InspectionId == 0)
-            //    {
-            //        return BadRequest();
-            //    }
-            //    else
-            //    {
-            //        return Ok(newInspection);
-            //    }
+          
 
         }
     }
