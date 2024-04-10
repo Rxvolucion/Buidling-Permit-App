@@ -77,11 +77,11 @@ CREATE TABLE inspections (
     inspection_id int IDENTITY(3001,1) NOT NULL,
     permit_id INT NOT NULL,
     inspection_type_id int NOT NULL,
-    address varchar(125) NOT NULL,
-    date datetime NOT NULL,
+    address varchar(125),
+    date_variable datetime NOT NULL,
     CONSTRAINT PK_inspection_id PRIMARY KEY (inspection_id),
     CONSTRAINT FK_permit_id FOREIGN KEY (permit_id) REFERENCES permit(permit_id),
-    CONSTRAINT FK_inspection_type_id FOREIGN KEY (inspection_type_id) REFERENCES inspection_status_type(inspection_status_type_id)
+    CONSTRAINT FK_inspection_type_id FOREIGN KEY (inspection_type_id) REFERENCES inspection_type(inspection_type_id)
 	
 );
 INSERT INTO inspection_type (inspections_type) VALUES ('Plumbing')

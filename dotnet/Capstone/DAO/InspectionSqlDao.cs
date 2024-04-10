@@ -20,15 +20,15 @@ namespace Capstone.DAO
 
         private string GetInspectionTypes = "SELECT inspection_type_id, inspections_type FROM inspection_type";
 
-        private string CreateInspectionSql = "INSERT INTO inspections (permit_id, inspection_type_id, address, date) " +
+        private string CreateInspectionSql = "INSERT INTO inspections (permit_id, inspection_type_id, date_variable) " +
              "OUTPUT INSERTED.inspection_id " +
-             "VALUES (@permit_id, @inspection_type_id, @address, @date)";
+             "VALUES (@permit_id, @inspection_type_id, @date)";
 
-        private string GetInspectionByIdSql = "SELECT inspection_id, permit_id, inspection_type_id, address, date FROM inspections " +
+        private string GetInspectionByIdSql = "SELECT inspection_id, permit_id, inspection_type_id, address, date_variable FROM inspections " +
             "WHERE inspection_id = @inspection_id;";
 
         private string GetInspectionIdByTypeSql = "SELECT inspection_type_id, inspections_type FROM inspection_type " +
-            "WHERE inspections_tpye = @inspections_type;";
+            "WHERE inspections_type = @inspections_type;";
         public InspectionSqlDao(string dbConnectionString)
         {
             connectionString = dbConnectionString;
@@ -40,7 +40,7 @@ namespace Capstone.DAO
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                using (SqlCommand cmd = new SqlCommand(GetInspectionByIdSql, conn))
+                using (SqlCommand cmd = new SqlCommand(GetInspectionIdByTypeSql, conn))
                 {
                     cmd.Parameters.AddWithValue("@inspections_type", inspectionType);
                     using (SqlDataReader reader = cmd.ExecuteReader())
@@ -169,7 +169,7 @@ namespace Capstone.DAO
                     SqlCommand cmd = new SqlCommand(CreateInspectionSql, conn);
                     cmd.Parameters.AddWithValue("@permit_id", inspection.PermitId);
                     cmd.Parameters.AddWithValue("@inspection_type_id", inspection.InspectionTypeId);
-                    cmd.Parameters.AddWithValue("@address", inspection.Address);
+                    //cmd.Parameters.AddWithValue("@address", inspection.Address);
                     cmd.Parameters.AddWithValue("@date", inspection.DateVariable);
 
                     newInspectionId = Convert.ToInt32(cmd.ExecuteScalar());
@@ -204,12 +204,12 @@ namespace Capstone.DAO
             return type;
         }
 
-                private Inspection MapRowToInspection(SqlDataReader reader)
+            private Inspection MapRowToInspection(SqlDataReader reader)
         {
             Inspection inspection = new Inspection();
             inspection.InspectionId = Convert.ToInt32(reader["inspection_id"]);
             inspection.PermitId = Convert.ToInt32(reader["permit_id"]);
-            inspection.Address = Convert.ToString(reader["address"]);
+            //inspection.Address = Convert.ToString(reader["address"]);
             inspection.DateVariable = Convert.ToDateTime(reader["date_variable"]);
 
             return inspection;
