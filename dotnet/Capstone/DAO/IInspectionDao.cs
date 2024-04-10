@@ -11,6 +11,8 @@ namespace Capstone.DAO
         public Inspection CreateInspection(Inspection inspection);
         public Inspection GetInspectionById(int inspectionId);
         public InspectionType GetInspectionIdByType(string inspectionType);
+
+        public List<Inspection> GetAllInspections();
     }
 
 }

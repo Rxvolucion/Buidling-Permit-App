@@ -43,6 +43,14 @@ namespace Capstone.Controllers
 
         }
 
+        [HttpGet()]
+        public ActionResult<Inspection> GetAllInspections()
+        {
+
+            return Ok(inspectionDao.GetAllInspections());
+
+        }
+
         [HttpPost()]
         public ActionResult<Inspection> AddInspection(InspectionDTO inspectDTO)
         {

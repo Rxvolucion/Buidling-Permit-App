@@ -20,6 +20,9 @@ namespace Capstone.DAO
 
         private string GetInspectionTypes = "SELECT inspection_type_id, inspections_type FROM inspection_type";
 
+        private string GetInspectionsSQL = "SELECT inspection_id, inspection_status_type_id, permit_id, inspection_type_id, date_variable FROM inspections";
+
+
         private string CreateInspectionSql = "INSERT INTO inspections (inspection_status_type_id, permit_id, inspection_type_id, date_variable) " +
              "OUTPUT INSERTED.inspection_id " +
              "VALUES (6001, @permit_id, @inspection_type_id, @date)";
@@ -121,6 +124,28 @@ namespace Capstone.DAO
             return types;
         }
 
+        public List<Inspection> GetAllInspections()
+        {
+            List<Inspection> inspections = new List<Inspection>();
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(GetInspectionsSQL, conn))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Inspection inspection = new Inspection();
+                            inspection = MapRowToInspection(reader);
+                            inspections.Add(inspection);
+                        }
+                    }
+                }
+            }
+            return inspections;
+        }
+
         public IList<string> GetSpecificInspectionTypes()
         {
             IList<InspectionType> inspections = new List<InspectionType>();
@@ -204,7 +229,7 @@ namespace Capstone.DAO
             return type;
         }
 
-            private Inspection MapRowToInspection(SqlDataReader reader)
+        private Inspection MapRowToInspection(SqlDataReader reader)
         {
             Inspection inspection = new Inspection();
             inspection.InspectionId = Convert.ToInt32(reader["inspection_id"]);

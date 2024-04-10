@@ -115,7 +115,7 @@ INSERT INTO customer (user_id, contractor, address) VALUES (3, 1, 'something st.
 
 INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status) VALUES (1, 1001, '31 Spooner St.', 'house', 0, 'Pending');
 
-INSERT INTO inspections (inspection_status_type_id, permit_id, inspection_type_id, address, date_variable) VALUES (6001, 2001, 5001, '31 Spooner St.', NULL)
+INSERT INTO inspections (inspection_status_type_id, permit_id, inspection_type_id, date_variable) VALUES (6001, 2001, 5001, '2024-04-10T12:00:00')
 
 GO
 
