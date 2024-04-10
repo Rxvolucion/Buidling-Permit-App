@@ -20,9 +20,9 @@ namespace Capstone.DAO
 
         private string GetInspectionTypes = "SELECT inspection_type_id, inspections_type FROM inspection_type";
 
-        private string CreateInspectionSql = "INSERT INTO inspections (permit_id, inspection_type_id, date_variable) " +
+        private string CreateInspectionSql = "INSERT INTO inspections (inspection_status_type_id, permit_id, inspection_type_id, date_variable) " +
              "OUTPUT INSERTED.inspection_id " +
-             "VALUES (@permit_id, @inspection_type_id, @date)";
+             "VALUES (6001, @permit_id, @inspection_type_id, @date)";
 
         private string GetInspectionByIdSql = "SELECT inspection_id, permit_id, inspection_type_id, date_variable FROM inspections " +
             "WHERE inspection_id = @inspection_id;";
