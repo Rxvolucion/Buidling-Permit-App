@@ -8,12 +8,18 @@
         <p>Permit Type: {{ item.permitType }}</p>
         <p>Permit Status: {{ item.permitStatus }}</p>
 
+        <!-- {{ userRole }} -->
+
         <!-- Show if customer -->
-        <div v-if="userRole == 'user' ? false : true">
+        <div v-if="userRole == 'user' ? true : false">
             <button v-on:click="this.$router.push({ name: 'permitCreateInspection', params: { permitId: this.item.permitId } })">Request Inspection</button>
         </div>
 
-        <!-- <p>-----------------------------------</p> -->
+
+        <!-- Show if employee -->
+        <div v-if="userRole == 'admin' ? true : false">
+            <button v-on:click="this.$router.push({name: 'permitApproveReject', params: {permitId: this.item.permitId }})">Approve/Reject</button>
+        </div>
     </section>
 
 
@@ -39,7 +45,7 @@ export default {
     components: { RouterLink },
     data() {
         return {
-            userRole: this.$store.state.user,
+            userRole: this.$store.state.user.role,
         }
     }
 }

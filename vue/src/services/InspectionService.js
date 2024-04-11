@@ -21,5 +21,10 @@ export default {
 
     getInspectionById(inspectionId) {
         return axios.get(`/inspection/${inspectionId}`)
+    },
+
+    getInspectionsByPermitId(permitId) {
+        console.log(permitId)
+        return axios.get(`/inspection/permit/${permitId}`)
     }
 }

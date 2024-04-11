@@ -8,10 +8,17 @@ import LogoutView from '../views/LogoutView.vue';
 import RegisterView from '../views/RegisterView.vue';
 import NotFoundView from "../views/NotFoundView.vue";
 
+
+
+
 import PermitCreateView from "../views/PermitCreateView.vue";
 import PermitSearchView from "../views/PermitSearchView.vue";
 import PermitCustomerView from "../views/PermitCustomerView.vue";
 import PermitInspectionCreateView from "../views/PermitInspectionCreateView.vue";
+import PermitApproveRejectView from "../views/PermitApproveRejectView.vue"
+
+
+
 
 import InspectionEmployeeView from "../views/InspectionEmployeeView.vue";
 import InspectionEditView from "../views/InspectionEditView.vue";
@@ -131,6 +138,16 @@ const routes = [
     meta: {
       requiresAuth: true,
       requiresCustomerAuth: true
+    }
+  },
+
+  {
+    path: '/permit/:permitId/approve-reject',
+    name: "permitApproveReject",
+    component: PermitApproveRejectView,
+    meta: {
+      requiresAuth: true,
+      requiresEmployeeAuth: true,
     }
   },
 
