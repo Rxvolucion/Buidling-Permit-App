@@ -58,10 +58,11 @@ export default {
             console.log("Reached close/open permit method.")
             console.log(parseInt(this.item.permitId))
             PermitService
-                .openClosePermit(parseInt(this.item.PermitId))
+                .openClosePermit(parseInt(this.item.permitId))
                 .then((response => {
                     console.log("Reached success on open or closing permit.")
-                    console.log(this.item.PermitId)
+                    // this.$forceUpdate();
+                    this.$router.push({name: 'employee'})
                 }))
                 .catch((error) => {
                     if (error.response) {
@@ -80,6 +81,11 @@ export default {
                 });
 
         }
+    },
+    computed: {
+        // getPermitActiveValue() {
+        //     return this.item.active;
+        // }
     }
 }
 </script>

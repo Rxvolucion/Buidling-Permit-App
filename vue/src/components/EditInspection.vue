@@ -57,6 +57,7 @@ export default {
         getInspectionTypeId() {
             return this.existingInspection.inspectionTypeId
         },
+        
 
         // filter inspection status types to get inspection status type by the inspection status selected by the customer
 
