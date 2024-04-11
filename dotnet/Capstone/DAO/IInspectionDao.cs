@@ -18,7 +18,8 @@ namespace Capstone.DAO
         //public Inspection UpdateInspectionStatus(Inspection updatedInspection);
         public int GetStatusTypeIdByType(string inspectionStatus);
 
-        public List<Inspection> GetInspectionsByPermitId(int permitId);
+        public List<InspectionDetailsDTO> GetInspectionsByPermitId(int permitId);
+
     }
 
 }
