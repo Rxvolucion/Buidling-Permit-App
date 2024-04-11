@@ -27,7 +27,7 @@ namespace Capstone.DAO
         private string permitsByUserId = "SELECT permit.permit_id, permit.active, customer.customer_id, permit.permit_address, permit.permit_type, permit.commercial, permit.permit_status FROM customer " +
         "JOIN permit ON customer.customer_id = permit.customer_id " + "WHERE permit.customer_id = @customer_id;";
 
-        private string UpdatePermitByPermitIdSql = "UPDATE permit SET permit_status_id=@permit_status WHERE permit_id = @permit_id";
+        private string UpdatePermitByPermitIdSql = "UPDATE permit SET permit_status=@permit_status WHERE permit_id = @permit_id";
 
         //private string GetPermitStatusTypes = "SELECT permit_id, active, customer_id, permit_address, permit_type, commercial, permit_status FROM permit;";
 
