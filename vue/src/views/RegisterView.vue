@@ -115,67 +115,42 @@ label {
 </style> -->
 
 <template>
-  <div id="register" class="text-center">
-    <form v-on:submit.prevent="register">
-      <h1>Create Account</h1>
-      <div role="alert" v-if="registrationErrors">
+  <div id="register" class="d-flex justify-content-center align-items-center min-vh-100 bg-image">
+    <form v-on:submit.prevent="register" class="card p-5 shadow col-md-6 col-lg-4">
+      <h1 class="mb-4">Create Account</h1>
+      <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
       </div>
-      <div class="form-input-group">
+      <div class="form-group">
         <label for="username">Username</label>
-        <input
-          type="text"
-          id="username"
-          v-model="user.username"
-          required
-          autofocus
-        />
+        <input type="text" id="username" v-model="user.username" required autofocus class="form-control" />
       </div>
-      <div class="form-input-group">
+      <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" id="password" v-model="user.password" required />
+        <input type="password" id="password" v-model="user.password" required class="form-control" />
       </div>
-      <div class="form-input-group">
+      <div class="form-group">
         <label for="confirmPassword">Confirm Password</label>
-        <input
-          type="password"
-          id="confirmPassword"
-          v-model="user.confirmPassword"
-          required
-        />
+        <input type="password" id="confirmPassword" v-model="user.confirmPassword" required class="form-control" />
       </div>
-      <div class="form-input-group">
+      <div class="form-group">
         <label for="email">Email</label>
-        <input type="text" id="email" v-model="user.email" required autofocus />
+        <input type="text" id="email" v-model="user.email" required autofocus class="form-control" />
       </div>
-
-      <div class="form-input-group">
+      <div class="form-group">
         <label for="address">Address</label>
-        <input
-          type="text"
-          id="address"
-          v-model="customerDTO.address"
-          required
-          autofocus
-        />
+        <input type="text" id="address" v-model="customerDTO.address" required autofocus class="form-control" />
       </div>
-      <div class="form-input-group">
+      <div class="form-group">
         <label for="contractor">Contractor</label>
-        <select
-          v-model="customerDTO.contractor"
-          id="contractor"
-          name="contractor"
-        >
+        <select v-model="customerDTO.contractor" id="contractor" name="contractor" class="form-control">
           <option value="true">Yes</option>
           <option value="false">No</option>
         </select>
       </div>
-
-      <button type="submit">Create Account</button>
-      <p>
-        <router-link v-bind:to="{ name: 'login' }"
-          >Already have an account? Log in.</router-link
-        >
+      <button type="submit" class="btn btn-primary">Create Account</button>
+      <p class="mt-3">
+        <router-link :to="{ name: 'login' }" class="text-muted">Already have an account? Log in.</router-link>
       </p>
     </form>
   </div>
@@ -193,94 +168,63 @@ export default {
         confirmPassword: "",
         email: "",
         isEmployee: false,
-        role: "user",
+        role: "user"
       },
       customerDTO: {
         userId: 0,
         address: "",
-        contractor: false,
+        contractor: false
       },
       registrationErrors: false,
-      registrationErrorMsg: "There were problems registering this user.",
+      registrationErrorMsg: "There were problems registering this user."
     };
   },
   methods: {
     createCustomer() {
-      console.log("reached create customer method");
-      authService.createCustomer(this.customerDTO)
-
-        .then((response) => {
-          console.log("reached success in create customer");
-
+      authService
+        .createCustomer(this.customerDTO)
+        .then(response => {
           this.$router.push({
             path: "/login",
-            query: { registration: "success" },
+            query: { registration: "success" }
           });
         })
-        .catch((error) => {
-          if (error.response) {
-            // error.response exists
-            // Request was made, but response has error status (4xx or 5xx)
-            console.log("Error loading pets: ", error.response.status);
-          } else if (error.request) {
-            // There is no error.response, but error.request exists
-            // Request was made, but no response was received
-            console.log("Error loading pets: unable to communicate to server");
-          } else {
-            // Neither error.response and error.request exist
-            // Request was *not* made
-            console.log("Error loading pets: error making request");
-          }
+        .catch(error => {
+          // Handle error
         });
     },
     register() {
-      if (this.user.password != this.user.confirmPassword) {
+      if (this.user.password !== this.user.confirmPassword) {
         this.registrationErrors = true;
         this.registrationErrorMsg = "Password & Confirm Password do not match.";
       } else {
-        console.log("reached auth service in  register");
         authService
           .register(this.user)
-          .then((response) => {
-            // console.log("reached success in auth service in register");
+          .then(response => {
             this.customerDTO.userId = response.data.userId;
-            console.log(response.data)
-            console.log(response.data.userId)
             this.createCustomer();
           })
-          .catch((error) => {
-            if (error.response) {
-              // error.response exists
-              // Request was made, but response has error status (4xx or 5xx)
-              console.log("Error loading pets: ", error.response.status);
-            } else if (error.request) {
-              // There is no error.response, but error.request exists
-              // Request was made, but no response was received
-              console.log(
-                "Error loading pets: unable to communicate to server"
-              );
-            } else {
-              // Neither error.response and error.request exist
-              // Request was *not* made
-              console.log("Error loading pets: error making request");
-            }
+          .catch(error => {
+            // Handle error
           });
       }
     },
     clearErrors() {
-      console.log("reached clearErrors");
       this.registrationErrors = false;
       this.registrationErrorMsg = "There were problems registering this user.";
-    },
-  },
+    }
+  }
 };
 </script>
 
 <style scoped>
-.form-input-group {
+.form-group {
   margin-bottom: 1rem;
 }
-label {
-  margin-right: 0.5rem;
+
+.bg-image {
+  background-image: url('../img/Blueprint_B.jpg');
+  background-size: cover;
+  background-position: center;
 }
 </style>
