@@ -15,6 +15,16 @@
                             v-bind:item="inspectionStatusType.inspectionStatusTypeId">{{ inspectionStatusType.statusType }}</option>
                     </select>
             </div>
+            <!-- <label for="inspection-status-select">New Status</label>
+            <select name="inspection-status-select" id="inspection-status-select" v-model="updatedInspection.inspectionStatusTypeId" required>
+                <option value="">Please select the status</option>
+                <option v-for="inspectionStatusType in inspectionStatusTypes" v-bind:value="inspectionStatusType.inspectionStatusTypeId" v-bind:key="inspectionStatusType.inspectionStatusTypeId">
+                    {{ inspectionStatusType.statusType }}
+                </option>
+            </select>
+    </div> -->
+
+
             <button type="submit">Submit</button>
         </form>
     </div>

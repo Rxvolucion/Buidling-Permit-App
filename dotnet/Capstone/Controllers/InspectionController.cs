@@ -58,9 +58,9 @@ namespace Capstone.Controllers
         }
 
         [HttpPut("{inspectionId}")]
-        public ActionResult<Inspection> ChangeInspectionStatus(Inspection changedInspection, int inspectionId)
+        public ActionResult<Inspection> ChangeInspection(InspectionDetailsDTO changedInspection, int inspectionId)
         {
-            Inspection newInspection = inspectionDao.UpdateInspectionStatus(changedInspection);
+            Inspection newInspection = inspectionDao.UpdateInspection(changedInspection);
             if (newInspection == null)
             {
                 return BadRequest();
@@ -70,6 +70,20 @@ namespace Capstone.Controllers
                 return Ok(newInspection);
             }
         }
+
+        //[HttpPut("{inspectionId}")]
+        //public ActionResult<Inspection> ChangeInspectionStatus(Inspection changedInspection, int inspectionId)
+        //{
+        //    Inspection newInspection = inspectionDao.UpdateInspectionStatus(changedInspection);
+        //    if (newInspection == null)
+        //    {
+        //        return BadRequest();
+        //    }
+        //    else
+        //    {
+        //        return Ok(newInspection);
+        //    }
+        //}
 
         [HttpPost()]
         public ActionResult<Inspection> AddInspection(InspectionDTO inspectDTO)
