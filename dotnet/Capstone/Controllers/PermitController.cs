@@ -23,6 +23,12 @@ namespace Capstone.Controllers
             this.userDao = userDao;
         }
 
+        //[HttpGet("permit_status")]
+        //public ActionResult<List<string>> GetPermitStatuses()
+        //{
+        //    return Ok(permitDao.GetPermitStatuses());
+        //}
+
         //GET /permit/3
         [HttpGet("{permitId}")]
         public ActionResult<List<Permit>> GetPermit(int permitId)
