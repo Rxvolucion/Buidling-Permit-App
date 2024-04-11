@@ -20,6 +20,11 @@
         <div v-if="userRole == 'admin' ? true : false">
             <button v-on:click="this.$router.push({name: 'permitApproveReject', params: {permitId: this.item.permitId }})">Approve/Reject</button>
         </div>
+
+        <div v-if="userRole == 'admin' ? true : false">
+            <button v-on:click="closeOpenPermit">Close/Open</button>
+        </div>
+        
     </section>
 
 
@@ -37,7 +42,7 @@
 
 <script>
 import { RouterLink } from 'vue-router';
-
+import PermitService from '../services/PermitService.js'
 
 export default {
     name: "permit",
@@ -46,6 +51,34 @@ export default {
     data() {
         return {
             userRole: this.$store.state.user.role,
+        }
+    },
+    methods: {
+        closeOpenPermit() {
+            console.log("Reached close/open permit method.")
+            console.log(parseInt(this.item.permitId))
+            PermitService
+                .openClosePermit(parseInt(this.item.PermitId))
+                .then((response => {
+                    console.log("Reached success on open or closing permit.")
+                    console.log(this.item.PermitId)
+                }))
+                .catch((error) => {
+                    if (error.response) {
+                        // error.response exists
+                        // Request was made, but response has error status (4xx or 5xx)
+                        console.log("Error updating permit status: ", error.response.status);
+                    } else if (error.request) {
+                        // There is no error.response, but error.request exists
+                        // Request was made, but no response was received
+                        console.log("Error updating permit status: unable to communicate to server");
+                    } else {
+                        // Neither error.response and error.request exist
+                        // Request was *not* made
+                        console.log("Error updating permit status: error making request");
+                    }
+                });
+
         }
     }
 }
