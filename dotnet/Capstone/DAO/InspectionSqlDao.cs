@@ -70,7 +70,7 @@ namespace Capstone.DAO
             updatedInspection.InspectionId = inspectionDTO.InspectionId;
             updatedInspection.PermitId = inspectionDTO.PermitId;
             updatedInspection.DateVariable = inspectionDTO.DateVariable;
-            updatedInspection.InspectionTypeId = GetInspectionIdByType(inspectionDTO.InspectionType).InspectionTypeId;//get id by type
+            //updatedInspection.InspectionTypeId = GetInspectionIdByType(inspectionDTO.InspectionType).InspectionTypeId;//get id by type
             updatedInspection.InspectionStatusTypeId = GetStatusTypeIdByType(inspectionDTO.InspectionStatus); //get id by status
 
             using (SqlConnection conn = new SqlConnection(connectionString))
