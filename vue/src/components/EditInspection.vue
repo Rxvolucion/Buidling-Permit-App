@@ -11,19 +11,10 @@
                 <label for="inspection-status-select">New Status: </label>
                     <select name="inspection-status-select" id="inspection-status-select" v-model="updatedInspection.InspectionStatus" required>
                         <option value="">Please select the status</option>
-                        <option v-for="inspectionStatusType in inspectionStatusTypes" v-bind:value="inspectionStatusType.inspectionStatusTypeId"
-                            v-bind:item="inspectionStatusType.inspectionStatusTypeId">{{ inspectionStatusType.statusType }}</option>
+                        <option v-for="inspectionStatusType in inspectionStatusTypes" v-bind:value="inspectionStatusType.statusType"
+                            v-bind:item="inspectionStatusType.statusType">{{ inspectionStatusType.statusType }}</option>
                     </select>
             </div>
-            <!-- <label for="inspection-status-select">New Status</label>
-            <select name="inspection-status-select" id="inspection-status-select" v-model="updatedInspection.inspectionStatusTypeId" required>
-                <option value="">Please select the status</option>
-                <option v-for="inspectionStatusType in inspectionStatusTypes" v-bind:value="inspectionStatusType.inspectionStatusTypeId" v-bind:key="inspectionStatusType.inspectionStatusTypeId">
-                    {{ inspectionStatusType.statusType }}
-                </option>
-            </select>
-    </div> -->
-
 
             <button type="submit">Submit</button>
         </form>
@@ -55,7 +46,7 @@ export default {
 
                 InspectionID: parseInt(this.$route.params.inspectionId),
                 DateVariable: "",
-                // InspectionType: "",
+                // InspectionType: this.getInspectionById,
                 // InspectionStatusId: 0,
                 InspectionStatus: "",
             },
@@ -63,6 +54,10 @@ export default {
         }
     },
     computed: {
+        getInspectionTypeId() {
+            return this.existingInspection.inspectionTypeId
+        },
+
         // filter inspection status types to get inspection status type by the inspection status selected by the customer
 
         // getSelectedInspectionStatusID() {
@@ -81,8 +76,9 @@ export default {
         editInspection() {
 
             console.log("Reached edit inspection method.");
+            console.log(this.updatedInspection);
 
-            PermitService.editInspection(this.updatedInspectionInspection)
+            InspectionService.editInspection(this.updatedInspection)
                 .then((response) => {
                     console.log(this.updatedInspection)
                     this.$router.push({ name: 'inspectionRequests' });
