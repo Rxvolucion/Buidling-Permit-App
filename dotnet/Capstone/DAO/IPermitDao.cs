@@ -11,6 +11,7 @@ namespace Capstone.DAO
         public List<Permit> GetPermitsByCustomerId(int customerId);
 
         public Permit UpdatePermit(PermitStatusDTO permitStatusDTO);
+        public int OpenClosePermit(int permitId);
     }
 }
 

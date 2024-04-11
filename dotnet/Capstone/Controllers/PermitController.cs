@@ -29,7 +29,20 @@ namespace Capstone.Controllers
         //    return Ok(permitDao.GetPermitStatuses());
         //}
 
-
+        [HttpPut("active/{permitId}")]
+        public ActionResult<Permit> OpenClosePermit(int permitId)
+        {
+            int newPermitId = permitDao.OpenClosePermit(permitId);
+            if (newPermitId == 0)
+            {
+                return BadRequest();
+            }
+            else
+            {
+                return Ok(newPermitId);
+            }
+            
+        }
 
 
         [HttpPut("{permitId}")]

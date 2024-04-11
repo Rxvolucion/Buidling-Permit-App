@@ -28,12 +28,38 @@ namespace Capstone.DAO
         "JOIN permit ON customer.customer_id = permit.customer_id " + "WHERE permit.customer_id = @customer_id;";
 
         private string UpdatePermitByPermitIdSql = "UPDATE permit SET permit_status=@permit_status WHERE permit_id = @permit_id";
+        
+        private string OpenClosePermitSql = "UPDATE permit SET active= ~active WHERE permit_id = @permit_id;";
 
         //private string GetPermitStatusTypes = "SELECT permit_id, active, customer_id, permit_address, permit_type, commercial, permit_status FROM permit;";
 
         public PermitSqlDao(string dbConnectionString)
         {
             connectionString = dbConnectionString;
+        }
+
+        public int OpenClosePermit(int permitId)
+        {
+            //Permit updatedPermit = new Permit();
+            //updatedPermit.PermitId = permitId;
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(OpenClosePermitSql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@permit_id", permitId);
+                    int count = cmd.ExecuteNonQuery();
+                    if (count == 1)
+                    {
+                        return permitId;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+            }
         }
 
         public Permit UpdatePermit(PermitStatusDTO permitStatusDTO)
