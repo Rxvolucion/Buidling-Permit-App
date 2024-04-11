@@ -17,6 +17,7 @@
             <option value="Approved">Approve</option>
             <option value="Rejected">Reject</option>
         </select>
+        <button type="submit">Submit</button>
     </form>
 </div>
 

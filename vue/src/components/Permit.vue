@@ -20,6 +20,11 @@
         <div v-if="userRole == 'admin' ? true : false">
             <button v-on:click="this.$router.push({name: 'permitApproveReject', params: {permitId: this.item.permitId }})">Approve/Reject</button>
         </div>
+
+        <div v-if="userRole == 'admin' ? true : false">
+            <button v-on:click="">Close/Opent</button>
+        </div>
+        
     </section>
 
 
@@ -46,6 +51,12 @@ export default {
     data() {
         return {
             userRole: this.$store.state.user.role,
+        }
+    },
+    methods: {
+        closeOpenPermit() {
+            console.log("Reached close/open permit method.")
+            
         }
     }
 }

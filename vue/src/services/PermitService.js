@@ -20,9 +20,11 @@ export default {
 
     updatePermitStatus(permit) {
         return axios.put(`/permit/${permit.permitId}`, permit)
-    }
+    },
 
-    
+    openClosePermit(permitId) {
+        return axios.put(`/permit/active/${permitId}`)
+    }
 
     
 }
