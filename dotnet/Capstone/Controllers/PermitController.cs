@@ -29,6 +29,26 @@ namespace Capstone.Controllers
         //    return Ok(permitDao.GetPermitStatuses());
         //}
 
+
+
+
+        //[HttpPut("{permitId}")]
+        //public ActionResult<Inspection> ChangeInspection(PermitStatusDTO changedPermit, int permitId)
+        //{
+        //    Inspection newInspection = inspectionDao.UpdateInspection(changedInspection);
+        //    if (newInspection == null)
+        //    {
+        //        return BadRequest();
+        //    }
+        //    else
+        //    {
+        //        return Ok(newInspection);
+        //    }
+        //}
+
+
+
+
         //GET /permit/3
         [HttpGet("{permitId}")]
         public ActionResult<List<Permit>> GetPermit(int permitId)
