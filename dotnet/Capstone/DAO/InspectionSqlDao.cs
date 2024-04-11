@@ -36,9 +36,36 @@ namespace Capstone.DAO
         private string UpdateInspectionStatusSql = "UPDATE inspections SET inspection_status_type_id=@inspection_status_type_id WHERE inspection_id = @inspection_id";
 
         private string GetInspectionStatusIdByStatus = "SELECT inspection_status_type_id, inspection_type FROM inspection_status_type WHERE inspection_type = @inspection_type;";
+
+        //private string GetInpsectionsByAllSql = "UPDATE permit SET permit_status_id=@permit_status WHERE permit_id = @permit_id";
+
+        private string GetInspectionsByPermitIdSql = "SELECT inspection_id, inspection_status_type_id, permit_id, inspection_type_id, date_variable FROM inspections WHERE permit_id = @permit_id;";
         public InspectionSqlDao(string dbConnectionString)
         {
             connectionString = dbConnectionString;
+        }
+
+        public List<Inspection> GetInspectionsByPermitId(int permitId)
+        {
+            List<Inspection> inspections = new List<Inspection>();
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(GetInspectionsByPermitIdSql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@permit_id", permitId);
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Inspection inspection = new Inspection();
+                            inspection = MapRowToInspection(reader);
+                            inspections.Add(inspection);
+                        }
+                    }
+                }
+            }
+            return inspections;
         }
 
         public int GetStatusTypeIdByType(string inspectionStatus)

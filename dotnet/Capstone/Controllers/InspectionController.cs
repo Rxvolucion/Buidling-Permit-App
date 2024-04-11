@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 
 namespace Capstone.Controllers
 {
@@ -34,6 +35,15 @@ namespace Capstone.Controllers
             return Ok(inspectionDao.GetAllInspectionTypes());
 
         }
+
+        [HttpGet("permit/{permitId}")]
+
+        public ActionResult<List<Inspection>> GetInspectionByPermitId(int permitId)
+        {
+            return Ok(inspectionDao.GetInspectionsByPermitId(permitId));
+        }
+
+
 
         [HttpGet("types")]
         public ActionResult<InspectionType> GetInspectionSpecTypes()
