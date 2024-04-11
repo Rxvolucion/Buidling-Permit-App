@@ -35,6 +35,7 @@ export default {
             // userRole2: "",
             // showCustomerId: false,
             // inspections: [],
+            
             inspectionTypes: [],
             inspectionStatusTypes: [],
             existingInspection: {
