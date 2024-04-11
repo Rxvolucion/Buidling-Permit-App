@@ -18,7 +18,14 @@ export default {
         return axios.post('/inspection', inspection)
     },
 
-    
+    updatePermitStatus(permit) {
+        return axios.put(`/permit/${permit.permitId}`, permit)
+    },
+
+    openClosePermit(permitId) {
+        console.log(permitId)
+        return axios.put(`/permit/active/${permitId}`)
+    }
 
     
 }

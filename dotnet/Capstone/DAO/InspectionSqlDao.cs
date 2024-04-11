@@ -34,13 +34,77 @@ namespace Capstone.DAO
             "WHERE inspections_type = @inspections_type;";
 
         private string UpdateInspectionStatusSql = "UPDATE inspections SET inspection_status_type_id=@inspection_status_type_id WHERE inspection_id = @inspection_id";
+
+        private string GetInspectionStatusIdByStatus = "SELECT inspection_status_type_id, inspection_type FROM inspection_status_type WHERE inspection_type = @inspection_type;";
+
+        //private string GetInpsectionsByAllSql = "UPDATE permit SET permit_status_id=@permit_status WHERE permit_id = @permit_id";
+
+        private string GetInspectionsByPermitIdSql = "SELECT inspections.inspection_id, inspections.inspection_status_type_id, inspections.permit_id, inspections.inspection_type_id, inspections.date_variable, inspection_status_type.inspection_type, inspection_type.inspections_type FROM inspections " +
+           "JOIN inspection_status_type ON inspections.inspection_status_type_id = inspection_status_type.inspection_status_type_id " +
+           "JOIN inspection_type ON inspections.inspection_type_id = inspection_type.inspection_type_id WHERE permit_id = @permit_id;";
+
+        //private string GetInspectionsByPermitIdSql = "SELECT inspection_id, inspection_status_type_id, permit_id, inspection_type_id, date_variable FROM inspections WHERE permit_id = @permit_id;";
         public InspectionSqlDao(string dbConnectionString)
         {
             connectionString = dbConnectionString;
         }
 
-        public Inspection UpdateInspectionStatus(Inspection updatedInspection)
+        public List<InspectionDetailsDTO> GetInspectionsByPermitId(int permitId)
         {
+            List<InspectionDetailsDTO> inspectionDetailsDTO = new List<InspectionDetailsDTO>();
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(GetInspectionsByPermitIdSql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@permit_id", permitId);
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            InspectionDetailsDTO inspectionDTO = new InspectionDetailsDTO();
+                            inspectionDTO = MapRowToInspectionSpecific(reader);
+                            inspectionDetailsDTO.Add(inspectionDTO);
+
+                        }
+                    }
+                }
+            }
+            return inspectionDetailsDTO;
+        }
+
+        public int GetStatusTypeIdByType(string inspectionStatus)
+        {
+            int inspectionStatusId = 0;
+            InspectionStatusType newInspectionStatus = new InspectionStatusType();
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(GetInspectionStatusIdByStatus, conn))
+                {
+                    cmd.Parameters.AddWithValue("@inspection_type", inspectionStatus);
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            newInspectionStatus = MapRowToStatusType(reader);
+                        }
+                    }
+                }
+            }
+            inspectionStatusId = newInspectionStatus.InspectionStatusTypeId;
+            return inspectionStatusId; 
+        }
+
+        public Inspection UpdateInspection(InspectionDetailsDTO inspectionDTO)
+        {
+            Inspection updatedInspection = new Inspection();
+            updatedInspection.InspectionId = inspectionDTO.InspectionId;
+            updatedInspection.PermitId = inspectionDTO.PermitId;
+            updatedInspection.DateVariable = inspectionDTO.DateVariable;
+            //updatedInspection.InspectionTypeId = GetInspectionIdByType(inspectionDTO.InspectionType).InspectionTypeId;//get id by type
+            updatedInspection.InspectionStatusTypeId = GetStatusTypeIdByType(inspectionDTO.InspectionStatus); //get id by status
+
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
@@ -60,6 +124,28 @@ namespace Capstone.DAO
                 }
             }
         }
+
+        //public Inspection UpdateInspectionStatus(Inspection updatedInspection)
+        //{
+        //    using (SqlConnection conn = new SqlConnection(connectionString))
+        //    {
+        //        conn.Open();
+        //        using (SqlCommand cmd = new SqlCommand(UpdateInspectionStatusSql, conn))
+        //        {
+        //            cmd.Parameters.AddWithValue("@inspection_status_type_id", updatedInspection.InspectionStatusTypeId);
+        //            cmd.Parameters.AddWithValue("@inspection_id", updatedInspection.InspectionId);
+        //            int count = cmd.ExecuteNonQuery();
+        //            if (count == 1)
+        //            {
+        //                return updatedInspection;
+        //            }
+        //            else
+        //            {
+        //                return null;
+        //            }
+        //        }
+        //    }
+        //}
 
         public InspectionType GetInspectionIdByType(string inspectionType)
         {

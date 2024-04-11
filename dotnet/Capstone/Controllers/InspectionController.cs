@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 
 namespace Capstone.Controllers
 {
@@ -35,6 +36,15 @@ namespace Capstone.Controllers
 
         }
 
+        [HttpGet("permit/{permitId}")]
+
+        public ActionResult<List<Inspection>> GetInspectionByPermitId(int permitId)
+        {
+            return Ok(inspectionDao.GetInspectionsByPermitId(permitId));
+        }
+
+
+
         [HttpGet("types")]
         public ActionResult<InspectionType> GetInspectionSpecTypes()
         {
@@ -58,9 +68,9 @@ namespace Capstone.Controllers
         }
 
         [HttpPut("{inspectionId}")]
-        public ActionResult<Inspection> ChangeInspectionStatus(Inspection changedInspection, int inspectionId)
+        public ActionResult<Inspection> ChangeInspection(InspectionDetailsDTO changedInspection, int inspectionId)
         {
-            Inspection newInspection = inspectionDao.UpdateInspectionStatus(changedInspection);
+            Inspection newInspection = inspectionDao.UpdateInspection(changedInspection);
             if (newInspection == null)
             {
                 return BadRequest();
@@ -70,6 +80,20 @@ namespace Capstone.Controllers
                 return Ok(newInspection);
             }
         }
+
+        //[HttpPut("{inspectionId}")]
+        //public ActionResult<Inspection> ChangeInspectionStatus(Inspection changedInspection, int inspectionId)
+        //{
+        //    Inspection newInspection = inspectionDao.UpdateInspectionStatus(changedInspection);
+        //    if (newInspection == null)
+        //    {
+        //        return BadRequest();
+        //    }
+        //    else
+        //    {
+        //        return Ok(newInspection);
+        //    }
+        //}
 
         [HttpPost()]
         public ActionResult<Inspection> AddInspection(InspectionDTO inspectDTO)

@@ -14,5 +14,11 @@ namespace Capstone.Models
         public string PermitStatus { get; set; } = "Pending";
 
     }
+
+    public class PermitStatusDTO
+    {
+        public int PermitId { get; set; }
+        public string PermitStatus { get; set; }
+    }
 }
 

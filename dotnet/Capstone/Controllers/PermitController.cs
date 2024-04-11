@@ -23,6 +23,45 @@ namespace Capstone.Controllers
             this.userDao = userDao;
         }
 
+        //[HttpGet("permit_status")]
+        //public ActionResult<List<string>> GetPermitStatuses()
+        //{
+        //    return Ok(permitDao.GetPermitStatuses());
+        //}
+
+        [HttpPut("active/{permitId}")]
+        public ActionResult<int> OpenClosePermit(int permitId)
+        {
+            int newPermitId = permitDao.OpenClosePermit(permitId);
+            if (newPermitId == 0)
+            {
+                return BadRequest();
+            }
+            else
+            {
+                return Ok(newPermitId);
+            }
+            
+        }
+
+
+        [HttpPut("{permitId}")]
+        public ActionResult<Permit> ChangeInspection(PermitStatusDTO changedPermit, int permitId)
+        {
+            Permit newPermit = permitDao.UpdatePermit(changedPermit);
+            if (newPermit == null)
+            {
+                return BadRequest();
+            }
+            else
+            {
+                return Ok(newPermit);
+            }
+        }
+
+
+
+
         //GET /permit/3
         [HttpGet("{permitId}")]
         public ActionResult<List<Permit>> GetPermit(int permitId)

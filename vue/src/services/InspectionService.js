@@ -11,7 +11,8 @@ export default {
     },
 
     editInspection(inspection) {
-        return axios.put(`/inspection/${inspection.inspectionId}`, inspection)
+        console.log(inspection);
+        return axios.put(`/inspection/${inspection.InspectionID}`, inspection)
     },
 
     listInspectionStatusTypes() {
@@ -20,5 +21,10 @@ export default {
 
     getInspectionById(inspectionId) {
         return axios.get(`/inspection/${inspectionId}`)
+    },
+
+    getInspectionsByPermitId(permitId) {
+        console.log(permitId)
+        return axios.get(`/inspection/permit/${permitId}`)
     }
 }
