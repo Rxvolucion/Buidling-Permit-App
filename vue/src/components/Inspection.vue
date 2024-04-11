@@ -1,11 +1,17 @@
 <template>
+    <!-- <h2>test</h2> -->
     <section class="inspection">
         
         <p>Inspection Id: {{ item.inspectionId }}</p>
         <p>Type: {{ item.inspectionType }}</p>
         <p>Date/Time: {{ item.dateVariable }}</p>
         <p>Status: {{ item.inspectionStatus }}</p>
-        <button v-on:click="this.$router.push({ name: 'inspectionEdit', params: { inspectionId: item.inspectionId } })">Edit</button>
+
+        <!-- Only show for employee-->
+        <div v-if="userRole == 'admin' ? true : false">
+            <button v-on:click="this.$router.push({ name: 'inspectionEdit', params: { inspectionId: item.inspectionId } })">Edit</button>
+        </div>
+        
     </section>
 
 
@@ -22,7 +28,7 @@ export default {
     components: { RouterLink },
     data() {
         return {
-
+            userRole: this.$store.state.user.role,
         }
     }
 }

@@ -14,6 +14,9 @@
         <div v-if="userRole == 'user' ? true : false">
             <button v-on:click="this.$router.push({ name: 'permitCreateInspection', params: { permitId: this.item.permitId } })">Request Inspection</button>
         </div>
+        <div v-if="userRole == 'user' ? true : false">
+                <button v-on:click="this.$router.push({ name: 'permitInspectionResults', params: { permitId: this.item.permitId } })">View Inspection Results</button>
+        </div>
 
 
         <!-- Show if employee -->
