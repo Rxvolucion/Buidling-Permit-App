@@ -36,34 +36,31 @@ namespace Capstone.DAO
             connectionString = dbConnectionString;
         }
 
-        //public Permit UpdatePermit(PermitStatusDTO permitStatusDTO)
-        //{
-        //    Permit updatedPermit = new Permit();
-        //    updatedInspection.InspectionId = inspectionDTO.InspectionId;
-        //    updatedInspection.PermitId = inspectionDTO.PermitId;
-        //    updatedInspection.DateVariable = inspectionDTO.DateVariable;
-        //    //updatedInspection.InspectionTypeId = GetInspectionIdByType(inspectionDTO.InspectionType).InspectionTypeId;//get id by type
-        //    updatedInspection.InspectionStatusTypeId = GetStatusTypeIdByType(inspectionDTO.InspectionStatus); //get id by status
+        public Permit UpdatePermit(PermitStatusDTO permitStatusDTO)
+        {
+            Permit updatedPermit = new Permit();
+            updatedPermit.PermitId = permitStatusDTO.PermitId;
+            updatedPermit.PermitStatus = permitStatusDTO.PermitStatus;
 
-        //    using (SqlConnection conn = new SqlConnection(connectionString))
-        //    {
-        //        conn.Open();
-        //        using (SqlCommand cmd = new SqlCommand(UpdateInspectionStatusSql, conn))
-        //        {
-        //            cmd.Parameters.AddWithValue("@inspection_status_type_id", updatedInspection.InspectionStatusTypeId);
-        //            cmd.Parameters.AddWithValue("@inspection_id", updatedInspection.InspectionId);
-        //            int count = cmd.ExecuteNonQuery();
-        //            if (count == 1)
-        //            {
-        //                return updatedInspection;
-        //            }
-        //            else
-        //            {
-        //                return null;
-        //            }
-        //        }
-        //    }
-        //}
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(UpdatePermitByPermitIdSql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@permit_status", updatedPermit.PermitStatus);
+                    cmd.Parameters.AddWithValue("@permit_id", updatedPermit.PermitId);
+                    int count = cmd.ExecuteNonQuery();
+                    if (count == 1)
+                    {
+                        return updatedPermit;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+            }
+        }
 
         //public List<string> GetPermitStatuses()
         //{
