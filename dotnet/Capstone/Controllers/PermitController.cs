@@ -30,7 +30,7 @@ namespace Capstone.Controllers
         //}
 
         [HttpPut("active/{permitId}")]
-        public ActionResult<Permit> OpenClosePermit(int permitId)
+        public ActionResult<int> OpenClosePermit(int permitId)
         {
             int newPermitId = permitDao.OpenClosePermit(permitId);
             if (newPermitId == 0)
