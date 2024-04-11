@@ -32,19 +32,19 @@ namespace Capstone.Controllers
 
 
 
-        //[HttpPut("{permitId}")]
-        //public ActionResult<Inspection> ChangeInspection(PermitStatusDTO changedPermit, int permitId)
-        //{
-        //    Inspection newInspection = permitDao.UpdatePermit(changedPermit);
-        //    if (newInspection == null)
-        //    {
-        //        return BadRequest();
-        //    }
-        //    else
-        //    {
-        //        return Ok(newInspection);
-        //    }
-        //}
+        [HttpPut("{permitId}")]
+        public ActionResult<Permit> ChangeInspection(PermitStatusDTO changedPermit, int permitId)
+        {
+            Permit newPermit = permitDao.UpdatePermit(changedPermit);
+            if (newPermit == null)
+            {
+                return BadRequest();
+            }
+            else
+            {
+                return Ok(newPermit);
+            }
+        }
 
 
 
