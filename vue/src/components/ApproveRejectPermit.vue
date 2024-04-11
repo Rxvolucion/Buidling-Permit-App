@@ -2,12 +2,24 @@
 <div>
     <h2>Permit ID: {{ this.$route.params.permitId }}</h2>
     <h3>Permit Inspections</h3>
+</div>
+<div>
     <section class="container">
         <inspection v-for="inspection in permitInspections" v-bind:key="inspection.inspectionId" v-bind:item="inspection"/>
     </section>
 </div>
+<div>
+    <form v-on:submit.prevent="editPermitStatus">
+        <label for="permit-status-select">New Permit Status: </label>
+        <!-- hard code the status selection options for user -->
+        <select name="permit-status-select" id="permit-status-select" v-model="updatedPermit.permitStatus" required>
+            <option value="">Please select the status</option>
+            <option value="Approved">Approve</option>
+            <option value="Rejected">Reject</option>
+        </select>
+    </form>
+</div>
 
-<!-- hard code the status selection options for user -->
 
 </template>
 
@@ -15,6 +27,7 @@
 <script>
 import Inspection from "../components/Inspection.vue";
 import InspectionService from "../services/InspectionService.js";
+import PermitService from "../services/PermitService";
 
 export default {
     name: "ApproveRejectPermit",
@@ -23,6 +36,10 @@ export default {
         return {
             permitInspections: [],
             permitIdParse: parseInt(this.$route.params.permitId),
+            updatedPermit: {
+                permitStatus: "",
+                permitId: parseInt(this.$route.params.permitId),
+            }
         }
     },
 
@@ -31,6 +48,31 @@ export default {
     },
 
     methods: {
+        editPermitStatus() {
+            PermitService
+                .updatePermitStatus(this.updatedPermit)
+                .then((response) => {
+                    console.log("Reached success on update permit status")
+                    console.log(this.updatedPermit)
+                    console.log(response)
+                    this.$router.push({ name: "searchPermit"})
+                })
+                .catch((error) => {
+                    if (error.response) {
+                        // error.response exists
+                        // Request was made, but response has error status (4xx or 5xx)
+                        console.log("Error updating permit status: ", error.response.status);
+                    } else if (error.request) {
+                        // There is no error.response, but error.request exists
+                        // Request was made, but no response was received
+                        console.log("Error updating permit status: unable to communicate to server");
+                    } else {
+                        // Neither error.response and error.request exist
+                        // Request was *not* made
+                        console.log("Error updating permit status: error making request");
+                    }
+                });
+        },
         getInspectionsByPermitId() {
             InspectionService
                 .getInspectionsByPermitId(this.permitIdParse)

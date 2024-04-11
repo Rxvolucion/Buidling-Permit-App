@@ -18,6 +18,10 @@ export default {
         return axios.post('/inspection', inspection)
     },
 
+    updatePermitStatus(permit) {
+        return axios.put(`/permit/${permit.permitId}`, permit)
+    }
+
     
 
     
