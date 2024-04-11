@@ -45,9 +45,9 @@ namespace Capstone.DAO
             connectionString = dbConnectionString;
         }
 
-        public List<Inspection> GetInspectionsByPermitId(int permitId)
+        public List<InspectionDetailsDTO> GetInspectionsByPermitId(int permitId)
         {
-            List<Inspection> inspections = new List<Inspection>();
+            List<InspectionDetailsDTO> inspectionDetailsDTO = new List<InspectionDetailsDTO>();
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
@@ -58,14 +58,15 @@ namespace Capstone.DAO
                     {
                         while (reader.Read())
                         {
-                            Inspection inspection = new Inspection();
-                            inspection = MapRowToInspection(reader);
-                            inspections.Add(inspection);
+                            InspectionDetailsDTO inspectionDTO = new InspectionDetailsDTO();
+                            inspectionDTO = MapRowToInspectionSpecific(reader);
+                            inspectionDetailsDTO.Add(inspectionDTO);
+
                         }
                     }
                 }
             }
-            return inspections;
+            return inspectionDetailsDTO;
         }
 
         public int GetStatusTypeIdByType(string inspectionStatus)
