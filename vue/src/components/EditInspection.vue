@@ -1,20 +1,28 @@
 <template>
     <div>
-        <p>Inspection ID: {{ this.$route.params.inspectionId }}</p>
+        <h2>Inspection ID: {{ this.$route.params.inspectionId }}</h2>
+        <!-- <p>{{ existingInspection }}</p> -->
         <form v-on:submit.prevent="editInspection">
             <div>
-                <label for="inspection-date">New Request Date </label>
+                <label for="inspection-date">New Inspection Date/Time: </label>
                 <input id="inspection-date" name="inspection-date" type="datetime-local" v-model="updatedInspection.DateVariable">
             </div>
             <div>
-            <label for="inspection-status-select">New Status</label>
+                <label for="inspection-status-select">New Status: </label>
+                    <select name="inspection-status-select" id="inspection-status-select" v-model="updatedInspection.InspectionStatus" required>
+                        <option value="">Please select the status</option>
+                        <option v-for="inspectionStatusType in inspectionStatusTypes" v-bind:value="inspectionStatusType.inspectionStatusTypeId"
+                            v-bind:item="inspectionStatusType.inspectionStatusTypeId">{{ inspectionStatusType.statusType }}</option>
+                    </select>
+            </div>
+            <!-- <label for="inspection-status-select">New Status</label>
             <select name="inspection-status-select" id="inspection-status-select" v-model="updatedInspection.inspectionStatusTypeId" required>
                 <option value="">Please select the status</option>
                 <option v-for="inspectionStatusType in inspectionStatusTypes" v-bind:value="inspectionStatusType.inspectionStatusTypeId" v-bind:key="inspectionStatusType.inspectionStatusTypeId">
                     {{ inspectionStatusType.statusType }}
                 </option>
             </select>
-    </div>
+    </div> -->
 
 
             <button type="submit">Submit</button>
@@ -35,7 +43,9 @@ export default {
             // userRole2: "",
             // showCustomerId: false,
             // inspections: [],
-            
+            inspectionStatus: "",
+            inspectionStatusID: 0,
+
             inspectionTypes: [],
             inspectionStatusTypes: [],
             existingInspection: {
@@ -43,15 +53,22 @@ export default {
             },
             updatedInspection: {
 
+                InspectionID: parseInt(this.$route.params.inspectionId),
                 DateVariable: "",
-                InspectionType: "",
-                InspectionStatusId: 0,
+                // InspectionType: "",
+                // InspectionStatusId: 0,
                 InspectionStatus: "",
             },
             
         }
     },
     computed: {
+        // filter inspection status types to get inspection status type by the inspection status selected by the customer
+
+        // getSelectedInspectionStatusID() {
+        //     return this.inspectionStatusTypes(() =>)
+        // }
+
         // getInspectionTypes() {
         //     return this.inspections.map(() => {
         //         this.inspections.type;
@@ -64,14 +81,10 @@ export default {
         editInspection() {
 
             console.log("Reached edit inspection method.");
-            console.log(this.newInspection.permitId);
-            // console.log(this.newInspection.status);
-            console.log(this.newInspection.DateVariable);
-            console.log(this.newInspection.InspectionType);
 
-            PermitService.editInspection(this.newInspection)
+            PermitService.editInspection(this.updatedInspectionInspection)
                 .then((response) => {
-                    console.log(this.newInspection)
+                    console.log(this.updatedInspection)
                     this.$router.push({ name: 'inspectionRequests' });
                 })
                 .catch((error) => {
