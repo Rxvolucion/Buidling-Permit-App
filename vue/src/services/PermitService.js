@@ -23,6 +23,7 @@ export default {
     },
 
     openClosePermit(permitId) {
+        console.log(permitId)
         return axios.put(`/permit/active/${permitId}`)
     }
 
