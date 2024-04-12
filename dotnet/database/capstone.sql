@@ -70,7 +70,6 @@ CREATE TABLE inspection_status_type (
 	inspection_type varchar(50) NOT NULL,
 	CONSTRAINT PK_inspection_status_type_id PRIMARY KEY (inspection_status_type_id),
 	CONSTRAINT CK_type CHECK (inspection_type IN ('Pass', 'Fail', 'Pending'))
-
 );
 
 CREATE TABLE inspections (
@@ -85,8 +84,16 @@ CREATE TABLE inspections (
     CONSTRAINT FK_permit_id FOREIGN KEY (permit_id) REFERENCES permit(permit_id),
 	CONSTRAINT FK_inspection_status_type_id FOREIGN KEY (inspection_status_type_id) REFERENCES inspection_status_type(inspection_status_type_id),
     CONSTRAINT FK_inspection_type_id FOREIGN KEY (inspection_type_id) REFERENCES inspection_type(inspection_type_id)
-	
 );
+
+--CREATE TABLE inspection_files (
+--    inspection_files_id int IDENTITY(7001,1) NOT NULL,
+--	inspection_URLs varchar(200),
+--    CONSTRAINT PK_inspection_files_id PRIMARY KEY (inspection_files_id)	
+--);
+
+
+
 INSERT INTO inspection_type (inspections_type) VALUES ('Plumbing')
 INSERT INTO inspection_type (inspections_type) VALUES ('Electrical')
 INSERT INTO inspection_type (inspections_type) VALUES ('Structural')
