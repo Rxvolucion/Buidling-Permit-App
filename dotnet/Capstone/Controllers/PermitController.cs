@@ -92,7 +92,11 @@ namespace Capstone.Controllers
         {
             return Ok(permitDao.ListPermits());
         }
-
+        [HttpGet("inspections")]
+        public ActionResult<List<PermitIdInspectionIdDTO>> GetPermitsAndInspections()
+        {
+            return Ok(permitDao.GetAllInspectionsAndPermits());
+        }
 
         [HttpGet("customer/{customrId}")]
         public ActionResult<List<Permit>> GetPermitsByCustomerId()

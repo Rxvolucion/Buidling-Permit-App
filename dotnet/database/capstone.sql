@@ -75,13 +75,12 @@ CREATE TABLE inspection_status_type (
 
 CREATE TABLE inspections (
     inspection_id int IDENTITY(3001,1) NOT NULL,
-	
 	inspection_status_type_id INT,
-
-    permit_id INT NOT NULL,
+	permit_id INT NOT NULL,
     inspection_type_id int NOT NULL,
     --address varchar(125),
     date_variable datetime,
+	notes varchar(200),
     CONSTRAINT PK_inspection_id PRIMARY KEY (inspection_id),
     CONSTRAINT FK_permit_id FOREIGN KEY (permit_id) REFERENCES permit(permit_id),
 	CONSTRAINT FK_inspection_status_type_id FOREIGN KEY (inspection_status_type_id) REFERENCES inspection_status_type(inspection_status_type_id),
@@ -115,7 +114,7 @@ INSERT INTO customer (user_id, contractor, address) VALUES (3, 1, 'something st.
 
 INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status) VALUES (1, 1001, '31 Spooner St.', 'house', 0, 'Pending');
 
-INSERT INTO inspections (inspection_status_type_id, permit_id, inspection_type_id, date_variable) VALUES (6001, 2001, 5001, '2024-04-10T12:00:00')
+INSERT INTO inspections (inspection_status_type_id, permit_id, inspection_type_id, date_variable, notes) VALUES (6001, 2001, 5001, '2024-04-10T12:00:00', null)
 
 GO
 

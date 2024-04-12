@@ -103,9 +103,17 @@ export default {
                 });
         }
     },
+<<<<<<< HEAD
 
     created() {
         this.getPermitIds();
+=======
+    computed: {
+        dateTimeFormat() {
+            const newDateTime = new Date(this.item.dateVariable)
+            return newDateTime;
+        }
+>>>>>>> b882af71b3f0934b686f5fcb81fcc58e7a174506
     }
 }
 </script>
