@@ -6,7 +6,7 @@
 
         <!-- Get permit ID by inspection ID -->
 
-        <p v-if="userRole == 'admin' ? true : false">Permit Id: {{ inspectionPermitId }} </p>
+        <p v-if="userRole == 'admin' ? true : false">Permit Id: {{ item.permitId }} </p>
         <p>Inspection Type: {{ item.inspectionType }}</p>
         <p>Date/Time: {{ dateTimeFormat }}</p>
         <p>Inspection Status: {{ item.inspectionStatus }}</p>
@@ -35,25 +35,27 @@ export default {
     data() {
         return {
             userRole: this.$store.state.user.role,
-            permitAndInspectionIds: [],
+            // permitAndInspectionIds: [],
         }
     },
     computed: {
-        inspectionPermitId() {
-            // return the permit ID from the permitANDInspectionIds property that matches that current inspection Id
+        // inspectionPermitId() {
+        //     // return the permit ID from the permitANDInspectionIds property that matches that current inspection Id
 
-            let currentInspectionId = this.item.inspectionId;
-            console.log(currentInspectionId)
+        //     let currentInspectionId = this.item.inspectionId;
+        //     console.log(currentInspectionId)
 
-            let filteredObject = this.permitAndInspectionIds.find((result) => {
-                console.log(result)
-                return result.inspectionId == currentInspectionId
-            })
-            
-            console.log(filteredObject.permitId)
+        //     let filteredObject = this.permitAndInspectionIds.find((result) => {
+        //         console.log(result)
+        //         if (result.inspectionId == currentInspectionId) {
+        //             return result;
+        //         }
+        //     })
 
-            return filteredObject.permitId;
-        },
+        //     console.log(filteredObject.permitId)
+
+        //     return filteredObject.permitId;
+        // },
 
         dateTimeFormat() {
             const date = new Date(this.item.dateVariable);
@@ -75,46 +77,45 @@ export default {
 
             return formattedDateTime;
 
-        }
-    },
+        },
 
-    methods: {
-        getPermitIds() {
-            PermitService
-                .getPermitAndInspectionIds()
-                .then((response) => {
-                    console.log("reached success in getting permit and inspection ids")
-                    this.permitAndInspectionIds = response.data;
-                })
-                .catch((error) => {
-                    if (error.response) {
-                        // error.response exists
-                        // Request was made, but response has error status (4xx or 5xx)
-                        console.log("Error getting permit and inspection ids: ", error.response.status);
-                    } else if (error.request) {
-                        // There is no error.response, but error.request exists
-                        // Request was made, but no response was received
-                        console.log("Error getting permit and inspection ids: unable to communicate to server");
-                    } else {
-                        // Neither error.response and error.request exist
-                        // Request was *not* made
-                        console.log("getting permit and inspection ids: error making request");
-                    }
-                });
-        }
-    },
-<<<<<<< HEAD
-
-    created() {
-        this.getPermitIds();
-=======
-    computed: {
         dateTimeFormat() {
             const newDateTime = new Date(this.item.dateVariable)
             return newDateTime;
         }
->>>>>>> b882af71b3f0934b686f5fcb81fcc58e7a174506
-    }
+
+    },
+
+    methods: {
+        // getPermitIds() {
+        //     PermitService
+        //         .getPermitAndInspectionIds()
+        //         .then((response) => {
+        //             console.log("reached success in getting permit and inspection ids")
+        //             this.permitAndInspectionIds = response.data;
+        //         })
+        //         .catch((error) => {
+        //             if (error.response) {
+        //                 // error.response exists
+        //                 // Request was made, but response has error status (4xx or 5xx)
+        //                 console.log("Error getting permit and inspection ids: ", error.response.status);
+        //             } else if (error.request) {
+        //                 // There is no error.response, but error.request exists
+        //                 // Request was made, but no response was received
+        //                 console.log("Error getting permit and inspection ids: unable to communicate to server");
+        //             } else {
+        //                 // Neither error.response and error.request exist
+        //                 // Request was *not* made
+        //                 console.log("getting permit and inspection ids: error making request");
+        //             }
+        //         });
+        // }
+    },
+
+    created() {
+        // this.getPermitIds()
+
+    },
 }
 </script>
 
