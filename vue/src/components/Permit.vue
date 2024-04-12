@@ -9,6 +9,9 @@
         <p>{{ commercialOrResidential }}</p>
         <p>Permit Address: {{ item.permitAddress }}</p>
         <p>Permit Type: {{ item.permitType }}</p>
+        
+        
+
 
         <!-- {{ userRole }} -->
 

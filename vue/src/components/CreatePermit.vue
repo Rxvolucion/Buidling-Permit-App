@@ -1,9 +1,23 @@
 <template>
     <div>
         <form v-on:submit.prevent="createPermit">
-            <div>
+            <!-- <div>
                 <label for="permit-type">Permit Type</label>
                 <input id="permit-type" name="permit-type" type="text" v-model="newPermit.permitType">
+                
+            </div> -->
+            <div>
+                <label for="permit-type-select">Permit Type</label>
+                <select name="permit-type-select" id="permit-type-select" v-model="newPermit.permitType" required>
+                    <!--use service call to get all inspection types-->
+                    <option value="">Please select a permit type</option>
+                    <option value="New Home">New Home</option>
+                    <option value="New Garage">New Garage</option>
+                    <option value="Building Addition">Building Addition</option>
+                    <option value="Electrical Work">Electrical Work</option>
+                    <option value="HVAC Work">HVAC Work</option>
+                    <option value="Interior Alterations">Interior Alterations</option>
+                </select>
             </div>
             <div>
                 <label for="permit-address">Permit Address</label>
@@ -44,6 +58,7 @@ export default {
         return {
             // userRole2: "",
             // showCustomerId: false,
+            permitTypes: [],
             newPermit: {
                 customerId: "",
                 permitType: "",
@@ -193,6 +208,12 @@ export default {
                     console.log("Error getting customer ids: error making request");
                 }
             });
+        // PermitService
+        //     .getPermitTypes()
+        //     .then((response => {
+
+        //     }))
+            
 
 
         // this.newPermit.userId = this.$store.state.user.userId;

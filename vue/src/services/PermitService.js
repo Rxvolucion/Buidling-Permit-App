@@ -14,6 +14,10 @@ export default {
         return axios.get('/permit/inspections')
     },
 
+    // getPermitTypes() {
+    //     return axios.get('/permit/types')
+    // },
+
     listPermitsByCustomer(customerId) {
         return axios.get(`/permit/customer/${customerId}`);
     },

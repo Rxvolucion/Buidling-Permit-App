@@ -10,6 +10,7 @@
         <p>Inspection Type: {{ item.inspectionType }}</p>
         <p>Date/Time: {{ dateTimeFormat }}</p>
         <p>Inspection Status: {{ item.inspectionStatus }}</p>
+        <p>Notes: {{ item.notes }}</p>
 
         <!-- <button v-on:click="this.$router.push({ name: 'inspectionEdit', params: { inspectionId: item.inspectionId } })">Edit</button> -->
 

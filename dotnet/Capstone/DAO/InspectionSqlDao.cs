@@ -40,7 +40,7 @@ namespace Capstone.DAO
 
         //private string GetInpsectionsByAllSql = "UPDATE permit SET permit_status_id=@permit_status WHERE permit_id = @permit_id";
 
-        private string GetInspectionsByPermitIdSql = "SELECT inspections.inspection_id, inspections.inspection_status_type_id, inspections.permit_id, inspections.inspection_type_id, inspections.date_variable, inspection_status_type.inspection_type, inspection_type.inspections_type FROM inspections " +
+        private string GetInspectionsByPermitIdSql = "SELECT inspections.notes, inspections.inspection_id, inspections.inspection_status_type_id, inspections.permit_id, inspections.inspection_type_id, inspections.date_variable, inspection_status_type.inspection_type, inspection_type.inspections_type FROM inspections " +
            "JOIN inspection_status_type ON inspections.inspection_status_type_id = inspection_status_type.inspection_status_type_id " +
            "JOIN inspection_type ON inspections.inspection_type_id = inspection_type.inspection_type_id WHERE permit_id = @permit_id;";
 
