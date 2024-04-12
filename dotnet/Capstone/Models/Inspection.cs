@@ -12,6 +12,7 @@ public class Inspection
     [Display(Name = "Date")]
     [DataType(DataType.Date)]
     public DateTime DateVariable { get; set; }
+    public string Notes { get; set; }
 }
 
 public class InspectionStatusType
@@ -36,7 +37,7 @@ public class InspectionDTO
 
     [Display(Name = "Date")]
     [DataType(DataType.Date)]
-    public DateTime DateVariable { get; set; }
+    public DateTime DateVariable { get; set; }   
 }
 
 
@@ -52,4 +53,5 @@ public class InspectionDetailsDTO
     [Display(Name = "Date")]
     [DataType(DataType.Date)]
     public DateTime DateVariable { get; set; }
+    public string Notes { get; set; }
 }
