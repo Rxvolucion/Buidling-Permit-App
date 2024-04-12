@@ -5,7 +5,8 @@
         <h3>Permit Status: {{ item.permitStatus }}</h3>
         <!-- <p>Active: {{ item.active }}</p> -->
         <p>Customer Id: {{ item.customerId }}</p>
-        <p>Commercial: {{ item.commercial }}</p>
+        <!-- <p>Commercial: {{ item.commercial }}</p> -->
+        <p>{{ commercialOrResidential }}</p>
         <p>Permit Address: {{ item.permitAddress }}</p>
         <p>Permit Type: {{ item.permitType }}</p>
 
@@ -90,6 +91,15 @@ export default {
         // getPermitActiveValue() {
         //     return this.item.active;
         // }
+        commercialOrResidential() {
+            if (this.item.commercial == true) {
+                return "Commercial"
+            }
+            else {
+                return "Residential"
+            }
+        },
+
         openClosePermitLabel() {
             if (this.item.active == false) {
                 return "Permit Closed";

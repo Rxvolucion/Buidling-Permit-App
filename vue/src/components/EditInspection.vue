@@ -15,6 +15,10 @@
                     <option v-for="inspectionStatusType in inspectionStatusTypes" :value="inspectionStatusType.statusType">{{ inspectionStatusType.statusType }}</option>
                 </select>
             </div>
+            <div>
+                <label for="inspection-notes">Notes: </label>
+                <textarea id="inspection-notes" name="inspection-notes" v-model="updatedInspection.Notes"></textarea>
+            </div>
             <button type="submit">Submit</button>
         </form>
     </div>
@@ -48,6 +52,7 @@ export default {
                 // InspectionType: this.getInspectionById,
                 // InspectionStatusId: 0,
                 InspectionStatus: "",
+                Notes: "",
             },
             
         }
