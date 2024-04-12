@@ -15,6 +15,7 @@ import PermitCreateView from "../views/PermitCreateView.vue";
 import PermitSearchView from "../views/PermitSearchView.vue";
 import PermitCustomerView from "../views/PermitCustomerView.vue";
 import PermitInspectionCreateView from "../views/PermitInspectionCreateView.vue";
+import PermitInspectionResultsView from "../views/PermitInspectionResultsView.vue"
 import PermitApproveRejectView from "../views/PermitApproveRejectView.vue"
 
 
@@ -148,6 +149,17 @@ const routes = [
       requiresCustomerAuth: true
     }
   },
+
+  {
+    path: '/permit/:permitId/inspection/results',
+    name: "permitInspectionResults",
+    component: PermitInspectionResultsView,
+    meta: {
+      requiresAuth: true,
+      requiresCustomerAuth: true,
+    }
+  },
+
 
   {
     path: '/permit/:permitId/approve-reject',

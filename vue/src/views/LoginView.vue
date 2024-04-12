@@ -1,24 +1,25 @@
 <template>
-  <div id="login">
-    <form v-on:submit.prevent="login">
-      <h1 >Please Sign In</h1>
-      <div role="alert" v-if="invalidCredentials">
+  <div id="login" class="d-flex justify-content-center align-items-center min-vh-100 bg-image">
+    <form v-on:submit.prevent="login" class="card p-5 shadow col-md-6 col-lg-4">
+      <h1 class="mb-4">Please Sign In</h1>
+      <div class="alert alert-danger" role="alert" v-if="invalidCredentials">
         Invalid username and password!
       </div>
-      <div role="alert" v-if="this.$route.query.registration">
+      <div class="alert alert-success" role="alert" v-if="this.$route.query.registration">
         Thank you for registering, please sign in.
       </div>
-      <div class="form-input-group">
+      <div class="form-group">
         <label for="username">Username</label>
-        <input type="text" id="username" v-model="user.username" required autofocus />
+        <input type="text" id="username" v-model="user.username" required autofocus class="form-control" />
       </div>
-      <div class="form-input-group">
+      <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" id="password" v-model="user.password" required />
+        <input type="password" id="password" v-model="user.password" required class="form-control" />
       </div>
-      <button type="submit">Sign in</button>
-      <p>
-      <router-link v-bind:to="{ name: 'register' }">Need an account? Sign up.</router-link></p>
+      <button type="submit" class="btn btn-primary">Sign in</button>
+      <p class="mt-3">
+        <router-link :to="{ name: 'register' }" class="text-muted">Need an account? Sign up.</router-link>
+      </p>
     </form>
   </div>
 </template>
@@ -45,11 +46,11 @@ export default {
           if (response.status == 200) {
             this.$store.commit("SET_AUTH_TOKEN", response.data.token);
             this.$store.commit("SET_USER", response.data.user);
-            if(this.$store.state.user.role == "admin"){
-              this.$router.push({name: 'employee'}); 
+            if (this.$store.state.user.role == "admin") {
+              this.$router.push({ name: "employee" });
+            } else {
+              this.$router.push({ name: "customer" });
             }
-           else {
-            this.$router.push({name:'customer'})}
           }
         })
         .catch(error => {
@@ -65,10 +66,13 @@ export default {
 </script>
 
 <style scoped>
-.form-input-group {
+.form-group {
   margin-bottom: 1rem;
 }
-label {
-  margin-right: 0.5rem;
+
+.bg-image {
+  background-image: url('../img/Blueprint_B.jpg');
+  background-size: cover;
+  background-position: center;
 }
 </style>

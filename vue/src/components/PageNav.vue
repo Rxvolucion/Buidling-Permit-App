@@ -1,12 +1,40 @@
-
+html
 <template>
-<div id="nav">
-    <span><router-link v-bind:to="{ name: this.$store.state.user.role == 'user'? 'customer': 'employee' }">Home</router-link>&nbsp;|&nbsp;</span>
-    <span><router-link v-bind:to="{ name: this.$store.state.token == '' ? 'login' : 'logout' }">{{ loginOrLogoutText }}</router-link>&nbsp;|&nbsp;</span>
-    <!-- <span><router-link v-bind:to="{ name: 'login' }" v-if="$store.state.token == ''">Login</router-link></span>
-
-    <span><router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link></span> -->
-    <span v-if="$store.state.token != ''"> | Currently signed in as {{ this.$store.state.user.username }}</span> 
+  <div id="nav">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+      <div class="container d-flex justify-content-between align-items-center">
+        <a class="navbar-brand d-flex align-items-left" href="#">
+          <span class="me-3">KPJ PERMIT MANAGER</span>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto d-flex align-items-center">
+            <li class="nav-item">
+              <router-link to="/" class="nav-link">Home</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link :to="{ name: $store.state.token == '' ? 'login' : 'logout' }" class="nav-link">{{ loginOrLogoutText }}</router-link>
+            </li>
+            <li class="nav-item" v-if="$store.state.token == ''">
+              <router-link :to="{ name: 'register' }" class="nav-link">Register</router-link>
+            </li>
+            <li class="nav-item" v-if="$store.state.token != ''">
+              <span class="nav-link">Currently signed in as {{ $store.state.user.username }}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
   </div>
 </template>
 
@@ -19,3 +47,14 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-brand span {
+  margin-right: 0.5rem;
+}
+</style>
