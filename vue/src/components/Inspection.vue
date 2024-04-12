@@ -31,6 +31,12 @@ export default {
         return {
             userRole: this.$store.state.user.role,
         }
+    },
+    computed: {
+        dateTimeFormat() {
+            const newDateTime = new Date(this.item.dateVariable)
+            return newDateTime;
+        }
     }
 }
 </script>

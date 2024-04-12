@@ -20,7 +20,7 @@ namespace Capstone.DAO
 
         private string GetInspectionTypes = "SELECT inspection_type_id, inspections_type FROM inspection_type";
 
-        private string GetInspectionsSQL = "SELECT inspections.inspection_id, inspections.inspection_status_type_id, inspections.permit_id, inspections.inspection_type_id, inspections.date_variable, inspection_status_type.inspection_type, inspection_type.inspections_type FROM inspections\r\nJOIN inspection_status_type ON inspections.inspection_status_type_id = inspection_status_type.inspection_status_type_id\r\nJOIN inspection_type ON inspections.inspection_type_id = inspection_type.inspection_type_id";
+        private string GetInspectionsSQL = "SELECT inspections.inspection_id, inspections.inspection_status_type_id, inspections.permit_id, inspections.notes, inspections.inspection_type_id, inspections.date_variable, inspection_status_type.inspection_type, inspection_type.inspections_type FROM inspections\r\nJOIN inspection_status_type ON inspections.inspection_status_type_id = inspection_status_type.inspection_status_type_id\r\nJOIN inspection_type ON inspections.inspection_type_id = inspection_type.inspection_type_id";
 
         private string CreateInspectionSql = "INSERT INTO inspections (inspection_status_type_id, permit_id, inspection_type_id, date_variable) " +
              "OUTPUT INSERTED.inspection_id " +
