@@ -34,7 +34,7 @@ namespace Capstone.DAO
             "WHERE inspections_type = @inspections_type;";
 
         //private string UpdateInspectionStatusSql = "UPDATE inspections SET inspection_status_type_id=@inspection_status_type_id WHERE inspection_id = @inspection_id";
-        private string UpdateInspectionStatusSql = "UPDATE inspections SET inspection_status_type_id=@inspection_status_type_id, date_variable = @date_variable WHERE inspection_id = @inspection_id"; //ADDED THIS
+        private string UpdateInspectionStatusSql = "UPDATE inspections SET inspection_status_type_id=@inspection_status_type_id, date_variable = @date_variable, notes = @notes WHERE inspection_id = @inspection_id"; //ADDED THIS
 
         private string GetInspectionStatusIdByStatus = "SELECT inspection_status_type_id, inspection_type FROM inspection_status_type WHERE inspection_type = @inspection_type;";
 
@@ -103,6 +103,7 @@ namespace Capstone.DAO
             updatedInspection.InspectionId = inspectionDTO.InspectionId;
             updatedInspection.PermitId = inspectionDTO.PermitId;
             updatedInspection.DateVariable = inspectionDTO.DateVariable;
+            updatedInspection.Notes = inspectionDTO.Notes;
             //updatedInspection.InspectionTypeId = GetInspectionIdByType(inspectionDTO.InspectionType).InspectionTypeId;//get id by type
             updatedInspection.InspectionStatusTypeId = GetStatusTypeIdByType(inspectionDTO.InspectionStatus); //get id by status
 
@@ -114,6 +115,7 @@ namespace Capstone.DAO
                     cmd.Parameters.AddWithValue("@date_variable", updatedInspection.DateVariable); //ADDED THIS
                     cmd.Parameters.AddWithValue("@inspection_status_type_id", updatedInspection.InspectionStatusTypeId);
                     cmd.Parameters.AddWithValue("@inspection_id", updatedInspection.InspectionId);
+                    cmd.Parameters.AddWithValue("@notes", updatedInspection.Notes);
                     int count = cmd.ExecuteNonQuery();
                     if (count == 1)
                     {
@@ -363,6 +365,7 @@ namespace Capstone.DAO
             inspection.InspectionType = Convert.ToString(reader["inspections_type"]);
             inspection.InspectionStatus = Convert.ToString(reader["inspection_type"]);
             inspection.DateVariable = Convert.ToDateTime(reader["date_variable"]);
+            inspection.Notes = Convert.ToString(reader["notes"]);
 
             return inspection;
         }
