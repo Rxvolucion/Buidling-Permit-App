@@ -1,4 +1,27 @@
 <template>
+    <CloudinaryUpload />
+    <img width="400" id="uploadedimage" src="" />
+</template>
+
+<script>
+import CloudinaryUpload from "../components/CloudinaryUpload.vue";
+
+export default {
+    name: "InspectionUploadFile",
+    components: {
+        CloudinaryUpload,
+    },
+};
+</script>
+
+<style>
+
+</style>
+
+
+
+<!-- <template>
+    
     <input type="file" @change="handleFileUpload">
 </template>
 
@@ -8,8 +31,8 @@ import axios from 'axios';
 export default {
     data() {
         return {
-            cloudinaryApiKey: process.env.VUE_APP_CLOUDINARY_API_KEY,
-            cloudinaryApiSecret: process.env.VUE_APP_CLOUDINARY_API_SECRET
+            // cloudinaryApiKey: 248615755938876,
+            // cloudinaryApiSecret: "nYCcG4zUSvOMSerr7kBbLRMQyk4"
         };
     },
         
@@ -20,7 +43,7 @@ export default {
             // Create a FormData object to send the file
             const formData = new FormData();
             formData.append('file', file);
-            formData.append('upload_preset', 'YOUR_UPLOAD_PRESET'); // Replace with your upload preset
+            formData.append('upload_preset', 'ml_default'); // Replace with your upload preset
 
             try {
                 const response = await axios.post('https://api.cloudinary.com/v1_1/dsychtzk7/image/upload', formData, {
@@ -28,8 +51,8 @@ export default {
                         'Content-Type': 'multipart/form-data'
                     },
                     auth: {
-                        username: process.env.CLOUDINARY_API_KEY,
-                        password: process.env.CLOUDINARY_API_SECRET
+                        username: 248615755938876,
+                        password: "nYCcG4zUSvOMSerr7kBbLRMQyk4",
                     }
                 });
 
@@ -42,4 +65,4 @@ export default {
         }
     }
 };
-</script>
+</script> -->
