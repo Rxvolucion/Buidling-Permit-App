@@ -3,6 +3,7 @@ import CapstoneApp from './App.vue'
 import { createStore } from './store'
 import router from './router'
 import axios from 'axios'
+import Cloudinary from 'cloudinary-vue'
 
 /* sets the base url for server API communication with axios */
 axios.defaults.baseURL = import.meta.env.VITE_REMOTE_API;
@@ -28,3 +29,11 @@ const app = createApp(CapstoneApp);
 app.use(store);
 app.use(router);
 app.mount('#app');
+
+// app.use(Cloudinary, {
+//   configuration: {
+//     cloudinaryName = process.env.VUE_APP_CLOUDINARY_CLOUD_NAME,
+//     cloudinaryApiKey = process.env.VUE_APP_CLOUDINARY_API_KEY,
+//     cloudinaryApiSecret = process.env.VUE_APP_CLOUDINARY_API_SECRET,
+//   }
+// })
