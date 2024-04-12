@@ -10,6 +10,10 @@ export default {
         return axios.get('/permit')
     },
 
+    getPermitAndInspectionIds() {
+        return axios.get('/permit/inspections')
+    },
+
     listPermitsByCustomer(customerId) {
         return axios.get(`/permit/customer/${customerId}`);
     },

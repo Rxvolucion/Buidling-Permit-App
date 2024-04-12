@@ -1,17 +1,18 @@
 <template>
     <section class="permit">
-        <p>Permit Id: {{ item.permitId }}</p>
-        <p>Active: {{ item.active }}</p>
+        <h2>Permit Id: {{ item.permitId }}</h2>
+        <h3>{{ openClosePermitLabel }}</h3>
+        <h3>Permit Status: {{ item.permitStatus }}</h3>
+        <!-- <p>Active: {{ item.active }}</p> -->
         <p>Customer Id: {{ item.customerId }}</p>
         <p>Commercial: {{ item.commercial }}</p>
         <p>Permit Address: {{ item.permitAddress }}</p>
         <p>Permit Type: {{ item.permitType }}</p>
-        <p>Permit Status: {{ item.permitStatus }}</p>
 
         <!-- {{ userRole }} -->
 
         <!-- Show if customer -->
-        <div v-if="userRole == 'user' ? true : false">
+        <div v-if="userRole == 'user' && item.active == true ? true : false">
             <button v-on:click="this.$router.push({ name: 'permitCreateInspection', params: { permitId: this.item.permitId } })">Request Inspection</button>
         </div>
         <div v-if="userRole == 'user' ? true : false">
@@ -89,6 +90,14 @@ export default {
         // getPermitActiveValue() {
         //     return this.item.active;
         // }
+        openClosePermitLabel() {
+            if (this.item.active == false) {
+                return "Permit Closed";
+            }
+            else {
+                return "Permit Open";
+            }
+        }
     }
 }
 </script>
@@ -98,7 +107,7 @@ export default {
 section.permit {
   flex-wrap: wrap;
   display: inline-block;
-  height: 20rem;
+  height: 30rem;
   min-width: 300px;
   border: 2px solid black;
   border-radius: 10px;
