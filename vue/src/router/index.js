@@ -11,6 +11,7 @@ import NotFoundView from "../views/NotFoundView.vue";
 
 
 
+
 import PermitCreateView from "../views/PermitCreateView.vue";
 import PermitSearchView from "../views/PermitSearchView.vue";
 import PermitCustomerView from "../views/PermitCustomerView.vue";
@@ -23,6 +24,8 @@ import PermitApproveRejectView from "../views/PermitApproveRejectView.vue"
 
 import InspectionEmployeeView from "../views/InspectionEmployeeView.vue";
 import InspectionEditView from "../views/InspectionEditView.vue";
+import InspectionUploadFileView from "../views/InspectionUploadFileView.vue";
+
 
 
 import EmployeeHomeView from "../views/EmployeeHomeView.vue";
@@ -76,6 +79,8 @@ const routes = [
     component: NotFoundView,
   },
 
+  
+
   // {
   //   path: '/permit',
   //   name: "permit",
@@ -89,6 +94,15 @@ const routes = [
     meta: {
       requiresAuth: true,
       requiresEmployeeAuth: true
+    }
+  },
+
+  {
+    path: '/inspection/:inspectionId/upload',
+    name: "inspectionUploadFile",
+    component: InspectionUploadFileView,
+    meta: {
+      requiresAuth: true,
     }
   },
 

@@ -26,5 +26,20 @@ export default {
     getInspectionsByPermitId(permitId) {
         console.log(permitId)
         return axios.get(`/inspection/permit/${permitId}`)
-    }
+    },
+
+    // uploadInspectionFile(formData) {
+    //     const cloudinaryApiKey = process.env.CLOUDINARY_API_KEY;
+    //     const cloudinaryApiSecret = process.env.CLOUDINARY_API_SECRET;
+ 
+    //     return axios.post('https://api.cloudinary.com/v1_1/dsychtzk7/image/upload', formData, {
+    //                 headers: {
+    //                     'Content-Type': 'multipart/form-data'
+    //                 },
+    //                 auth: {
+    //                     username: cloudinaryApiKey,
+    //                     password: cloudinaryApiSecret
+    //                 }
+    //     });
+    // }
 }
