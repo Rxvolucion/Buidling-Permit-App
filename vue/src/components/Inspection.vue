@@ -17,6 +17,9 @@
         <div v-if="userRole == 'admin' ? true : false">
             <button v-on:click="this.$router.push({ name: 'inspectionEdit', params: { inspectionId: item.inspectionId, dateVariable: item.dateVariable } })">Edit</button>
         </div>
+        <div v-if="userRole == 'admin' ? true : false">
+            <button v-on:click="this.$router.push({ name: 'inspectionUploadFile', params: { inspectionId: item.inspectionId } })">Upload Files</button>
+        </div>
         
     </section>
 

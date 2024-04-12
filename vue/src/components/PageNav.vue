@@ -23,6 +23,9 @@ html
               <router-link to="/" class="nav-link">Home</router-link>
             </li>
             <li class="nav-item">
+              <router-link v-if="this.$store.state.user.role = 'admin'" to="/employee" class="nav-link">Employee Dashboard</router-link>
+            </li>
+            <li class="nav-item">
               <router-link :to="{ name: $store.state.token == '' ? 'login' : 'logout' }" class="nav-link">{{ loginOrLogoutText }}</router-link>
             </li>
             <li class="nav-item" v-if="$store.state.token == ''">

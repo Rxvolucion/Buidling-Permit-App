@@ -2,7 +2,7 @@
   <div id="capstone-app" class="d-flex flex-column min-vh-100">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container d-flex justify-content-between align-items-center">
-        <a class="navbar-brand" href="#">KPJ PERMIT MANAGER</a>
+        <a class="navbar-brand" href="/">KPJ PERMIT MANAGER</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -16,9 +16,15 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto d-flex align-items-center">
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <router-link to="/" class="nav-link">Home</router-link>
+            </li> -->
+            <li class="nav-item">
+                <router-link :to="{ name: this.$store.state.user.role == 'admin' ? 'employee' : 'customer'}" class="nav-link">Home</router-link>
             </li>
+            <!-- <li class="nav-item">
+                <router-link v-if="this.$store.state.user.role = 'admin'" to="/employee" class="nav-link">Employee Dashboard</router-link>
+            </li> -->
             <li class="nav-item">
               <router-link :to="{ name: $store.state.token == '' ? 'login' : 'logout' }" class="nav-link">{{ loginOrLogoutText }}</router-link>
             </li>
