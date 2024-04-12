@@ -91,8 +91,17 @@ const routes = [
     }
   },
 
+  //  {
+  //    path: '/inspection/:inspectionId',
+  //    name: "inspectionEdit",
+  //    component: InspectionEditView,
+  //    meta: {
+  //      requiresAuth: true,
+  //      requiresEmployeeAuth: true,
+  //    }
+  //  },
   {
-    path: '/inspection/:inspectionId',
+    path: '/inspection/:inspectionId/:dateVariable',
     name: "inspectionEdit",
     component: InspectionEditView,
     meta: {
@@ -100,7 +109,6 @@ const routes = [
       requiresEmployeeAuth: true,
     }
   },
-
 
 
   {

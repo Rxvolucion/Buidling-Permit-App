@@ -33,7 +33,8 @@ namespace Capstone.DAO
         private string GetInspectionIdByTypeSql = "SELECT inspection_type_id, inspections_type FROM inspection_type " +
             "WHERE inspections_type = @inspections_type;";
 
-        private string UpdateInspectionStatusSql = "UPDATE inspections SET inspection_status_type_id=@inspection_status_type_id WHERE inspection_id = @inspection_id";
+        //private string UpdateInspectionStatusSql = "UPDATE inspections SET inspection_status_type_id=@inspection_status_type_id WHERE inspection_id = @inspection_id";
+        private string UpdateInspectionStatusSql = "UPDATE inspections SET inspection_status_type_id=@inspection_status_type_id, date_variable = @date_variable WHERE inspection_id = @inspection_id"; //ADDED THIS
 
         private string GetInspectionStatusIdByStatus = "SELECT inspection_status_type_id, inspection_type FROM inspection_status_type WHERE inspection_type = @inspection_type;";
 
@@ -110,6 +111,7 @@ namespace Capstone.DAO
                 conn.Open();
                 using (SqlCommand cmd = new SqlCommand(UpdateInspectionStatusSql, conn))
                 {
+                    cmd.Parameters.AddWithValue("@date_variable", updatedInspection.DateVariable); //ADDED THIS
                     cmd.Parameters.AddWithValue("@inspection_status_type_id", updatedInspection.InspectionStatusTypeId);
                     cmd.Parameters.AddWithValue("@inspection_id", updatedInspection.InspectionId);
                     int count = cmd.ExecuteNonQuery();

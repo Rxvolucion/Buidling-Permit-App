@@ -1,21 +1,20 @@
 <template>
     <div>
-        <h2>Inspection ID: {{ this.$route.params.inspectionId }}</h2>
+        <h2>Inspection ID: {{ $route.params.inspectionId }}</h2>
+        <h3>Customer Preferred Date and Time: {{ $route.params.dateVariable }}</h3> 
         <!-- <p>{{ existingInspection }}</p> -->
-        <form v-on:submit.prevent="editInspection">
+        <form @submit.prevent="editInspection">
             <div>
                 <label for="inspection-date">New Inspection Date/Time: </label>
                 <input id="inspection-date" name="inspection-date" type="datetime-local" v-model="updatedInspection.DateVariable">
             </div>
             <div>
                 <label for="inspection-status-select">New Status: </label>
-                    <select name="inspection-status-select" id="inspection-status-select" v-model="updatedInspection.InspectionStatus" required>
-                        <option value="">Please select the status</option>
-                        <option v-for="inspectionStatusType in inspectionStatusTypes" v-bind:value="inspectionStatusType.statusType"
-                            v-bind:item="inspectionStatusType.statusType">{{ inspectionStatusType.statusType }}</option>
-                    </select>
+                <select name="inspection-status-select" id="inspection-status-select" v-model="updatedInspection.InspectionStatus" required>
+                    <option value="">Please select the status</option>
+                    <option v-for="inspectionStatusType in inspectionStatusTypes" :value="inspectionStatusType.statusType">{{ inspectionStatusType.statusType }}</option>
+                </select>
             </div>
-
             <button type="submit">Submit</button>
         </form>
     </div>
@@ -56,8 +55,8 @@ export default {
     computed: {
         getInspectionTypeId() {
             return this.existingInspection.inspectionTypeId
+            
         },
-        
 
         // filter inspection status types to get inspection status type by the inspection status selected by the customer
 
@@ -134,6 +133,7 @@ export default {
             .listInspectionStatusTypes()
             .then((response) => {
                 console.log("Success getting inspection status types.")
+                console.log(this.$route.params)
                 this.inspectionStatusTypes = response.data;
             })
             .catch((error) => {
@@ -178,4 +178,4 @@ export default {
     }
 }
 </script>
-<style></style>
+<style></style> 
