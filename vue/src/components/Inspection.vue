@@ -6,17 +6,13 @@
         <p>Type: {{ item.inspectionType }}</p>
         <p>Date/Time: {{ item.dateVariable }}</p>
         <p>Status: {{ item.inspectionStatus }}</p>
-<<<<<<< HEAD
+        
         <!-- <button v-on:click="this.$router.push({ name: 'inspectionEdit', params: { inspectionId: item.inspectionId } })">Edit</button> -->
-        <button v-on:click="this.$router.push({ name: 'inspectionEdit', params: { inspectionId: item.inspectionId, dateVariable: item.dateVariable } })">Edit</button>
-=======
 
-        <!-- Only show for employee-->
         <div v-if="userRole == 'admin' ? true : false">
-            <button v-on:click="this.$router.push({ name: 'inspectionEdit', params: { inspectionId: item.inspectionId } })">Edit</button>
+            <button v-on:click="this.$router.push({ name: 'inspectionEdit', params: { inspectionId: item.inspectionId, dateVariable: item.dateVariable } })">Edit</button>
         </div>
         
->>>>>>> f54febdf05eb576813a98425310fa2ceb0709026
     </section>
 
 
