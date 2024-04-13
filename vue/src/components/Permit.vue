@@ -1,34 +1,39 @@
 <template>
-    <section class="permit">
-        <h2>Permit Id: {{ item.permitId }}</h2>
-        <h3>{{ openClosePermitLabel }}</h3>
-        <h3>Permit Status: {{ item.permitStatus }}</h3>
-        <!-- <p>Active: {{ item.active }}</p> -->
-        <p>Customer Id: {{ item.customerId }}</p>
-        <!-- <p>Commercial: {{ item.commercial }}</p> -->
-        <p>{{ commercialOrResidential }}</p>
-        <p>Permit Address: {{ item.permitAddress }}</p>
-        <p>Permit Type: {{ item.permitType }}</p>
-        <p>Customer Details: {{ item.customerDetails }}</p>
+    <section :class="{ 'closed': !isActive, 'pending': isPending, 'approved': isApproved, 'rejected': isRejected}" class="permit">
+        <div class="permit-info">
+            <!-- {{ isActive }}
+            {{ isPending }} -->
+            <h2>Permit Id: {{ item.permitId }}</h2>
+            <h3>{{ openClosePermitLabel }}</h3>
+            <h3>Permit Status: {{ item.permitStatus }}</h3>
+            <!-- <p>Active: {{ item.active }}</p> -->
+            <p>Customer Id: {{ item.customerId }}</p>
+            <!-- <p>Commercial: {{ item.commercial }}</p> -->
+            <p>Classification: {{ commercialOrResidential }}</p>
+            <p>Permit Address: {{ item.permitAddress }}</p>
+            <p>Permit Type: {{ item.permitType }}</p>
+            <p>Permit Details: {{ item.customerDetails }}</p>
+        </div>
+        
 
         <!-- {{ userRole }} -->
 
         <!-- Show if customer -->
         <div v-if="userRole == 'user' && item.active == true ? true : false">
-            <button v-on:click="this.$router.push({ name: 'permitCreateInspection', params: { permitId: this.item.permitId } })">Request Inspection</button>
+            <button type="button" class="btn btn-primary" v-on:click="this.$router.push({ name: 'permitCreateInspection', params: { permitId: this.item.permitId } })">Request Inspection</button>
         </div>
         <div v-if="userRole == 'user' ? true : false">
-                <button v-on:click="this.$router.push({ name: 'permitInspectionResults', params: { permitId: this.item.permitId } })">View Inspection Results</button>
+                <button type="button" class="btn btn-primary" v-on:click="this.$router.push({ name: 'permitInspectionResults', params: { permitId: this.item.permitId } })">View Inspection Results</button>
         </div>
 
 
         <!-- Show if employee -->
         <div v-if="userRole == 'admin' ? true : false">
-            <button v-on:click="this.$router.push({name: 'permitApproveReject', params: {permitId: this.item.permitId }})">Approve/Reject</button>
+            <button type="button" class="btn btn-primary" v-on:click="this.$router.push({name: 'permitApproveReject', params: {permitId: this.item.permitId }})">Approve/Reject</button>
         </div>
 
         <div v-if="userRole == 'admin' ? true : false">
-            <button v-on:click="closeOpenPermit">Close/Open</button>
+            <button type="button" class="btn btn-primary" v-on:click="closeOpenPermit">Close/Open</button>
         </div>
         
     </section>
@@ -57,6 +62,7 @@ export default {
     data() {
         return {
             userRole: this.$store.state.user.role,
+            isActive: this.item.active,
         }
     },
     methods: {
@@ -92,6 +98,18 @@ export default {
         // getPermitActiveValue() {
         //     return this.item.active;
         // }
+        isPending() {
+            return this.item.permitStatus === "Pending" && this.isActive
+        },
+
+        isApproved() {
+            return this.item.permitStatus === "Approved" && this.isActive
+        },
+
+        isRejected() {
+            return this.item.permitStatus === "Rejected" && this.isActive
+        },
+
         commercialOrResidential() {
             if (this.item.commercial == true) {
                 return "Commercial"
@@ -123,6 +141,31 @@ section.permit {
   border: 2px solid black;
   border-radius: 10px;
   margin: 20px;
+  padding: 8px;
+}
+
+.permit-info {
+    margin: 5px;
+}
+
+button {
+    margin: 0.5rem;
+}
+
+.closed {
+    background-color: rgb(138, 133, 133);
+}
+
+.pending {
+    background-color: yellow;
+}
+
+.rejected {
+    background-color: red;
+}
+
+.approved {
+    background-color: green;
 }
 
 </style>

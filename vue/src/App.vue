@@ -50,9 +50,8 @@
         <div class="d-flex flex-column">
           <h5>Contact Us</h5>
           <p>
-            Phone: (614) 456-7890<br>
-            Email: info@kpjpermitmanager.com<br>
-            Address: 49 N Merkle, Columbus OH 43205
+            Phone: (614) 555-5555<br>
+            Email: kpjpermitmanager@gmail.com
           </p>
         </div>
         <p class="mb-0">&copy; 2023 KPJ Permit Manager. All rights reserved.</p>
