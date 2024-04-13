@@ -6,7 +6,8 @@
 
       <!-- <button type="button" class="btn btn-primary" v-on:click="this.$router.push({name: 'createPermit'})">Create Permit</button>
       <button type="button" class="btn btn-primary" v-on:click="this.$router.push({name: 'searchPermit'})"> Search Permit</button>
-      <button type="button" class="btn btn-primary" v-on:click="this.$router.push({ name: 'inspectionRequests' })"> View Inspection Requests</button> -->
+      <button type="button" class="btn btn-primary" v-on:click="this.$router.push({ name: 'inspectionRequests' })"> View Inspection Requests</button> 
+      <button v-on:click="this.$router.push({ name: 'reports' })"> View Permit and Inspection Statistics</button> -->
 
       <div class="row">
         <div class="col-sm-6">
@@ -14,7 +15,7 @@
             <div class="card-body">
               <h5 class="card-title">Create Permit</h5>
               <p class="card-text">Go here to create a permit for a customer.</p>
-              <a href="#" class="btn btn-primary">Create</a>
+              <button type="button" class="btn btn-primary" v-on:click="this.$router.push({ name: 'createPermit' })">Create</button>
             </div>
           </div>
         </div>
@@ -23,7 +24,7 @@
             <div class="card-body">
               <h5 class="card-title">Search Permit</h5>
               <p class="card-text">Go here to search for created permits to review them, approve, reject, close or open them.</p>
-              <a href="#" class="btn btn-primary">Search</a>
+              <button type="button" class="btn btn-primary" v-on:click="this.$router.push({ name: 'searchPermit' })">Search</button>
             </div>
           </div>
         </div>
@@ -34,19 +35,19 @@
               <div class="card-body">
                 <h5 class="card-title">View Inspection Requests</h5>
                 <p class="card-text">Go here to view inspection requests and result them.</p>
-                <a href="#" class="btn btn-primary">View</a>
+                <button type="button" class="btn btn-primary" v-on:click="this.$router.push({ name: 'inspectionRequests' })">View</button>
               </div>
             </div>
           </div>
-          <!-- <div class="col-sm-6">
+          <div class="col-sm-6">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <h5 class="card-title">View Permit and Inspection Statistics</h5>
+                <p class="card-text">Go here to view a variety of statistics on permits and inspections.</p>
+                <button type="button" class="btn btn-primary" v-on:click="this.$router.push({ name: 'reports' })">View</button>
               </div>
             </div>
-          </div> -->
+          </div>
       </div>
 
     </div>
@@ -85,10 +86,10 @@ export default {
   background-color: rgba(255, 255, 255, 0.815);
 }
 
-button {
+/* button {
   padding: 1rem;
   margin: 0.5rem;
-}
+} */
 
 .image img {
   opacity: 75%;
