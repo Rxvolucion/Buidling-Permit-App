@@ -28,7 +28,8 @@
 <script>
 import Inspection from "../components/Inspection.vue";
 import InspectionService from "../services/InspectionService.js";
-import PermitService from "../services/PermitService";
+import PermitService from "../services/PermitService.js";
+import AuthService from "../services/AuthService.js";
 
 export default {
     name: "ApproveRejectPermit",
@@ -40,7 +41,8 @@ export default {
             updatedPermit: {
                 permitStatus: "",
                 permitId: parseInt(this.$route.params.permitId),
-            }
+            },
+            cloudinaryFiles: [],
         }
     },
 
@@ -49,6 +51,15 @@ export default {
     },
 
     methods: {
+        getCloudinaryFiles() {
+            AuthService
+                .getCloudinaryLibrary()
+                .then((response) => {
+                    console.log("Reached success on getting Cloudinary files.")
+                    console.log(response.data)
+                    this.cloudinaryFiles = response.data;
+                })
+        },
         editPermitStatus() {
             PermitService
                 .updatePermitStatus(this.updatedPermit)
@@ -104,6 +115,7 @@ export default {
     created() {
         console.log("Reached created.")
         this.getInspectionsByPermitId();
+        this.getCloudinaryFiles();
     }
 }
 

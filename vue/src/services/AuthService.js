@@ -24,6 +24,10 @@ export default {
 
   createCustomer(customerDTO) {
     return axios.post('/customer', customerDTO)
+  },
+
+  getCloudinaryLibrary() {
+    return axios.get('https://263769177248375:qRYH1Qi9h4TboLzOGCAIdPTpj3Y@api.cloudinary.com/v1_1/dxfude0d4/resources/image/')
   }
 
 }
