@@ -52,6 +52,7 @@ CREATE TABLE permit (
     permit_type varchar(50) NOT NULL,
     commercial BIT NOT NULL, --0 indicates residential; 1 is commercial.
 	permit_status varchar(50) NOT NULL,
+	customer_details varchar(200),
 	CONSTRAINT CK_permit_status CHECK (permit_status IN ('Pending', 'Approved', 'Rejected')),
     CONSTRAINT PK_permit_id PRIMARY KEY (permit_id),
     CONSTRAINT FK_customer_id FOREIGN KEY (customer_id) REFERENCES customer(customer_id) -- Add REFERENCES clause for foreign key
@@ -119,7 +120,9 @@ INSERT INTO customer (user_id, contractor, address) VALUES (1, 1, 'something st.
 INSERT INTO customer (user_id, contractor, address) VALUES (2, 1, 'something st.');
 INSERT INTO customer (user_id, contractor, address) VALUES (3, 1, 'something st.');
 
-INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status) VALUES (1, 1001, '31 Spooner St.', 'house', 0, 'Pending');
+INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1001, '31 Spooner St.', 'house', 0, 'Pending', 'none');
+INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1001, '4621 Grangerwood Ave.', 'house', 0, 'Approved', 'none');
+INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1002, '5001 Real St.', 'building', 1, 'Approved', 'none');
 
 INSERT INTO inspections (inspection_status_type_id, permit_id, inspection_type_id, date_variable, notes) VALUES (6001, 2001, 5001, '2024-04-10T12:00:00', null)
 

@@ -12,6 +12,7 @@ namespace Capstone.Models
         public string PermitType { get; set; }
         public bool Commercial { get; set; }
         public string PermitStatus { get; set; } = "Pending";
+        public string CustomerDetails { get; set; }
 
     }
 

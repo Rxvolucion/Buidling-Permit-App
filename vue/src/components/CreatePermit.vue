@@ -30,6 +30,7 @@
                     <option value="false">No</option>
                 </select>
             </div>
+            
 
             <!--Show if user creating the permit is admin/employee, otherwise don't show. Select from existing customer ID-->
 
@@ -41,6 +42,10 @@
                     <option v-for="customerId in customerIds" v-bind:value="customerId" v-bind:item="customerId">{{ customerId }}</option>
                 </select>
                 <!-- <input id="customer-id" name="customer-id" type="number" v-model="newPermit.customerId"> -->
+            </div>
+            <div v-if="userRole == 'user' ? true : false">
+                <label for="permit-customer-details">Additional Details</label>
+                <input id="permit-customer-details" name="permit-customer-details" type="text" v-model="newPermit.customerDetails">
             </div>
             <button type="submit">Submit</button>
         </form>
@@ -66,6 +71,7 @@ export default {
                 isCommercial: false,
                 isActive: true,
                 permitStatus: "Pending",
+                customerDetails: "",
             },
             customerIds: [
 
