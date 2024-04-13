@@ -43,11 +43,6 @@ export default {
                     }
                 });
         },
-<<<<<<< HEAD
-    },
-
-    
-=======
         getInactivePermits() {
             reportsService
                 .getNumberOfInactivePermits()
@@ -100,7 +95,6 @@ export default {
         this.getInactivePermits();
         this.getPendingInspections();
     }
->>>>>>> 7e606e15115bf59e5576eb45aae4ce2db4095f12
 }
 </script>
 
