@@ -1,14 +1,8 @@
 <template>
   <div class="employee-home">
     <h1>Employee Home</h1>
-<<<<<<< HEAD
     <!-- <p>You must be authenticated to see this</p> -->
-    <div class="buttons">
-      <button v-on:click="this.$router.push({name: 'createPermit'})">Create Permit</button>
-      <button v-on:click="this.$router.push({name: 'searchPermit'})"> Search Permit</button>
-      <button v-on:click="this.$router.push({ name: 'inspectionRequests' })"> View Inspection Requests</button>
-      <button v-on:click="this.$router.push({ name: 'reports' })"> View Permit and Inspection Statistics</button>
-=======
+      
 
     <div class="employee-options">
 
@@ -58,9 +52,8 @@
           </div>
       </div>
 
->>>>>>> 59c8ab2ad04c1ccedf852be64ee20e3cfe93bd6f
+    
     </div>
-
     <!-- <div class="image">
         <img src="../../img/blueprint-sven-mieke-fteR0e2BzKo-unsplash.jpg" alt="blueprint drawing" class="img-fluid">
     </div> -->
