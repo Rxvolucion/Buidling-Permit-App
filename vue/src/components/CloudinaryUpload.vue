@@ -14,8 +14,13 @@
     </div>
 </template>
 
+<<<<<<< HEAD
+<!-- <script>
+const cloudName = "dsychtzk7"; // replace with your own cloud name
+=======
 <script>
 const cloudName = "dxfude0d4"; // replace with your own cloud name
+>>>>>>> 8bba97abb2f6843e15c8d4095e8021a1532be5d2
 const uploadPreset = "ml_default"; // replace with your own upload preset
 
 // Remove the comments from the code below to add
@@ -62,4 +67,46 @@ export default {
         msg: String,
     },
 };
+</script> -->
+<script>
+
+import axios from 'axios';
+
+const cloudName = "dsychtzk7"; // replace with your own cloud name
+const uploadPreset = "ml_default"; // replace with your own upload preset
+
+const myWidget = cloudinary.createUploadWidget(
+    {
+        cloudName: cloudName,
+        uploadPreset: uploadPreset,
+    },
+    (error, result) => {
+        if (!error && result && result.event === "success") {
+            const imageUrl = result.info.secure_url;
+            console.log("Uploaded image URL:", imageUrl);
+
+            // Send the URL to your ASP.NET backend using Axios
+            axios.post('https://localhost:44315/upload', { url: imageUrl })
+                .then(response => {
+                    console.log('URL sent to backend successfully');
+                })
+                .catch(error => {
+                    console.error('Error sending URL to backend:', error);
+                });
+        }
+    }
+);
+
+export default {
+    name: "UploadWidget",
+    data: () => ({
+        open: function () {
+            myWidget.open();
+        },
+    }),
+    props: {
+        msg: String,
+    },
+};
+
 </script>
