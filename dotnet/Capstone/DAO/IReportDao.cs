@@ -7,7 +7,7 @@ namespace Capstone.DAO
     {
         public int GetAllOpenPermits();
         public int GetAllClosedPermits();
-        public int GetAllPendingPermits();
+        public int GetAllPendingInspections();
         public int GetAllInspectionsPassed();
         public int GetAllInspectionsFailed();
     }

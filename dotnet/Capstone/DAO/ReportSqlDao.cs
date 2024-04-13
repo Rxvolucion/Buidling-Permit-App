@@ -16,7 +16,7 @@ namespace Capstone.DAO
         private readonly string connectionString;
         private string countOpenPermits = "SELECT COUNT(permit_id) AS 'Number of Open Permits' FROM permit WHERE active = 1"; //counts number of active permits.
         private string countClosedPermits = "SELECT COUNT(permit_id) AS 'Number of Closed Permits' FROM permit WHERE active = 0"; //count number of inactive permits.
-        private string countPendingPermits = "SELECT Count(permit.permit_id) AS 'Number of Inspections Pending' FROM permit JOIN inspections ON permit.permit_id = inspections.permit_id WHERE inspection_status_type_id = 6001"; //counts number of pending inspections(all customer ids)
+        private string countPendingInspections = "SELECT Count(permit.permit_id) AS 'Number of Inspections Pending' FROM permit JOIN inspections ON permit.permit_id = inspections.permit_id WHERE inspection_status_type_id = 6001"; //counts number of pending inspections(all customer ids)
         private string countPassedInspectionAll = "SELECT Count(permit.permit_id) AS 'Number of Inspections Passed' FROM permit JOIN inspections ON permit.permit_id = inspections.permit_id WHERE inspection_status_type_id = 6002"; //counts number of passed inspections (all customer ids)
         private string countFailedInspectionAll = "SELECT Count(permit.permit_id) AS 'Number of Inspections Failed' FROM permit JOIN inspections ON permit.permit_id = inspections.permit_id WHERE inspection_status_type_id = 6002"; //counts number of passed inspections
 
@@ -53,13 +53,13 @@ namespace Capstone.DAO
             return result;
         }
 
-        public int GetAllPendingPermits()
+        public int GetAllPendingInspections()
         {
             int result = 0;
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                using (SqlCommand cmd = new SqlCommand(countPendingPermits, conn))
+                using (SqlCommand cmd = new SqlCommand(countPendingInspections, conn))
                 {
                     result = Convert.ToInt32(cmd.ExecuteScalar());
                 }

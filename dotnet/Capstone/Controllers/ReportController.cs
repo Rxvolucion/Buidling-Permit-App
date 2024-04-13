@@ -37,10 +37,10 @@ namespace Capstone.Controllers
         }
 
         //GET /Report count for pending permits
-        [HttpGet("pending_permits")]
+        [HttpGet("pending_inspections")]
         public ActionResult<List<Permit>> GetAllPendingPermits()
         {
-            return Ok(reportDao.GetAllPendingPermits());
+            return Ok(reportDao.GetAllPendingInspections());
 
         }
 
@@ -48,7 +48,7 @@ namespace Capstone.Controllers
         [HttpGet("inspection_passed")]
         public ActionResult<List<Permit>> GetAllInspectionsPassed()
         {
-            return Ok(reportDao.GetAllPendingPermits());
+            return Ok(reportDao.GetAllInspectionsPassed());
 
         }
 
@@ -56,7 +56,7 @@ namespace Capstone.Controllers
         [HttpGet("inspection_failed")]
         public ActionResult<List<Permit>> GetAllInspectionsFailed()
         {
-            return Ok(reportDao.GetAllPendingPermits());
+            return Ok(reportDao.GetAllInspectionsFailed());
 
         }
 

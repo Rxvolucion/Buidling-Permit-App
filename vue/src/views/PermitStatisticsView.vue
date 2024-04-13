@@ -2,7 +2,7 @@
     <h1>Permit And Inspection Reports</h1>
     <p2>Number of Active Permits: {{ numberOfActivePermits }}</p2> |
     <p2>Number of Inactive Permits: {{ numberOfInactivePermits }}</p2> |
-    <p2>Number of Pending Permits: {{ numberOfPendingPermits }}</p2>  |
+    <p2>Number of Pending Inspections: {{ numberOfPendingInspections }}</p2>  |
 </template>
 
 <script>
@@ -15,7 +15,7 @@ export default {
         return {
             numberOfActivePermits: 0,
             numberOfInactivePermits: 0,
-            numberOfPendingPermits: 0,
+            numberOfPendingInspections: 0,
         }
     },
 
@@ -24,7 +24,7 @@ export default {
             reportsService
                 .getNumberOfActivePermits()
                 .then((response) => {
-                    console.log("Reached success on get inspections by permit ID.")
+                    
                     this.numberOfActivePermits = response.data;
                 })
                 .catch((error) => {
@@ -47,7 +47,7 @@ export default {
             reportsService
                 .getNumberOfInactivePermits()
                 .then((response) => {
-                    console.log("Reached success on get inspections by permit ID.")
+                    
                     this.numberOfInactivePermits = response.data;
                 })
                 .catch((error) => {
@@ -66,12 +66,12 @@ export default {
                     }
                 });
         },
-        getPendingPermits() {
+        getPendingInspections() {
             reportsService
-                .getNumberOfPendingPermits()
+                .getNumberOfPendingInspections()
                 .then((response) => {
-                    console.log("Reached success on get inspections by permit ID.")
-                    this.numberOfInactivePermits = response.data;
+                    
+                    this.numberOfPendingInspections = response.data;
                 })
                 .catch((error) => {
                     if (error.response) {
@@ -93,7 +93,7 @@ export default {
     created() {
         this.getActivePermits();
         this.getInactivePermits();
-        this.getPendingPermits();
+        this.getPendingInspections();
     }
 }
 </script>
