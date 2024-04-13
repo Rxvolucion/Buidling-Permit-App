@@ -87,11 +87,11 @@ CREATE TABLE inspections (
     CONSTRAINT FK_inspection_type_id FOREIGN KEY (inspection_type_id) REFERENCES inspection_type(inspection_type_id)
 );
 
---CREATE TABLE inspection_files (
---    inspection_files_id int IDENTITY(7001,1) NOT NULL,
---	inspection_URLs varchar(200),
---    CONSTRAINT PK_inspection_files_id PRIMARY KEY (inspection_files_id)	
---);
+CREATE TABLE inspection_files (
+    inspection_files_id int IDENTITY(7001,1) NOT NULL,
+	inspection_URLs varchar(200),
+    CONSTRAINT PK_inspection_files_id PRIMARY KEY (inspection_files_id)	
+);
 
 
 
