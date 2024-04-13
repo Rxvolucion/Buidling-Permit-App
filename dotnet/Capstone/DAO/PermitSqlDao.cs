@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics.Metrics;
 using Capstone.Exceptions;
 using Capstone.Models;
 using Capstone.Security;
@@ -214,6 +215,7 @@ namespace Capstone.DAO
             }
             return permits;
         }
+
         private Permit MapRowToPermit(SqlDataReader reader)
         {
             Permit permit = new Permit();
