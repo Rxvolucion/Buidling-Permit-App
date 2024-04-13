@@ -31,6 +31,7 @@ import InspectionUploadFileView from "../views/InspectionUploadFileView.vue";
 import EmployeeHomeView from "../views/EmployeeHomeView.vue";
 import CustomerHomeView from "../views/CustomerHomeView.vue";
 
+import PermitStatisticsView from "../views/PermitStatisticsView.vue";
 /**
  * The Vue Router is used to "direct" the browser to render a specific view component
  * inside of App.vue depending on the URL.
@@ -202,6 +203,14 @@ const routes = [
     meta: {
       requiresAuth: true,
       requiresCustomerAuth: true
+    }
+  },
+  {
+    path: "/reports",
+    name: "reports",
+    component: PermitStatisticsView,
+    meta: {
+      requiresAuth: true
     }
   },
 ];
