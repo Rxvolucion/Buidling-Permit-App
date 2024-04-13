@@ -1,6 +1,9 @@
 <template>
   <div id="capstone-app" class="d-flex flex-column min-vh-100">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+    <!-- Nav bar -->
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">      
       <div class="container d-flex justify-content-between align-items-center">
         <a class="navbar-brand" href="/">KPJ PERMIT MANAGER</a>
         <button
@@ -10,8 +13,7 @@
           data-bs-target="#navbarNav"
           aria-controls="navbarNav"
           aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
+          aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
