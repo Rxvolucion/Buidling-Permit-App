@@ -15,7 +15,7 @@
 </template>
 
 <script>
-const cloudName = "dsychtzk7"; // replace with your own cloud name
+const cloudName = "dxfude0d4"; // replace with your own cloud name
 const uploadPreset = "ml_default"; // replace with your own upload preset
 
 // Remove the comments from the code below to add
