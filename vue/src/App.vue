@@ -3,7 +3,7 @@
 
     <!-- Nav bar -->
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">      
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">      
       <div class="container d-flex justify-content-between align-items-center">
         <a class="navbar-brand" href="/">KPJ PERMIT MANAGER</a>
         <button
@@ -77,6 +77,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+  padding-top: 56px;
 }
 
 .content-wrapper {
@@ -84,6 +85,6 @@ export default {
 }
 
 .footer {
-  height: 135px;
+  height: 105px;
 }
 </style>
