@@ -108,5 +108,11 @@ namespace Capstone.Controllers
             Customer me = userDao.GetCustomerByUserId(user.UserId);
             return Ok(permitDao.GetPermitsByCustomerId(me.CustomerId));
         }
+
+        [HttpGet("archive")]
+        public ActionResult<List<PermitArchiveDTO>> GetAllInactivePermitsAndInspections()
+        {
+            return Ok(permitDao.GetAllInactivePermitsAndInspections());
+        }
     }
 }

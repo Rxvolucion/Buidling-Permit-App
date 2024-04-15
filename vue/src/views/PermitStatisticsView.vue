@@ -8,12 +8,12 @@
           <tr>
             <td>Number of Active Permits</td>
             <td>{{ numberOfActivePermits }}</td>
-            <td>{{ ((numberOfActivePermits / (numberOfInactivePermits + numberOfActivePermits)) * 100) }}%</td>
+            <td>{{ ((numberOfActivePermits / (numberOfInactivePermits + numberOfActivePermits)) * 100).toFixed() }}%</td>
           </tr>
           <tr>
             <td>Number of Inactive Permits</td>
             <td>{{ numberOfInactivePermits }}</td>
-            <td>{{ ((numberOfInactivePermits / (numberOfInactivePermits + numberOfActivePermits)) * 100)}}%</td>
+            <td>{{ ((numberOfInactivePermits / (numberOfInactivePermits + numberOfActivePermits)) * 100).toFixed()}}%</td>
           </tr>
           <tr>
             <td>Total Number Permits</td>
@@ -25,17 +25,17 @@
           <tr>
             <td>Number of Pending Inspections</td>
             <td>{{ numberOfPendingInspections }}</td>
-            <td>{{ ((numberOfPendingInspections / (numberOfFailedInspections + numberOfPendingInspections + numberOfPassedInspections)) * 100)}}%</td>
+            <td>{{ ((numberOfPendingInspections / (numberOfFailedInspections + numberOfPendingInspections + numberOfPassedInspections)) * 100).toFixed()}}%</td>
           </tr>
           <tr>
             <td>Number of Passed Inspections</td>
             <td>{{ numberOfPassedInspections }}</td>
-            <td>{{ ((numberOfPassedInspections / (numberOfFailedInspections + numberOfPendingInspections + numberOfPassedInspections)) * 100)}}%</td>
+            <td>{{ ((numberOfPassedInspections / (numberOfFailedInspections + numberOfPendingInspections + numberOfPassedInspections)) * 100).toFixed()}}%</td>
           </tr>
           <tr>
             <td>Number of Failed Inspections</td>
             <td>{{ numberOfFailedInspections }}</td>
-            <td>{{ ((numberOfFailedInspections / (numberOfFailedInspections + numberOfPendingInspections + numberOfPassedInspections)) * 100)}}%</td>
+            <td>{{ ((numberOfFailedInspections / (numberOfFailedInspections + numberOfPendingInspections + numberOfPassedInspections)) * 100).toFixed()}}%</td>
           </tr>
           <tr>
             <td>Total Number of Inspections</td>

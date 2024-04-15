@@ -27,5 +27,15 @@ namespace Capstone.Models
         public int PermitId { get; set; }
         public int InspectionId { get; set; }
     }
+    public class PermitArchiveDTO
+    {
+        public int PermitId { get; set; }
+        public string PermitAddress { get; set; }
+        public string PermitType { get; set; }
+        public bool Commercial { get; set; }
+        public string PermitStatus { get; set; }
+        public string CustomerDetails { get; set; }
+        public string InspectionType { get; set; }
+    }
 }
 
