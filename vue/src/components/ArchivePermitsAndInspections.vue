@@ -5,9 +5,13 @@
         <p>Permit Address: {{ item.permitAddress }}</p>
         <p>Permit Type: {{ item.permitType }}</p>
         <p>Classification: {{ commercialOrResidential }}</p>
-        <p>Permit Address: {{ item.permitStatus }}</p>
+        <p>Permit Status: {{ item.permitStatus }}</p>
         <p>Customer Details: {{ item.customerDetails }}</p>
+<<<<<<< HEAD
         <!-- <p>Type of Inspection: {{ item.inspectionType }}</p> -->
+=======
+        <!-- <p>Inspection Status: {{ item.inspectionType }}</p> -->
+>>>>>>> 91634cf2054b8a4fccd2bb89502496f1468f631c
     </div>
 
 </template>
