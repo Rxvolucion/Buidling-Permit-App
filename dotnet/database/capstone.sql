@@ -163,7 +163,7 @@ INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial
 INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1011, '369 Cedar St.', 'Electrical Work', 0, 'Pending', 'none');
 INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1012, '852 Maple Rd.', 'HVAC Work', 0, 'Pending', 'none');
 
-INSERT INTO inspections (inspection_status_type_id, permit_id, inspection_type_id, date_variable, notes) VALUES (6001, 2001, 5001, '2024-04-10T12:00:00', null)
+INSERT INTO inspections (inspection_status_type_id, permit_id, inspection_type_id, date_variable, notes) VALUES (6001, 2007, 5001, '2024-04-10T12:00:00', null)
 INSERT INTO inspections (inspection_status_type_id, permit_id, inspection_type_id, date_variable, notes) VALUES (6002, 2001, 5002, '2024-04-10T12:00:00', null)
 INSERT INTO inspections (inspection_status_type_id, permit_id, inspection_type_id, date_variable, notes) VALUES (6003, 2002, 5003, '2024-04-10T12:00:00', null)
 INSERT INTO inspections (inspection_status_type_id, permit_id, inspection_type_id, date_variable, notes) VALUES (6003, 2002, 5003, '2024-04-10T12:00:00', null)

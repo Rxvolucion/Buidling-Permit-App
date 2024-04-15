@@ -28,7 +28,11 @@ namespace Capstone.DAO
         private string OpenClosePermitSql = "UPDATE permit SET active= ~active WHERE permit_id = @permit_id;";
         private string GetAllInspectionsAndPermitsSql = "SELECT permit.permit_id, inspections.inspection_id FROM permit " +
         "JOIN inspections ON permit.permit_id = inspections.permit_id;";
-       
+        private string GetAllInactivePermitsSql = "SELECT permit.permit_id, permit.permit_address, permit.permit_type, permit.commercial, permit.permit_status, permit.customer_details, inspection_status_type.inspection_type " +
+                "FROM permit JOIN inspections ON permit.permit_id = inspections.permit_id JOIN inspection_status_type ON inspections.inspection_status_type_id = inspection_status_type.inspection_status_type_id " +
+                "WHERE permit.active = 0;";
+
+
 
         public PermitSqlDao(string dbConnectionString)
         {
@@ -215,6 +219,27 @@ namespace Capstone.DAO
             }
             return permits;
         }
+        public List<PermitArchiveDTO> GetAllInactivePermitsAndInspections()
+        {
+            List<PermitArchiveDTO> permits = new List<PermitArchiveDTO>();
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(GetAllInactivePermitsSql, conn))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            PermitArchiveDTO permit = new PermitArchiveDTO();
+                            permit = MapRowToPermitArchive(reader);
+                            permits.Add(permit);
+                        }
+                    }
+                }
+            }
+            return permits;
+        }
 
         private Permit MapRowToPermit(SqlDataReader reader)
         {
@@ -234,6 +259,18 @@ namespace Capstone.DAO
             PermitIdInspectionIdDTO permit = new PermitIdInspectionIdDTO();
             permit.PermitId = Convert.ToInt32(reader["permit_id"]);
             permit.InspectionId = Convert.ToInt32(reader["inspection_id"]);
+            return permit;
+        }
+        private PermitArchiveDTO MapRowToPermitArchive(SqlDataReader reader)
+        {
+            PermitArchiveDTO permit = new PermitArchiveDTO();
+            permit.PermitId = Convert.ToInt32(reader["permit_id"]);
+            permit.PermitAddress = Convert.ToString(reader["permit_address"]);
+            permit.PermitType = Convert.ToString(reader["permit_type"]);
+            permit.Commercial = Convert.ToBoolean(reader["commercial"]);
+            permit.PermitStatus = Convert.ToString(reader["permit_status"]);
+            permit.CustomerDetails = Convert.ToString(reader["customer_details"]);
+            permit.InspectionType = Convert.ToString(reader["inspection_type"]);
             return permit;
         }
     }
