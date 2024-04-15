@@ -184,7 +184,7 @@ a {
 
 .inspection-info h3 {
     text-align: center;
-    background-color: rgba(255, 255, 255, 0.637);
+    /* background-color: rgba(255, 255, 255, 0.637); */
     padding: 5px;
 
 }

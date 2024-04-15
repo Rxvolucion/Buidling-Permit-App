@@ -7,7 +7,7 @@
         <p>Classification: {{ commercialOrResidential }}</p>
         <p>Permit Address: {{ item.permitStatus }}</p>
         <p>Customer Details: {{ item.customerDetails }}</p>
-        <p>Type of Inspection: {{ item.inspectionType }}</p>
+        <!-- <p>Type of Inspection: {{ item.inspectionType }}</p> -->
     </div>
 
 </template>
