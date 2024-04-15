@@ -1,18 +1,32 @@
 <template>
     <section :class="{ 'closed': !isActive, 'pending': isPending, 'approved': isApproved, 'rejected': isRejected}" class="permit">
+
+        
+
         <div class="permit-info">
             <!-- {{ isActive }}
             {{ isPending }} -->
             <h2>Permit Id: {{ item.permitId }}</h2>
-            <h3>{{ openClosePermitLabel }}</h3>
-            <h3>Permit Status: {{ item.permitStatus }}</h3>
-            <!-- <p>Active: {{ item.active }}</p> -->
-            <p>Customer Id: {{ item.customerId }}</p>
-            <!-- <p>Commercial: {{ item.commercial }}</p> -->
-            <p>Classification: {{ commercialOrResidential }}</p>
-            <p>Permit Address: {{ item.permitAddress }}</p>
-            <p>Permit Type: {{ item.permitType }}</p>
-            <p>Permit Details: {{ item.customerDetails }}</p>
+
+            <p>
+                <a data-bs-toggle="collapse" href="#collapsePermitInfo" role="button" aria-expanded="false" aria-controls="collapsePermitInfo">More info
+                </a>
+            </p>
+            <div class="collapse" id="collapsePermitInfo">
+                <div class="card card-body">
+                    <p>{{ openClosePermitLabel }}</p>
+                    <p>Permit Status: {{ item.permitStatus }}</p>
+                    <!-- <p>Active: {{ item.active }}</p> -->
+                    <p>Customer Id: {{ item.customerId }}</p>
+                    <!-- <p>Commercial: {{ item.commercial }}</p> -->
+                    <p>Classification: {{ commercialOrResidential }}</p>
+                    <p>Permit Address: {{ item.permitAddress }}</p>
+                    <p>Permit Type: {{ item.permitType }}</p>
+                    <p>Permit Details: {{ item.customerDetails }}</p>
+                </div>
+            </div>
+
+            
         </div>
         
 
@@ -28,7 +42,7 @@
 
 
         <!-- Show if employee -->
-        <div v-if="userRole == 'admin' ? true : false">
+        <div v-if="userRole == 'admin' && item.active == true ? true : false" >
             <button type="button" class="btn btn-primary" v-on:click="this.$router.push({name: 'permitApproveReject', params: {permitId: this.item.permitId }})">Approve/Reject</button>
         </div>
 
@@ -37,6 +51,8 @@
         </div>
         
     </section>
+
+    
 
 
 <!-- Show if customer -->
@@ -136,36 +152,50 @@ export default {
 section.permit {
   flex-wrap: wrap;
   display: inline-block;
-  height: 30rem;
-  min-width: 300px;
+  height: auto;
+  /* min-width: 300px; */
+  max-width: 300px;
   border: 2px solid black;
   border-radius: 10px;
   margin: 20px;
   padding: 8px;
+  /* -webkit-text-stroke: 0.5px;
+  -webkit-text-stroke-color: white; */
+}
+
+a {
+    color: black;
 }
 
 .permit-info {
     margin: 5px;
 }
 
+.permit-info h2 {
+    background-color: rgba(255, 255, 255, 0.637);
+    text-align: center;
+}
+
 button {
     margin: 0.5rem;
+    /* background-color: rgb(95, 94, 94);
+    outline-color: black; */
 }
 
 .closed {
-    background-color: rgb(138, 133, 133);
+    background-color: rgba(138, 133, 133, 0.534);
 }
 
 .pending {
-    background-color: yellow;
+    background-color: rgba(255, 255, 0, 0.521);
 }
 
 .rejected {
-    background-color: red;
+    background-color: rgba(255, 0, 0, 0.555);
 }
 
 .approved {
-    background-color: green;
+    background-color: rgba(0, 128, 0, 0.589);
 }
 
 </style>

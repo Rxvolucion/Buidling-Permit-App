@@ -1,25 +1,37 @@
 <template>
     <!-- <h2>test</h2> -->
-    <section class="inspection">
+    <section :class="{ 'pending': isPending, 'pass': isPass, 'fail': isFail }" class="inspection">
+
         
-        <p>Inspection Id: {{ item.inspectionId }}</p>
 
-        <!-- Get permit ID by inspection ID -->
+        <div class="inspection-info">
+            <h3>Inspection Id: {{ item.inspectionId }}</h3>
 
-        <p v-if="userRole == 'admin' ? true : false">Permit Id: {{ item.permitId }} </p>
-        <p>Inspection Type: {{ item.inspectionType }}</p>
-        <p>Date/Time: {{ dateTimeFormat }}</p>
-        <p>Inspection Status: {{ item.inspectionStatus }}</p>
-        <p>Notes: {{ item.notes }}</p>
+            <p>
+                <a data-bs-toggle="collapse" href="#collapseInspectionInfo" role="button" aria-expanded="false" aria-controls="collapseInspectionInfo">More info
+                </a>
+            </p>
 
-        <!-- <button v-on:click="this.$router.push({ name: 'inspectionEdit', params: { inspectionId: item.inspectionId } })">Edit</button> -->
+            <div class="collapse" id="collapseInspectionInfo">
+                <div class="card card-body">
+                    <p v-if="userRole == 'admin' ? true : false">Permit Id: {{ item.permitId }} </p>
+                    <p>Inspection Type: {{ item.inspectionType }}</p>
+                    <p>Date/Time: {{ dateTimeFormat }}</p>
+                    <p>Inspection Status: {{ item.inspectionStatus }}</p>
+                    <p>Notes: {{ item.notes }}</p>
+                </div>
+                
+            </div>
 
-        <div v-if="userRole == 'admin' ? true : false">
-            <button v-on:click="this.$router.push({ name: 'inspectionEdit', params: { inspectionId: item.inspectionId, dateVariable: item.dateVariable } })">Edit</button>
+            <div v-if="userRole == 'admin' ? true : false">
+                <button type="button" class="btn btn-primary" v-on:click="this.$router.push({ name: 'inspectionEdit', params: { inspectionId: item.inspectionId, dateVariable: item.dateVariable } })">Edit</button>
+            </div>
+            <div v-if="userRole == 'admin' ? true : false">
+                <button type="button" class="btn btn-primary" v-on:click="this.$router.push({ name: 'inspectionUploadFile', params: { inspectionId: item.inspectionId } })">Upload Files</button>
+            </div>
         </div>
-        <div v-if="userRole == 'admin' ? true : false">
-            <button v-on:click="this.$router.push({ name: 'inspectionUploadFile', params: { inspectionId: item.inspectionId } })">Upload Files</button>
-        </div>
+        
+        
         
     </section>
 
@@ -78,15 +90,29 @@ export default {
 
             // Format the date and time using the options
             const formattedDateTime = date.toLocaleString("en-US", options);
+            
 
             return formattedDateTime;
 
         },
 
         dateTimeFormat() {
+            
             const newDateTime = new Date(this.item.dateVariable)
             return newDateTime;
-        }
+        },
+
+        isPending() {
+            return this.item.inspectionStatus === "Pending"
+        },
+
+        isPass() {
+            return this.item.inspectionStatus === "Pass"
+        },
+
+        isFail() {
+            return this.item.inspectionStatus === "Fail"
+        },
 
     },
 
@@ -128,11 +154,45 @@ export default {
 section.inspection {
   flex-wrap: wrap;
   display: inline-block;
-  height: 15rem;
-  min-width: 300px;
+  height: auto;
+  /* min-width: 150px; */
+  max-width: 300px;
   border: 2px solid black;
   border-radius: 10px;
   margin: 20px;
+  padding: 8px;
+}
+
+button {
+    margin: 0.5rem;
+    /* background-color: rgb(95, 94, 94);
+    outline-color: black; */
+}
+
+a {
+    color: black;
+}
+
+.inspection-info {
+    margin: 5px;
+}
+
+.inspection-info h3 {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.637);
+
+}
+
+.pending {
+    background-color: rgba(255, 255, 0, 0.521);
+}
+
+.fail {
+    background-color: rgba(255, 0, 0, 0.555);
+}
+
+.pass {
+    background-color: rgba(0, 128, 0, 0.589);
 }
 
 </style>

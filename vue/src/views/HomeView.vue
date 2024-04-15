@@ -1,6 +1,6 @@
 html
 <template>
-  <div class="home-container d-flex align-items-start">
+  <div class="home-container d-flex align-items-start justify-content-center">
     <div class="home-content card mb-4 w-100 max-w-800">
       <div class="card-body">
         <h1 class="text-center mb-4 home-title">Welcome to KPJ Permit Manager</h1>
@@ -31,6 +31,9 @@ html
 </template>
 
 <style scoped>
+/* .home-description {
+  align-content: center;
+} */
 .home-container {
   background-image: url('../img/Crane_home.jpg');
   background-size: cover;
@@ -43,7 +46,7 @@ html
 .home-content {
   /* background-color: rgba(255, 255, 255, 0.278); */
   background-color: rgba(255, 255, 255, 0.795);
-
+  /* align-items: center; */
   border-radius: 0.5rem;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
   max-width: 600px;
