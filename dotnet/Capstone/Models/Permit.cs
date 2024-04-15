@@ -35,7 +35,7 @@ namespace Capstone.Models
         public bool Commercial { get; set; }
         public string PermitStatus { get; set; }
         public string CustomerDetails { get; set; }
-        public string InspectionType { get; set; }
+        //public string InspectionType { get; set; }
     }
 }
 
