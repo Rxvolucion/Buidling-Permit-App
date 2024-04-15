@@ -12,11 +12,19 @@
                 Reference</a>
         </p> -->
     </div>
+    <div>
+        <button v-on:click="getCloudinaryFiles" id="get-cloudinary-files">Get Cloudinary Files</button>
+    </div>
 </template>
 
-<!-- <script>
-const cloudName = "dsychtzk7"; // replace with your own cloud name
 <script>
+
+import CloudinaryService from "../services/CloudinaryService.js"
+
+
+const cloudName = "dsychtzk7"; // replace with your own cloud name
+const uploadPreset = "ml_default"; // replace with your own upload preset
+
 
 // Remove the comments from the code below to add
 // additional functionality.
@@ -60,14 +68,44 @@ export default {
     }),
     props: {
         msg: String,
+        cloudinaryFiles: [],
     },
+    methods: {
+        getCloudinaryFiles() {
+            CloudinaryService
+                .getCloudinaryLibrary()
+                .then((response) => {
+                    console.log("Success getting cloudinary.")
+                    console.log(response.data)
+                    this.cloudinaryFiles = response.data;
+                })
+                .catch((error) => {
+                    console.log(error)
+                    if (error.response) {
+                        // error.response exists
+                        // Request was made, but response has error status (4xx or 5xx)
+                        console.log("Error getting cloudinary: ", error.response.status);
+                    } else if (error.request) {
+                        // There is no error.response, but error.request exists
+                        // Request was made, but no response was received
+                        console.log("Error getting cloudinary: unable to communicate to server");
+                    } else {
+                        // Neither error.response and error.request exist
+                        // Request was *not* made
+                        console.log("Error getting cloudinary: error making request");
+                    }
+                });
+        }
+    }
 };
-</script> -->
-<script>
+</script>
+
+<!-- <script>
 
 import axios from 'axios';
+import AuthService from "../services/AuthService.js"
 
-const cloudName = "dsychtzk7"; // replace with your own cloud name
+const cloudName = "dxfude0d4"; // replace with your own cloud name
 const uploadPreset = "ml_default"; // replace with your own upload preset
 
 const myWidget = cloudinary.createUploadWidget(
@@ -98,10 +136,38 @@ export default {
         open: function () {
             myWidget.open();
         },
+        cloudinaryFiles: [],
     }),
     props: {
         msg: String,
     },
+    methods: {
+        getCloudinaryFiles() {
+            AuthService
+                .getCloudinaryLibrary()
+                .then((response) => {
+                    console.log("Success getting cloudinary.")
+                    console.log(response.data)
+                    this.cloudinaryFiles = response.data;
+                })
+                .catch((error) => {
+                    console.log(error)
+                    if (error.response) {
+                        // error.response exists
+                        // Request was made, but response has error status (4xx or 5xx)
+                        console.log("Error getting cloudinary: ", error.response.status);
+                    } else if (error.request) {
+                        // There is no error.response, but error.request exists
+                        // Request was made, but no response was received
+                        console.log("Error getting cloudinary: unable to communicate to server");
+                    } else {
+                        // Neither error.response and error.request exist
+                        // Request was *not* made
+                        console.log("Error getting cloudinary: error making request");
+                    }
+                });
+        }
+    }
 };
 
-</script>
+</script> -->
