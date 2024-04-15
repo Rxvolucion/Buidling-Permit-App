@@ -151,6 +151,8 @@ export default {
 <style scoped>
 section.permit {
   flex-wrap: wrap;
+  /* align-content: start; */
+    vertical-align: top;
   display: inline-block;
   height: auto;
   /* min-width: 300px; */
@@ -174,10 +176,14 @@ a {
 .permit-info h2 {
     background-color: rgba(255, 255, 255, 0.637);
     text-align: center;
+    padding: 5px;
 }
 
 button {
     margin: 0.5rem;
+    background-color: #2c3e50;
+    border-color: #2c3e50;
+    
     /* background-color: rgb(95, 94, 94);
     outline-color: black; */
 }

@@ -153,6 +153,9 @@ export default {
 <style scoped>
 section.inspection {
   flex-wrap: wrap;
+  /* align-content: center; */
+      vertical-align: top;
+
   display: inline-block;
   height: auto;
   /* min-width: 150px; */
@@ -165,6 +168,8 @@ section.inspection {
 
 button {
     margin: 0.5rem;
+    background-color: #2c3e50;
+    border-color: #2c3e50;
     /* background-color: rgb(95, 94, 94);
     outline-color: black; */
 }
@@ -180,6 +185,7 @@ a {
 .inspection-info h3 {
     text-align: center;
     background-color: rgba(255, 255, 255, 0.637);
+    padding: 5px;
 
 }
 

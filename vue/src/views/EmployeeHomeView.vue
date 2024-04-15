@@ -33,7 +33,7 @@
             <div class="col-sm-6">
               <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title">View Inspection Requests</h5>
+                  <h5 class="card-title">Inspection Requests</h5>
                   <p class="card-text">Go here to view inspection requests and result them.</p>
                   <button type="button" class="btn btn-primary" v-on:click="this.$router.push({ name: 'inspectionRequests' })">View</button>
                 </div>
@@ -42,13 +42,24 @@
             <div class="col-sm-6">
               <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title">View Permit and Inspection Statistics</h5>
+                  <h5 class="card-title">Permit and Inspection Statistics</h5>
                   <p class="card-text">Go here to view a variety of statistics on permits and inspections.</p>
                   <button type="button" class="btn btn-primary" v-on:click="this.$router.push({ name: 'reports' })">View</button>
                 </div>
               </div>
             </div>
         </div>
+        <div class="row">
+              <div class="col-sm-6">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Permit and Inspection History</h5>
+                    <p class="card-text">Go here to view the history of permits and inspections.</p>
+                    <button type="button" class="btn btn-primary" v-on:click="this.$router.push({ name: 'archive' })">View</button>
+                  </div>
+                </div>
+              </div>
+          </div>
   </div>
       
 

@@ -15,7 +15,7 @@ import Inspection from "../components/Inspection.vue"
 import InspectionService from "../services/InspectionService.js";
 
 export default {
-    name: "InspectionRequests",
+    name: "InspectionEmployeeView",
 
     data() {
         return {
