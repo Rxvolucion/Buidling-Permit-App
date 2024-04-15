@@ -33,6 +33,7 @@ import CustomerHomeView from "../views/CustomerHomeView.vue";
 
 import PermitStatisticsView from "../views/PermitStatisticsView.vue";
 import ArchiveView from "../views/ArchiveView.vue"
+
 /**
  * The Vue Router is used to "direct" the browser to render a specific view component
  * inside of App.vue depending on the URL.
@@ -215,7 +216,7 @@ const routes = [
     }
   },
   {
-    path: "customer/archive",
+    path: "/customer/archive",
     name: "archive",
     component: ArchiveView,
     meta: {

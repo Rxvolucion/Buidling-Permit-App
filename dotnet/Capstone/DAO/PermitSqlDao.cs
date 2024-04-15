@@ -33,11 +33,6 @@ namespace Capstone.DAO
                 "WHERE permit.active = 0;";
 
 
-        private string GetAllInactivePermitsSql = "SELECT permit.permit_address, permit.permit_type, permit.commercial, permit.permit_status, permit.customer_details, inspection_status_type.inspection_type " +
-        "FROM permit JOIN inspections ON permit.permit_id = inspections.permit_id JOIN inspection_status_type ON inspections.inspection_status_type_id = inspection_status_type.inspection_status_type_id " +
-        "WHERE permit.active = 0;";
-
-
         public PermitSqlDao(string dbConnectionString)
         {
             connectionString = dbConnectionString;

@@ -35,7 +35,7 @@ export default {
         return axios.put(`/permit/active/${permitId}`)
     },
     getInactivePermitsWithInspections() {
-        return axios.get('/permit/archive')
+        return axios.get(`/permit/archive`)
     }
 
     
