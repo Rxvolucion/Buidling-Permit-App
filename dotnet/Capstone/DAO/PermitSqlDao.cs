@@ -29,10 +29,12 @@ namespace Capstone.DAO
         private string OpenClosePermitSql = "UPDATE permit SET active= ~active WHERE permit_id = @permit_id;";
         private string GetAllInspectionsAndPermitsSql = "SELECT permit.permit_id, inspections.inspection_id FROM permit " +
         "JOIN inspections ON permit.permit_id = inspections.permit_id;";
+
         //private string GetAllInactivePermitsSql = "SELECT permit_id, permit_address, permit_type, commercial, permit.permit_status, permit.customer_details, inspection_status_type.inspection_type " +
         //        "FROM permit JOIN inspections ON permit.permit_id = inspections.permit_id JOIN inspection_status_type ON inspections.inspection_status_type_id = inspection_status_type.inspection_status_type_id " +
         //        "WHERE permit.active = 0;";
         private string GetAllInactivePermitsSql = "SELECT permit_id, permit_address, permit_type, commercial, permit_status, customer_details FROM permit WHERE active = 0;";
+
 
 
         public PermitSqlDao(string dbConnectionString)

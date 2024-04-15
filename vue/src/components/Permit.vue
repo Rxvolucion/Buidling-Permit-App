@@ -174,7 +174,7 @@ a {
 }
 
 .permit-info h2 {
-    background-color: rgba(255, 255, 255, 0.637);
+    /* background-color: rgba(255, 255, 255, 0.637); */
     text-align: center;
     padding: 5px;
 }

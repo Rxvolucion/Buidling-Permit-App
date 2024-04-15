@@ -1,56 +1,50 @@
 <template>
-    <div>
-        <form v-on:submit.prevent="createPermit">
-            <!-- <div>
-                <label for="permit-type">Permit Type</label>
-                <input id="permit-type" name="permit-type" type="text" v-model="newPermit.permitType">
-                
-            </div> -->
-            <div>
-                <label for="permit-type-select">Permit Type</label>
-                <select name="permit-type-select" id="permit-type-select" v-model="newPermit.permitType" required>
-                    <!--use service call to get all inspection types-->
-                    <option value="">Please select a permit type</option>
-                    <option value="New Home">New Home</option>
-                    <option value="New Garage">New Garage</option>
-                    <option value="Building Addition">Building Addition</option>
-                    <option value="Electrical Work">Electrical Work</option>
-                    <option value="HVAC Work">HVAC Work</option>
-                    <option value="Interior Alterations">Interior Alterations</option>
-                </select>
-            </div>
-            <div>
-                <label for="permit-address">Permit Address</label>
-                <input id="permit-address" name="permit-address" type="text" v-model="newPermit.permitAddress">
-            </div>
-            <div>
-                <label for="is-commercial">Is it commercial?</label>
-                <select v-model="newPermit.isCommercial" id="is-commercial" name="is-commercial">
-                    <option value="true">Yes</option>
-                    <option value="false">No</option>
-                </select>
-            </div>
-            
-
-            <!--Show if user creating the permit is admin/employee, otherwise don't show. Select from existing customer ID-->
-
-            <div v-if="userRole == 'user' ? false : true">
-                <label for="customer-id-select" >Customer ID:</label>
-
-                <select name="customer-ids" id="customer-id-select" v-model="newPermit.customerId" required>
-                    <option value="">Please select a customer ID</option>
-                    <option v-for="customerId in customerIds" v-bind:value="customerId" v-bind:item="customerId">{{ customerId }}</option>
-                </select>
-                <!-- <input id="customer-id" name="customer-id" type="number" v-model="newPermit.customerId"> -->
-            </div>
-            <div v-if="userRole == 'user' ? true : false">
-                <label for="permit-customer-details">Additional Details</label>
-                <input id="permit-customer-details" name="permit-customer-details" type="text" v-model="newPermit.customerDetails">
-            </div>
-            <button type="submit">Submit</button>
+    <div class="permit-create d-flex flex-column align-items-center justify-content-center min-vh-100">
+      <div class="card p-5 shadow col-md-6 col-lg-4">
+        <h1 class="mb-4">Create a Permit</h1>
+        <form @submit.prevent="createPermit" class="form">
+          <div class="form-group">
+            <label for="permit-type-select">Permit Type</label>
+            <select name="permit-type-select" id="permit-type-select" v-model="newPermit.permitType" class="form-control" required>
+              <option value="">Please select a permit type</option>
+              <option value="New Home">New Home</option>
+              <option value="New Garage">New Garage</option>
+              <option value="Building Addition">Building Addition</option>
+              <option value="Electrical Work">Electrical Work</option>
+              <option value="HVAC Work">HVAC Work</option>
+              <option value="Interior Alterations">Interior Alterations</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="permit-address">Permit Address</label>
+            <input id="permit-address" name="permit-address" type="text" v-model="newPermit.permitAddress" class="form-control" required />
+          </div>
+          <div class="form-group">
+            <label for="is-commercial">Is it commercial?</label>
+            <select v-model="newPermit.isCommercial" id="is-commercial" name="is-commercial" class="form-control">
+              <option value="true">Yes</option>
+              <option value="false">No</option>
+            </select>
+          </div>
+  
+          <div class="form-group" v-if="userRole === 'user' ? false : true">
+            <label for="customer-id-select">Customer ID:</label>
+            <select name="customer-ids" id="customer-id-select" v-model="newPermit.customerId" class="form-control" required>
+              <option value="">Please select a customer ID</option>
+              <option v-for="customerId in customerIds" :value="customerId" :key="customerId">{{ customerId }}</option>
+            </select>
+          </div>
+          <div class="form-group" v-if="userRole === 'user' ? true : false">
+          <label for="permit-customer-details">Additional Details</label>
+          <textarea id="permit-customer-details" name="permit-customer-details" v-model="newPermit.customerDetails" class="form-control" rows="5" required></textarea>
+        </div>
+        <div class="d-flex justify-content-center">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
         </form>
+      </div>
     </div>
-</template>
+  </template>
 
 <script>
 import PermitService from "../services/PermitService.js";
@@ -236,4 +230,18 @@ export default {
     }
 }
 </script>
-<style></style>
+<style scoped>
+.permit-create {
+  background-image: url('../../img/blueprint-sven-mieke-fteR0e2BzKo-unsplash.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  padding: 3rem;
+}
+
+.form { 
+  width: auto;
+}
+
+</style>
