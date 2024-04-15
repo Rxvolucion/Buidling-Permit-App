@@ -5,7 +5,10 @@ using Capstone.Security;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
+using System.Net;
+using System.Net.Mail;
 
 namespace Capstone.Controllers
 {
@@ -45,8 +48,22 @@ namespace Capstone.Controllers
         }
 
 
+        //[HttpPut("{permitId}")]
+        //public ActionResult<Permit> ChangeInspection(PermitStatusDTO changedPermit, int permitId)
+        //{
+        //    Permit newPermit = permitDao.UpdatePermit(changedPermit);
+        //    if (newPermit == null)
+        //    {
+        //        return BadRequest();
+        //    }
+        //    else
+        //    {
+        //        return Ok(newPermit);
+        //    }
+        //}
+        //---------ADDED---------------------------------------
         [HttpPut("{permitId}")]
-        public ActionResult<Permit> ChangeInspection(PermitStatusDTO changedPermit, int permitId)
+        public ActionResult<Permit> ChangeInspection(PermitStatusDTO changedPermit, int permitId/*, int userId*/)
         {
             Permit newPermit = permitDao.UpdatePermit(changedPermit);
             if (newPermit == null)
@@ -55,10 +72,41 @@ namespace Capstone.Controllers
             }
             else
             {
+                // Send email to customer
+                try
+                {
+                    // Get customer email from permitDao or some other method
+                    string customerEmail = userDao.GetUserEmailByUserId(15); // Get customer email here
+
+                    var mailMessage = new MailMessage
+                    {
+                        From = new MailAddress("kpjpermitmanager@gmail.com"),
+                        Subject = "Permit Status Update",
+                        Body = $"Your permit status has been updated to {newPermit.PermitStatus}.",
+                        IsBodyHtml = false
+                    };
+                    mailMessage.To.Add(customerEmail);
+
+                    using (var smtpClient = new SmtpClient("smtp.gmail.com"))
+                    {
+                        smtpClient.Port = 587;
+                        smtpClient.EnableSsl = true;
+                        smtpClient.UseDefaultCredentials = false;
+                        smtpClient.Credentials = new NetworkCredential("kpjpermitmanager@gmail.com", "kpjpermit123");
+
+                        smtpClient.Send(mailMessage);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Handle email sending error
+                    return StatusCode((int)System.Net.HttpStatusCode.InternalServerError, "Failed to send email.");
+                }
+
                 return Ok(newPermit);
             }
         }
-
+        //----------------ADDED---------------------------------------------------------------------------------
 
 
 

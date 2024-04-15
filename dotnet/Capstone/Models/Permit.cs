@@ -20,6 +20,7 @@ namespace Capstone.Models
     {
         public int PermitId { get; set; }
         public string PermitStatus { get; set; }
+        
     }
 
     public class PermitIdInspectionIdDTO

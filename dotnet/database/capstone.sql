@@ -137,6 +137,7 @@ INSERT INTO customer (user_id, contractor, address) VALUES (9, 0, '159 Birch Rd.
 INSERT INTO customer (user_id, contractor, address) VALUES (11, 1, '753 Willow Ln.');
 INSERT INTO customer (user_id, contractor, address) VALUES (12, 1, '369 Cedar St.');
 INSERT INTO customer (user_id, contractor, address) VALUES (13, 1, '852 Maple Rd.');
+INSERT INTO customer (user_id, contractor, address) VALUES (15, 1, '8522 Maple Rd.');
 
 
 

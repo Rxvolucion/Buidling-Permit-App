@@ -20,6 +20,37 @@ namespace Capstone.DAO
             connectionString = dbConnectionString;
         }
 
+//----------ADDED--------------------------------------------------------
+        public string GetUserEmailByUserId(int userId)
+        {
+            User user = null;
+
+            string sql = "SELECT user_id, username, password_hash, salt, user_role, employee, email, active FROM users WHERE user_id = @user_id";
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@user_id", userId);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        user = MapRowToUser(reader);
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new DaoException("SQL exception occurred", ex);
+            }
+
+            return user.Email;
+        }
+//-------ADDED-----------------------------------------------------------------------
         public IList<User> GetUsers()
         {
             IList<User> users = new List<User>();
