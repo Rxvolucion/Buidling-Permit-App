@@ -1,14 +1,54 @@
 <template>
-    <h1>Permit And Inspection Reports</h1>
-    <ul>
-        <li>Number of Active Permits: {{ numberOfActivePermits }}</li>
-        <li>Number of Inactive Permits: {{ numberOfInactivePermits }}</li>
-        <li>Number of Pending Inspections: {{ numberOfPendingInspections }}</li>
-        <li>Number of Passed Inspections: {{ numberOfPassedInspections }}</li>
-        <li>Number of Failed Inspections: {{ numberOfFailedInspections }}</li>
-    </ul>
-</template>
-<script>
+    <div>
+      <h1>Permit And Inspection Reports</h1>
+      <table class="table table-striped table-hover">
+        <tbody>
+            <h3>Permit Reports</h3>
+    
+          <tr>
+            <td>Number of Active Permits</td>
+            <td>{{ numberOfActivePermits }}</td>
+            <td>{{ ((numberOfActivePermits / (numberOfInactivePermits + numberOfActivePermits)) * 100) }}%</td>
+          </tr>
+          <tr>
+            <td>Number of Inactive Permits</td>
+            <td>{{ numberOfInactivePermits }}</td>
+            <td>{{ ((numberOfInactivePermits / (numberOfInactivePermits + numberOfActivePermits)) * 100)}}%</td>
+          </tr>
+          <tr>
+            <td>Total Number Permits</td>
+            <td>{{ numberOfInactivePermits + numberOfActivePermits }}</td>
+            <td>100%</td>
+          </tr>
+          <h1></h1>
+          <h3>Inspection Reports</h3>
+          <tr>
+            <td>Number of Pending Inspections</td>
+            <td>{{ numberOfPendingInspections }}</td>
+            <td>{{ ((numberOfPendingInspections / (numberOfFailedInspections + numberOfPendingInspections + numberOfPassedInspections)) * 100)}}%</td>
+          </tr>
+          <tr>
+            <td>Number of Passed Inspections</td>
+            <td>{{ numberOfPassedInspections }}</td>
+            <td>{{ ((numberOfPassedInspections / (numberOfFailedInspections + numberOfPendingInspections + numberOfPassedInspections)) * 100)}}%</td>
+          </tr>
+          <tr>
+            <td>Number of Failed Inspections</td>
+            <td>{{ numberOfFailedInspections }}</td>
+            <td>{{ ((numberOfFailedInspections / (numberOfFailedInspections + numberOfPendingInspections + numberOfPassedInspections)) * 100)}}%</td>
+          </tr>
+          <tr>
+            <td>Total Number of Inspections</td>
+            <td>{{ numberOfFailedInspections + numberOfPendingInspections + numberOfPassedInspections }}</td>
+            <td>100%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </template>
+  
+  <script>
+
 import reportsService from '../services/ReportsService.js';
 export default {
     name: "PermitResults",
@@ -142,4 +182,10 @@ export default {
     }
 }
 </script>
-<style></style>
+<style scoped>
+.table {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+</style>
