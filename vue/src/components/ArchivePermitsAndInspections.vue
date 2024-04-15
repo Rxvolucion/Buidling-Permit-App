@@ -5,9 +5,9 @@
         <p>Permit Address: {{ item.permitAddress }}</p>
         <p>Permit Type: {{ item.permitType }}</p>
         <p>Classification: {{ commercialOrResidential }}</p>
-        <p>Permit Address: {{ item.permitStatus }}</p>
+        <p>Permit Status: {{ item.permitStatus }}</p>
         <p>Customer Details: {{ item.customerDetails }}</p>
-        <p>Type of Inspection: {{ item.inspectionType }}</p>
+        <!-- <p>Inspection Status: {{ item.inspectionType }}</p> -->
     </div>
 
 </template>
