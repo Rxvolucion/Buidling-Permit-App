@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Mail;
 
+
 namespace Capstone.Controllers
 {
     [Route("[controller]")]
@@ -32,34 +33,69 @@ namespace Capstone.Controllers
         //    return Ok(permitDao.GetPermitStatuses());
         //}
 
+        //[HttpPut("active/{permitId}")]
+        //public ActionResult<int> OpenClosePermit(int permitId)
+        //{
+        //    int newPermitId = permitDao.OpenClosePermit(permitId);
+        //    if (newPermitId == 0)
+        //    {
+        //        return BadRequest();
+        //    }
+        //    else
+        //    {
+        //        return Ok(newPermitId);
+        //    }
+
+        //}
+
         [HttpPut("active/{permitId}")]
-        public ActionResult<int> OpenClosePermit(int permitId)
+        public ActionResult<int> OpenClosePermit(int permitId, int userId)
         {
             int newPermitId = permitDao.OpenClosePermit(permitId);
+            string active = "Closed";
+            if (newPermitId == 1) 
+            {
+                active = "Open";
+            }
             if (newPermitId == 0)
             {
                 return BadRequest();
             }
             else
             {
+                try
+                {
+                    // Get customer email from permitDao or some other method
+                    string customerEmail = userDao.GetUserEmailByUserId(userId); // Get customer email here
+
+                    var mailMessage = new MailMessage
+                    {
+                        From = new MailAddress("kpjpermitmanager@outlook.com"),
+                        Subject = "Permit Status Update",
+                        Body = $"Your permit now has a status of {active}.",
+                        IsBodyHtml = false
+                    };
+                    mailMessage.To.Add(customerEmail);
+
+                    using (var smtpClient = new SmtpClient("smtp.outlook.com"))
+                    {
+                        smtpClient.Port = 587;
+                        smtpClient.EnableSsl = true;
+                        smtpClient.UseDefaultCredentials = false;
+                        smtpClient.Credentials = new NetworkCredential("kpjpermitmanager@outlook.com", "kpjpermit123");
+
+                        smtpClient.Send(mailMessage);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Handle email sending error
+                    return StatusCode((int)System.Net.HttpStatusCode.InternalServerError, "Failed to send email.");
+                }
+
                 return Ok(newPermitId);
             }
-            
-        }
 
-
-        [HttpPut("{permitId}")]
-        public ActionResult<Permit> ChangeInspection(PermitStatusDTO changedPermit, int permitId)
-        {
-            Permit newPermit = permitDao.UpdatePermit(changedPermit);
-            if (newPermit == null)
-            {
-                return BadRequest();
-            }
-            else
-            {
-                return Ok(newPermit);
-            }
         }
 
         [HttpPut("edit-permit/{permitId}")]
@@ -75,9 +111,9 @@ namespace Capstone.Controllers
                 return Ok(newPermit);
             }
         }
-        //---------ADDED---------------------------------------
+
         //[HttpPut("{permitId}")]
-        //public ActionResult<Permit> ChangeInspection(PermitStatusDTO changedPermit, int permitId/*, int userId*/)
+        //public ActionResult<Permit> ChangeInspection(PermitStatusDTO changedPermit, int permitId)
         //{
         //    Permit newPermit = permitDao.UpdatePermit(changedPermit);
         //    if (newPermit == null)
@@ -86,40 +122,54 @@ namespace Capstone.Controllers
         //    }
         //    else
         //    {
-        //        // Send email to customer
-        //        try
-        //        {
-        //            // Get customer email from permitDao or some other method
-        //            string customerEmail = userDao.GetUserEmailByUserId(15); // Get customer email here
-
-        //            var mailMessage = new MailMessage
-        //            {
-        //                From = new MailAddress("kpjpermitmanager@gmail.com"),
-        //                Subject = "Permit Status Update",
-        //                Body = $"Your permit status has been updated to {newPermit.PermitStatus}.",
-        //                IsBodyHtml = false
-        //            };
-        //            mailMessage.To.Add(customerEmail);
-
-        //            using (var smtpClient = new SmtpClient("smtp.gmail.com"))
-        //            {
-        //                smtpClient.Port = 587;
-        //                smtpClient.EnableSsl = true;
-        //                smtpClient.UseDefaultCredentials = false;
-        //                smtpClient.Credentials = new NetworkCredential("kpjpermitmanager@gmail.com", "kpjpermit123");
-
-        //                smtpClient.Send(mailMessage);
-        //            }
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            // Handle email sending error
-        //            return StatusCode((int)System.Net.HttpStatusCode.InternalServerError, "Failed to send email.");
-        //        }
-
         //        return Ok(newPermit);
         //    }
         //}
+        //---------ADDED---------------------------------------
+        [HttpPut("{permitId}")]
+        public ActionResult<Permit> ChangeInspection(PermitStatusDTO changedPermit, int permitId, int userId)
+        {
+            Permit newPermit = permitDao.UpdatePermit(changedPermit);
+            if (newPermit == null)
+            {
+                return BadRequest();
+            }
+            else
+            {
+                // Send email to customer
+                try
+                {
+                    // Get customer email from permitDao or some other method
+                    string customerEmail = userDao.GetUserEmailByUserId(userId); // Get customer email here
+
+                    var mailMessage = new MailMessage
+                    {
+                        From = new MailAddress("kpjpermitmanager@outlook.com"),
+                        Subject = "Permit Status Update",
+                        Body = $"Your permit status has been updated to {newPermit.PermitStatus}.",
+                        IsBodyHtml = false
+                    };
+                    mailMessage.To.Add(customerEmail);
+
+                    using (var smtpClient = new SmtpClient("smtp.outlook.com"))
+                    {
+                        smtpClient.Port = 587;
+                        smtpClient.EnableSsl = true;
+                        smtpClient.UseDefaultCredentials = false;
+                        smtpClient.Credentials = new NetworkCredential("kpjpermitmanager@outlook.com", "kpjpermit123");
+
+                        smtpClient.Send(mailMessage);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Handle email sending error
+                    return StatusCode((int)System.Net.HttpStatusCode.InternalServerError, "Failed to send email.");
+                }
+
+                return Ok(newPermit);
+            }
+        }
         //----------------ADDED---------------------------------------------------------------------------------
 
 

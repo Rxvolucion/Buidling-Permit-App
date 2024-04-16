@@ -244,4 +244,8 @@ export default {
   width: auto;
 }
 
+h1 {
+    padding: 0rem;
+}
+
 </style>
