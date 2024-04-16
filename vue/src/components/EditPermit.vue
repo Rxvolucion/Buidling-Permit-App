@@ -1,15 +1,16 @@
 <template>
-    <div>
-        <!-- {{ item }} -->
-        <h2>Permit ID: {{ $route.params.permitId }}</h2>
-        <form @submit.prevent="editPermit">
+    <div class="permit-edit d-flex flex-column align-items-center justify-content-center min-vh-100">
+      <div class="card p-5 shadow col-md-6 col-lg-4">
+        <h2 class="mb-4 mt-2">Permit ID: {{ $route.params.permitId }}</h2>
+        <form @submit.prevent="editPermit" class="form">
+      <div class="form-group">
             <!-- <div>
                 <label for="permit-type">Revised Permit Type: </label>
                 <input id="permit-type" name="permit-type" v-model="updatedPermit.PermitType">
             </div> -->
-            <p class="previous-value">Previously selected: {{ this.item.permitType }}</p>
             <label for="permit-type-select">Revised Permit Type</label>
-            <select name="permit-type-select" id="permit-type-select" v-model="updatedPermit.PermitType" required>
+        <p class="form-text text-muted previous-value">Previously selected: {{ this.item.permitType }}</p>
+        <select name="permit-type-select" id="permit-type-select" v-model="updatedPermit.PermitType" class="form-control" required>
               <!-- <option value="">{{ item.permitType }}</option> -->
               <option value="New Home">New Home</option>
               <option value="New Garage">New Garage</option>
@@ -18,29 +19,30 @@
               <option value="HVAC Work">HVAC Work</option>
               <option value="Interior Alterations">Interior Alterations</option>
             </select>
-            <div>
-                <p class="previous-value">Previously selected: {{ this.item.customerDetails }}</p>
-                <label for="customer-details">Revised Customer Details: </label>
-                <textarea id="customer-details" name="inspection-notes" v-model="updatedPermit.CustomerDetails"></textarea>
-            </div>
-
-            <div>
-                <p class="previous-value">Previously selected: {{ this.item.permitAddress }}</p>
-                <label for="permit-address">Revised Permit Address: </label>
-                <input id="permit-address" name="permit-address" v-model="updatedPermit.PermitAddress">
-            </div>
-
-            <div>
-                <!-- <p>Previously selected: {{ this.item.commercial }}</p> -->
-                <label for="is-commercial">Is it commercial?</label>
-                <select id="is-commercial" name="is-commercial" v-model="updatedPermit.Commercial">
-                    <option :value=true>Yes</option>
-                    <option :value=false>No</option>
-                </select>
-            </div>
-            <button type="submit">Submit</button>
-        </form>
+        </div>
+      <div class="form-group mt-4">
+        <label for="customer-details">Revised Customer Details</label>
+        <p class="form-text text-muted previous-value">Previously selected: {{ this.item.customerDetails }}</p>
+        <textarea id="customer-details" name="inspection-notes" v-model="updatedPermit.CustomerDetails" class="form-control"></textarea>
+      </div>
+      <div class="form-group mt-4">
+        <label for="permit-address">Revised Permit Address</label>
+        <p class="form-text text-muted previous-value">Previously selected: {{ this.item.permitAddress }}</p>
+        <input id="permit-address" name="permit-address" v-model="updatedPermit.PermitAddress" class="form-control" />
+      </div>
+      <div class="form-group mt-2">
+        <label for="is-commercial">Is it commercial?</label>
+        <select id="is-commercial" name="is-commercial" v-model="updatedPermit.Commercial" class="form-control">
+          <option :value="true">Yes</option>
+          <option :value="false">No</option>
+        </select>
+      </div>
+      <div class="mt-4">
+      <button type="submit" class="btn btn-primary">Submit</button>
     </div>
+    </form>
+</div>
+  </div>
 </template>
 
 <script>
@@ -127,8 +129,21 @@ export default {
 
 <style scoped>
 
+
+.permit-edit{
+background-image: url('../../img/blueprint.jpg');
+background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .previous-value {
     font-style: italic;
+}
+.form{
+    width: 100%;
+    max-width: 600px;
+    
 }
 
 </style>  
