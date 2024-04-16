@@ -1,7 +1,8 @@
-html
+<!-- html -->
 <template>
-  <div class="home-container d-flex align-items-start justify-content-center">
-    <div class="home-content card mb-4 w-100 max-w-800">
+  <section class="home-wrapper">
+    <div class="home-container d-flex align-items-start justify-content-center">
+    <div class="home-content card mb-4 w-100 max-w-900">
       <div class="card-body">
         <h1 class="text-center mb-4 home-title">Welcome to KPJ Permit Manager</h1>
         <!-- <div class="home-description">
@@ -28,19 +29,26 @@ html
   <div class="d-flex justify-content-center mt-4">
     
   </div>
+  </section>
+  
 </template>
 
 <style scoped>
 /* .home-description {
   align-content: center;
 } */
-.home-container {
+
+.home-wrapper {
   background-image: url('../img/Crane_home.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+.home-container {
+  
   min-height: 100vh;
-  padding: 3rem;
+  /* padding: 3rem; */
 }
 
 .home-content {
@@ -51,6 +59,7 @@ html
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
   max-width: 600px;
   margin-left: 3rem;
+  margin-top: 3rem;
 }
 
 .home-title {
@@ -68,5 +77,9 @@ html
 
 .max-w-800 {
   max-width: 800px;
+}
+
+.max-w-900 {
+  max-width: 900px;
 }
 </style>

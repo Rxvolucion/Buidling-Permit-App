@@ -81,10 +81,17 @@ export default {
 }
 
 .content-wrapper {
-  padding: 2rem;
+  /* padding: 2rem; */
+
+}
+
+h1 {
+  padding-left:  3.4rem;
+  padding-top: 1rem;
 }
 
 .footer {
-  height: 105px;
+  /* height: 105px; */
+  height: auto;
 }
 </style>
