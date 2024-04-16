@@ -121,6 +121,7 @@ INSERT INTO users (username, password_hash, salt, user_role, employee, email, ac
 INSERT INTO users (username, password_hash, salt, user_role, employee, email, active) VALUES ('user12','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=', 'user',0 , 'testdata13@te.com',0);
 INSERT INTO users (username, password_hash, salt, user_role, employee, email, active) VALUES ('admin1','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=', 'admin', 1, 'employeeemail1@company.com', 1);
 INSERT INTO users (username, password_hash, salt, user_role, employee, email, active) VALUES ('admin2','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=', 'admin', 1,'employeeemail2@company.com', 1);
+INSERT INTO users (username, password_hash, salt, user_role, employee, email, active) VALUES ('kevin','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=', 'user', 0, 'keidleman@gmail.com', 1);
 
 INSERT INTO employee (user_id, employee_type) VALUES (4, 'admin');
 INSERT INTO employee (user_id, employee_type) VALUES ( 5, 'admin');
@@ -137,6 +138,7 @@ INSERT INTO customer (user_id, contractor, address) VALUES (9, 0, '159 Birch Rd.
 INSERT INTO customer (user_id, contractor, address) VALUES (11, 1, '753 Willow Ln.');
 INSERT INTO customer (user_id, contractor, address) VALUES (12, 1, '369 Cedar St.');
 INSERT INTO customer (user_id, contractor, address) VALUES (13, 1, '852 Maple Rd.');
+INSERT INTO customer (user_id, contractor, address) VALUES (15, 0, '4621 Maple Rd.');
 
 
 
