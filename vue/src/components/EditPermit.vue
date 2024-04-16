@@ -7,6 +7,7 @@
                 <label for="permit-type">Revised Permit Type: </label>
                 <input id="permit-type" name="permit-type" v-model="updatedPermit.PermitType">
             </div> -->
+            <p class="previous-value">Previously selected: {{ this.item.permitType }}</p>
             <label for="permit-type-select">Revised Permit Type</label>
             <select name="permit-type-select" id="permit-type-select" v-model="updatedPermit.PermitType" required>
               <!-- <option value="">{{ item.permitType }}</option> -->
@@ -18,16 +19,19 @@
               <option value="Interior Alterations">Interior Alterations</option>
             </select>
             <div>
+                <p class="previous-value">Previously selected: {{ this.item.customerDetails }}</p>
                 <label for="customer-details">Revised Customer Details: </label>
                 <textarea id="customer-details" name="inspection-notes" v-model="updatedPermit.CustomerDetails"></textarea>
             </div>
 
             <div>
+                <p class="previous-value">Previously selected: {{ this.item.permitAddress }}</p>
                 <label for="permit-address">Revised Permit Address: </label>
                 <input id="permit-address" name="permit-address" v-model="updatedPermit.PermitAddress">
             </div>
 
             <div>
+                <!-- <p>Previously selected: {{ this.item.commercial }}</p> -->
                 <label for="is-commercial">Is it commercial?</label>
                 <select id="is-commercial" name="is-commercial" v-model="updatedPermit.Commercial">
                     <option :value=true>Yes</option>
@@ -49,16 +53,42 @@ export default {
     props: ["item"],
     data() {
         return {
+            // updatedPermit: {
+            //     permitId: parseInt(this.$route.params.permitId),
+            //     PermitType: this.item.permitType,
+            //     PermitAddress: this.item.permitAddress,
+            //     Commercial: this.item.commercial,
+            //     CustomerDetails: this.item.customerDetails
+            // },
             updatedPermit: {
                 permitId: parseInt(this.$route.params.permitId),
-                PermitType: this.item.permitType,
-                PermitAddress: this.item.permitAddress,
-                Commercial: this.item.commercial,
-                CustomerDetails: this.item.customerDetails
+                PermitType: "",
+                PermitAddress: "",
+                Commercial: "",
+                CustomerDetails: "",
             },
+            // existingPermit: {
+            //     permitId: parseInt(this.$route.params.permitId),
+            //     PermitType: setDefaultPermitType(),
+            //     PermitAddress: "",
+            //     Commercial: "",
+            //     CustomerDetails: "", 
+            // }
         };
     },
+    computed: {
+        // setDefaultPermitType() {
+        //     return this.item.permitType;
+        // }
+    },
     methods: {
+        // setDefaultValue() {
+        //     console.log("reached set default value method")
+        //     // this.existingPermit.PermitType = this.item.permitType;
+        //     this.existingPermit.CustomerDetails = this.item.customerDetails;
+        //     this.existingPermit.PermitAddress = this.item.permitAddress;
+        //     this.existingPermit.Commercial = this.item.commercial;
+        // },
         editPermit() {
             console.log("Reached edit permit method.");
            
@@ -82,7 +112,23 @@ export default {
                 });
         }
     },
+
+    // created call data and assign to prop item
+
+    created() {
+        // this.setDefaultValue()
+        // console.log(this.updatedPermit)
+    },
+
+    
+
 };
 </script>
 
-<style></style>  
+<style scoped>
+
+.previous-value {
+    font-style: italic;
+}
+
+</style>  
