@@ -18,7 +18,7 @@ import PermitCustomerView from "../views/PermitCustomerView.vue";
 import PermitInspectionCreateView from "../views/PermitInspectionCreateView.vue";
 import PermitInspectionResultsView from "../views/PermitInspectionResultsView.vue"
 import PermitApproveRejectView from "../views/PermitApproveRejectView.vue"
-
+import PermitUploadFileView from "../views/PermitUploadFileView.vue"
 
 
 
@@ -188,6 +188,15 @@ const routes = [
     meta: {
       requiresAuth: true,
       requiresEmployeeAuth: true,
+    }
+  },
+
+  {
+    path: '/permit/:permitId/upload',
+    name: "permitUploadFile",
+    component: PermitUploadFileView,
+    meta: {
+      requiresAuth: true,
     }
   },
 

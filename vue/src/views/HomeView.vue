@@ -36,9 +36,13 @@
                   <div class="card-body">
                     <h5 class="card-title">Building Codes</h5>
                     <p class="card-text">Library of building codes available in each state through MuniCode:</p>
-                    <a href="https://library.municode.com/"><button type="button" class="btn btn-primary btn-block">View</button></a>
+                    <div class="text-center">
+                        <a href="https://library.municode.com/"><button type="button" class="btn btn-primary w-75">View</button></a>
+                    </div>
                     <p class="card-text">City of Columbus Building and Zoning codes:</p>
-                    <a href="https://www.columbus.gov/Templates/Detail.aspx?id=28467"><button type="button" class="btn btn-primary">View</button></a>
+                    <div class="text-center">
+                          <a href="https://www.columbus.gov/Templates/Detail.aspx?id=28467"><button type="button" class="btn btn-primary w-75">View</button></a>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -161,14 +165,18 @@
 
 button {
     /* margin-top: 0rem;
-    margin-bottom: 1rem;
     justify-content: center; 
     align-items: center;   */
+    margin-bottom: 1rem;
     background-color: #2c3e50;
     border-color: #2c3e50;
     
     /* background-color: rgb(95, 94, 94);
     outline-color: black; */
+}
+
+h5 {
+  font-weight: bold;
 }
 
 .max-w-800 {

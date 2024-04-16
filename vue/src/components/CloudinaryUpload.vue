@@ -1,6 +1,6 @@
 <template>
     <div class="uw">
-        <h3>Upload Files to Inspection</h3>
+        <h3>Upload Files</h3>
         <button v-on:click="open" id="upload_widget" class="cloudinary-button">
             Upload files
         </button>
@@ -12,9 +12,9 @@
                 Reference</a>
         </p> -->
     </div>
-    <div>
+    <!-- <div>
         <button v-on:click="getCloudinaryFiles" id="get-cloudinary-files">Get Cloudinary Files</button>
-    </div>
+    </div> -->
 </template>
 
 <script>
@@ -171,3 +171,16 @@ export default {
 };
 
 </script> -->
+
+<style scope>
+
+button {
+    margin: 0.5rem;
+    background-color: #2c3e50;
+    border-color: #2c3e50;
+    
+    /* background-color: rgb(95, 94, 94);
+    outline-color: black; */
+}
+
+</style>
