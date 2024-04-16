@@ -1,26 +1,26 @@
 <template>
-    <div>
-        <p>Permit ID: {{ newInspection.permitId }}</p>
-        <form v-on:submit.prevent="createInspection">
-            <div>
-                <label for="inspection-date">Inspection Request Date </label>
-                <input id="inspection-date" name="inspection-date" type="datetime-local" v-model="newInspection.DateVariable">
-            </div>
-            <div>
-                <label for="inspection-type-select">Inspection Type</label>
-                <select name="inspection-type-select" id="inspection-type-select" v-model="newInspection.InspectionType" required>
-                    <!--use service call to get all inspection types-->
-                    <option value="">Please select an inspection type</option>
-                    <option v-for="inspectionType in inspectionTypes" v-bind:value="inspectionType"
-                        v-bind:item="inspectionType">{{ inspectionType }}</option>
-                </select>
-            </div>
-
-
-            <button type="submit">Submit</button>
-        </form>
+    <div class="permit-create d-flex flex-column align-items-center justify-content-center min-vh-100">
+      <div class="card p-5 shadow col-md-6 col-lg-4">
+        <h1 class="mb-4">Create a Permit</h1>
+        <form @submit.prevent="createPermit" class="form">
+        <div class="form-group">
+          <label for="inspection-date">Inspection Request Date</label>
+          <input id="inspection-date" name="inspection-date" type="datetime-local" v-model="newInspection.DateVariable" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label for="inspection-type-select">Inspection Type</label>
+          <select name="inspection-type-select" id="inspection-type-select" v-model="newInspection.InspectionType" class="form-control" required>
+            <option value="">Please select an inspection type</option>
+            <option v-for="inspectionType in inspectionTypes" :value="inspectionType" :key="inspectionType">{{ inspectionType }}</option>
+          </select>
+        </div>
+        <div class="d-flex justify-content-end mt-4">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
     </div>
-</template>
+    </div>
+  </template>
 
 <script>
 
@@ -118,4 +118,17 @@ export default {
     }
 }
 </script>
-<style></style>
+<style>
+.form {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.permit-create{
+    background-image: url('../../img/blueprint.jpg');
+background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+</style>
