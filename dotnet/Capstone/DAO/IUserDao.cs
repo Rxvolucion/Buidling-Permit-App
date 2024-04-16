@@ -16,8 +16,8 @@ namespace Capstone.DAO
         Customer GetCustomerByUserId(int userId);
 
         IList<int> GetAllCustomerIds();
-        
-        string GetUserEmailByUserId(int userId); //ADDED
+
+        public string GetUserEmailByUserPermitId(int permitId); //ADDED
 
     }
 

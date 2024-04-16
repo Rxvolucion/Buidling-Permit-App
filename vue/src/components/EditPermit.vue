@@ -66,7 +66,7 @@ export default {
                 PermitAddress: "",
                 Commercial: "",
                 CustomerDetails: "",
-            },
+             },
             // existingPermit: {
             //     permitId: parseInt(this.$route.params.permitId),
             //     PermitType: setDefaultPermitType(),
