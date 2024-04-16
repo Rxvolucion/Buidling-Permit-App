@@ -92,6 +92,15 @@ export default {
   background-color: rgba(255, 255, 255, 0.815);
 }
 
+button {
+    margin: 0.5rem;
+    background-color: #2c3e50;
+    border-color: #2c3e50;
+    
+    /* background-color: rgb(95, 94, 94);
+    outline-color: black; */
+}
+
 /* button {
   padding: 1rem;
   margin: 0.5rem;
@@ -100,6 +109,8 @@ export default {
 .image img {
   opacity: 75%;
 }
+
+
 
 /* .image {
   background-color: red;

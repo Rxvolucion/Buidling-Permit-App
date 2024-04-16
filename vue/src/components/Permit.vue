@@ -54,6 +54,8 @@
         <div v-if="userRole == 'admin' ? true : false">
             <button type="button" class="btn btn-primary" v-on:click="closeOpenPermit">Close/Open</button>
         </div>
+
+        <button type="button" class="btn btn-primary" v-on:click="this.$router.push({ name: 'permitUploadFile', params: { permitId: item.permitId } })">Upload Files</button>
         
     </section>
 

@@ -49,7 +49,7 @@ namespace Capstone.Controllers
         //}
 
         [HttpPut("active/{permitId}")]
-        public ActionResult<int> OpenClosePermit(int permitId, int userId)
+        public ActionResult<int> OpenClosePermit(int permitId)
         {
             int newPermitId = permitDao.OpenClosePermit(permitId);
             string active = "Closed";
@@ -66,7 +66,7 @@ namespace Capstone.Controllers
                 try
                 {
                     // Get customer email from permitDao or some other method
-                    string customerEmail = userDao.GetUserEmailByUserId(userId); // Get customer email here
+                    string customerEmail = userDao.GetUserEmailByUserPermitId(permitId); // Get customer email here
 
                     var mailMessage = new MailMessage
                     {
@@ -140,7 +140,7 @@ namespace Capstone.Controllers
                 try
                 {
                     // Get customer email from permitDao or some other method
-                    string customerEmail = userDao.GetUserEmailByUserId(userId); // Get customer email here
+                    string customerEmail = userDao.GetUserEmailByUserPermitId(changedPermit.PermitId); // Get customer email here
 
                     var mailMessage = new MailMessage
                     {

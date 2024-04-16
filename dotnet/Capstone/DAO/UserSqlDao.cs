@@ -21,12 +21,14 @@ namespace Capstone.DAO
         }
 
 //----------ADDED--------------------------------------------------------
-        public string GetUserEmailByUserId(int userId)
+        public string GetUserEmailByUserPermitId(int permitId)
         {
             User user = null;
 
-            string sql = "SELECT user_id, username, password_hash, salt, user_role, employee, email, active FROM users WHERE user_id = @user_id";
-
+            string sql = "SELECT users.user_id, users.username, users.password_hash, users.salt, users.user_role, users.employee, users.email, users.active FROM users " + 
+            "JOIN customer ON users.user_id = customer.user_id " +
+            "JOIN permit ON customer.customer_id = permit.customer_id WHERE permit_id = @permit_id;";
+            
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
@@ -34,7 +36,7 @@ namespace Capstone.DAO
                     conn.Open();
 
                     SqlCommand cmd = new SqlCommand(sql, conn);
-                    cmd.Parameters.AddWithValue("@user_id", userId);
+                    cmd.Parameters.AddWithValue("@permit_id", permitId);
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     if (reader.Read())
