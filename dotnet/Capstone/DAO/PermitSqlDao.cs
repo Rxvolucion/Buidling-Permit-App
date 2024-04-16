@@ -34,14 +34,46 @@ namespace Capstone.DAO
         //        "FROM permit JOIN inspections ON permit.permit_id = inspections.permit_id JOIN inspection_status_type ON inspections.inspection_status_type_id = inspection_status_type.inspection_status_type_id " +
         //        "WHERE permit.active = 0;";
         private string GetAllInactivePermitsSql = "SELECT permit_id, permit_address, permit_type, commercial, permit_status, customer_details FROM permit WHERE active = 0;";
-
+        private string EditPermitByIdSql = "UPDATE permit SET permit_type= @permit_type, permit_address = @permit_address, commercial = @commercial, customer_details = @customer_details WHERE permit_id = @permit_id;";
 
 
         public PermitSqlDao(string dbConnectionString)
         {
             connectionString = dbConnectionString;
         }
-        
+
+        public Permit UpdatePermitCustomer(PermitCustomerEditDTO updatedPermitDTO)
+        {
+            Permit updatedPermit = new Permit();
+            updatedPermit.PermitId = updatedPermitDTO.PermitId;
+            updatedPermit.PermitType = updatedPermitDTO.PermitType;
+            updatedPermit.PermitAddress = updatedPermitDTO.PermitAddress;
+            updatedPermit.Commercial = updatedPermitDTO.Commercial;
+            updatedPermit.CustomerDetails = updatedPermitDTO.CustomerDetails;
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(EditPermitByIdSql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@permit_id", updatedPermit.PermitId);
+                    cmd.Parameters.AddWithValue("@permit_type", updatedPermit.PermitType);
+                    cmd.Parameters.AddWithValue("@permit_address", updatedPermit.PermitAddress);
+                    cmd.Parameters.AddWithValue("@commercial", updatedPermit.Commercial);
+                    cmd.Parameters.AddWithValue("@customer_details", updatedPermit.CustomerDetails);
+
+                    int count = cmd.ExecuteNonQuery();
+                    if (count == 1)
+                    {
+                        return updatedPermit;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+            }
+        }
         public List<PermitIdInspectionIdDTO> GetAllInspectionsAndPermits()
         {
             List<PermitIdInspectionIdDTO> permits = new List<PermitIdInspectionIdDTO>();

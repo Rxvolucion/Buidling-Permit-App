@@ -38,5 +38,16 @@ namespace Capstone.Models
         public string CustomerDetails { get; set; }
         //public string InspectionType { get; set; }
     }
+
+    //ADDED-----------------------------------------
+    public class PermitCustomerEditDTO
+    {
+        public int PermitId { get; set; }
+        public string PermitType { get; set; }
+        public string PermitAddress { get; set; }
+        public bool Commercial { get; set; }
+        public string CustomerDetails { get; set; }
+    }
+    //END ADDED -----------------------------------
 }
 

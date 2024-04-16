@@ -36,6 +36,11 @@ export default {
     },
     getInactivePermitsWithInspections() {
         return axios.get(`/permit/archive`)
+    },
+
+    updatePermit(permit) {
+        console.log("PermitID: ", permit.permitId)
+        return axios.put(`permit/edit-permit/${permit.permitId}`, permit)
     }
 
     

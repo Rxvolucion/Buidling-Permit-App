@@ -14,7 +14,9 @@ namespace Capstone.DAO
         public int OpenClosePermit(int permitId);
         public List<PermitIdInspectionIdDTO> GetAllInspectionsAndPermits();
         public List<PermitArchiveDTO> GetAllInactivePermitsAndInspections();
-            
+        public Permit UpdatePermitCustomer(PermitCustomerEditDTO updatedPermitDTO);
+
+
     }
 }
 

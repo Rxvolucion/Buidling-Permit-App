@@ -40,6 +40,11 @@
                 <button type="button" class="btn btn-primary" v-on:click="this.$router.push({ name: 'permitInspectionResults', params: { permitId: this.item.permitId } })">View Inspection Results</button>
         </div>
 
+<!--ADDED -->
+        <div v-if="userRole == 'user' && item.permitStatus === 'Pending' ? true : false && item.active == true ? true : false">
+            <button type="button" class="btn btn-primary" v-on:click="this.$router.push({ name: 'customerEditPermit', params: { permitId: this.item.permitId } })">Edit Permit</button>
+        </div>
+<!--ADDED end-->
 
         <!-- Show if employee -->
         <div v-if="userRole == 'admin' && item.active == true ? true : false" >
