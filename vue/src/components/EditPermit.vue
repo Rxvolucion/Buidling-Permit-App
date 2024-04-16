@@ -1,5 +1,6 @@
 <template>
     <div>
+        <!-- {{ item }} -->
         <h2>Permit ID: {{ $route.params.permitId }}</h2>
         <form @submit.prevent="editPermit">
             <!-- <div>
@@ -8,7 +9,7 @@
             </div> -->
             <label for="permit-type-select">Revised Permit Type</label>
             <select name="permit-type-select" id="permit-type-select" v-model="updatedPermit.PermitType" required>
-              <option value="">Please select a permit type</option>
+              <!-- <option value="">{{ item.permitType }}</option> -->
               <option value="New Home">New Home</option>
               <option value="New Garage">New Garage</option>
               <option value="Building Addition">Building Addition</option>
@@ -45,14 +46,15 @@ import PermitService from "../services/PermitService.js";
 export default {
     components: {},
     name: "EditPermit",
+    props: ["item"],
     data() {
         return {
             updatedPermit: {
                 permitId: parseInt(this.$route.params.permitId),
-                PermitType: "",
-                PermitAddress: "",
-                Commercial: false,
-                CustomerDetails: ""
+                PermitType: this.item.permitType,
+                PermitAddress: this.item.permitAddress,
+                Commercial: this.item.commercial,
+                CustomerDetails: this.item.customerDetails
             },
         };
     },

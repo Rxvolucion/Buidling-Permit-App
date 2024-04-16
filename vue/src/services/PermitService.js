@@ -41,6 +41,11 @@ export default {
     updatePermit(permit) {
         console.log("PermitID: ", permit.permitId)
         return axios.put(`permit/edit-permit/${permit.permitId}`, permit)
+    },
+
+    getPermitById(permitId) {
+        console.log("Reached get permit by id service")
+        return axios.get(`permit/${permitId}`)
     }
 
     

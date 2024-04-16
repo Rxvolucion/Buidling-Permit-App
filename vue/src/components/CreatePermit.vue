@@ -21,9 +21,9 @@
           </div>
           <div class="form-group">
             <label for="is-commercial">Is it commercial?</label>
-            <select v-model="newPermit.isCommercial" id="is-commercial" name="is-commercial" class="form-control">
-              <option value="true">Yes</option>
-              <option value="false">No</option>
+            <select v-model="newPermit.Commercial" id="is-commercial" name="is-commercial" class="form-control">
+              <option :value=true>Yes</option>
+              <option :value=false>No</option>
             </select>
           </div>
   
@@ -62,7 +62,7 @@ export default {
                 customerId: "",
                 permitType: "",
                 permitAddress: "",
-                isCommercial: false,
+                Commercial: false,
                 isActive: true,
                 permitStatus: "Pending",
                 customerDetails: "",
