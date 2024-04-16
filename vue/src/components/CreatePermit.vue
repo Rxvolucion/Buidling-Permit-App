@@ -38,7 +38,7 @@
           <label for="permit-customer-details">Additional Details</label>
           <textarea id="permit-customer-details" name="permit-customer-details" v-model="newPermit.customerDetails" class="form-control" rows="5" required></textarea>
         </div>
-        <div class="d-flex justify-content-center">
+        <div class="d-flex justify-content-center mt-4">
           <button type="submit" class="btn btn-primary">Submit</button>
         </div>
         </form>
@@ -246,6 +246,15 @@ export default {
 
 h1 {
     padding: 0rem;
+}
+
+button {
+    margin: 0.5rem;
+    background-color: #2c3e50;
+    border-color: #2c3e50;
+    
+    /* background-color: rgb(95, 94, 94);
+    outline-color: black; */
 }
 
 </style>
