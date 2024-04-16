@@ -227,4 +227,13 @@ export default {
   background-size: cover;
   background-position: center;
 }
+
+button {
+    margin: 0.5rem;
+    background-color: #2c3e50;
+    border-color: #2c3e50;
+    
+    /* background-color: rgb(95, 94, 94);
+    outline-color: black; */
+}
 </style>

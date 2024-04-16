@@ -90,6 +90,8 @@ h1 {
   padding-top: 1rem;
 }
 
+
+
 .footer {
   /* height: 105px; */
   height: auto;
