@@ -7,22 +7,26 @@
                 <form @submit.prevent="getPermitsBySearch" class="form">
                     <div class="form-group">
                         <label for="search-permit-id">Permit Id:</label>
-                        <input type="number" id="search-permit-id" name="search-permit-id" v-model="permitSearchFields.PermitId"><br><br>
+                        <input type="number" id="search-permit-id" name="search-permit-id"
+                            v-model="permitSearchFields.PermitId"><br><br>
                         <label for="search-permit-address">Permit Address:</label>
-                        <input type="text" id="search-permit-address" name="search-permit-address" v-model="permitSearchFields.PermitAddress"><br><br>
+                        <input type="text" id="search-permit-address" name="search-permit-address"
+                            v-model="permitSearchFields.PermitAddress"><br><br>
                         <label for="search-customer-id">Customer Id:</label>
-                        <input type="number" id="search-customer-id" name="search-customer-id" v-model="permitSearchFields.CustomerId"><br><br>
+                        <input type="number" id="search-customer-id" name="search-customer-id"
+                            v-model="permitSearchFields.CustomerId"><br><br>
                         <label for="search-permit-type">Permit Type:</label>
-                        <input type="number" id="search-permit-type" name="search-permit-type" v-model="permitSearchFields.PermitType"><br><br>
+                        <input type="text" id="search-permit-type" name="search-permit-type"
+                            v-model="permitSearchFields.PermitType"><br><br>
                     </div>
-                    <input type="submit" value="Search" class="btn btn-primary w-75"/>
+                    <input type="submit" value="Search" class="btn btn-primary w-75" />
                 </form>
             </div>
             <div class="permits">
-                <permit v-for="permit in permits" v-bind:key = "permit.permitId" v-bind:item = "permit" />
+                <permit v-for="permit in permits" v-bind:key="permit.permitId" v-bind:item="permit" />
             </div>
         </section>
-        
+
     </div>
 </template>
 
@@ -32,7 +36,7 @@ import permitService from '../services/PermitService.js';
 
 export default {
     name: "SearchPermits",
-    
+
     data() {
         return {
             permits: [],
@@ -56,31 +60,31 @@ export default {
     methods: {
 
         getPermitsBySearch() {
-        permitService
-            .getPermitBySearchFields(this.permitSearchFields)
-            .then((response) => {
-                this.permits = response.data;
-                console.log("response data: ", response.data)
-                console.log("permits: ", this.permits)
-            })
-            .catch((error) => {
-                if (error.response) {
-                    // error.response exists
-                    // Request was made, but response has error status (4xx or 5xx)
-                    console.log("Error getting permits by search: ", error.response.status);
-                } else if (error.request) {
-                    // There is no error.response, but error.request exists
-                    // Request was made, but no response was received
-                    console.log("Error getting permits by search: unable to communicate to server");
-                } else {
-                    // Neither error.response and error.request exist
-                    // Request was *not* made
-                    console.log("Error getting permits by search: error making request");
-                }
-            });
-        
+            permitService
+                .getPermitBySearchFields(this.permitSearchFields)
+                .then((response) => {
+                    this.permits = response.data;
+                    console.log("response data: ", response.data)
+                    console.log("permits: ", this.permits)
+                })
+                .catch((error) => {
+                    if (error.response) {
+                        // error.response exists
+                        // Request was made, but response has error status (4xx or 5xx)
+                        console.log("Error getting permits by search: ", error.response.status);
+                    } else if (error.request) {
+                        // There is no error.response, but error.request exists
+                        // Request was made, but no response was received
+                        console.log("Error getting permits by search: unable to communicate to server");
+                    } else {
+                        // Neither error.response and error.request exist
+                        // Request was *not* made
+                        console.log("Error getting permits by search: error making request");
+                    }
+                });
+
         },
-    
+
         // getPermits(){
         //     permitService
         //     .listPermits()
@@ -106,8 +110,8 @@ export default {
         // }
     },
 
-    created(){ 
-        console.log ("reached created")
+    created() {
+        console.log("reached created")
         // this.getPermits();
         this.getPermitsBySearch();
     }
@@ -116,6 +120,4 @@ export default {
 
 </script>
 
-<style>
-
-</style>
+<style></style>

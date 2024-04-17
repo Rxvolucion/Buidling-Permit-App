@@ -1,6 +1,12 @@
 <template>
-    <CloudinaryUpload />
-    <img width="400" id="uploadedimage" src="" />
+    <div class="image-upload">
+        <div class="upload-button container-fluid">
+            <CloudinaryUpload />
+        </div>
+        <div class="uploaded-image container-fluid">
+            <img width="400" id="uploadedimage" src="" />
+        </div>
+    </div>
 </template>
 
 <script>
@@ -15,6 +21,15 @@ export default {
 </script>
 
 <style>
+.image-upload {
+    /* display: flex; */
+    /* display: flex;
+    justify-content: center; */
+}
+
+.upload-button {
+
+}
 
 </style>
 

@@ -1,22 +1,19 @@
 <template>
-  <div class="container1 d-flex justify-content-center align-items-center min-vh-100">
-    <div class="card p-5 shadow">
-      <h3 class="mb-4">Upload Files</h3>
-      <button v-on:click="open" id="upload_widget" class="cloudinary-button btn btn-primary">
-        Upload files
-      </button>
-    </div>
-        <!-- <p>
-            <a href="https://cloudinary.com/documentation/upload_widget" target="_blank">Upload Widget User Guide</a>
-        </p>
-        <p>
-            <a href="https://cloudinary.com/documentation/upload_widget_reference" target="_blank">Upload Widget
-                Reference</a>
-        </p> -->
-    </div>
-    <!-- <div>
-        <button v-on:click="getCloudinaryFiles" id="get-cloudinary-files">Get Cloudinary Files</button>
+
+    <h3 class="mb-4">Upload Files</h3>
+    <button v-on:click="open" id="upload_widget" class="cloudinary-button btn btn-primary">Upload files</button>
+
+    <!-- <div class="container1 d-flex justify-content-center align-items-center min-vh-100">
+        
+        <div class="card p-5 shadow">
+            <h3 class="mb-4">Upload Files</h3>
+            <div>
+                <button v-on:click="open" id="upload_widget" class="cloudinary-button btn btn-primary">Upload files</button>
+            </div>
+        </div>
+
     </div> -->
+    
 </template>
 
 <script>
