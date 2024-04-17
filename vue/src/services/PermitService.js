@@ -50,7 +50,7 @@ export default {
 
     getPermitBySearchFields(searchedFields) {
         console.log("Searched fields: ", searchedFields)
-        return axios.get('/permit/filter', searchedFields)
+        return axios.post('/permit/filter', searchedFields)
     }
 
     
