@@ -46,6 +46,11 @@ export default {
     getPermitById(permitId) {
         console.log("Reached get permit by id service")
         return axios.get(`permit/${permitId}`)
+    },
+
+    getPermitBySearchFields(searchedFields) {
+        console.log("Searched fields: ", searchedFields)
+        return axios.get('/permit/filter', searchedFields)
     }
 
     

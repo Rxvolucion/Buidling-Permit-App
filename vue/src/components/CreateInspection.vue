@@ -1,8 +1,8 @@
 <template>
     <div class="permit-create d-flex flex-column align-items-center justify-content-center min-vh-100">
       <div class="card p-5 shadow col-md-6 col-lg-4">
-        <h1 class="mb-4">Create a Permit</h1>
-        <form @submit.prevent="createPermit" class="form">
+        <h1 class="mb-4">Request Inspection</h1>
+        <form @submit.prevent="createInspection" class="form">
         <div class="form-group">
           <label for="inspection-date">Inspection Request Date</label>
           <input id="inspection-date" name="inspection-date" type="datetime-local" v-model="newInspection.DateVariable" class="form-control" />
