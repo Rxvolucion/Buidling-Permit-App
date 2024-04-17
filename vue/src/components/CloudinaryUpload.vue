@@ -174,7 +174,7 @@ export default {
 
 </script> -->
 
-<style scope>
+<style scoped>
 
 .container1 {
   background-color: #bbb5b5;

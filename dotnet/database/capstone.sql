@@ -54,6 +54,7 @@ CREATE TABLE permit (
 	permit_status varchar(50) NOT NULL,
 	customer_details varchar(200),
 	CONSTRAINT CK_permit_status CHECK (permit_status IN ('Pending', 'Approved', 'Rejected')),
+	CONSTRAINT CK_permit_tpye CHECK (permit_type IN ('New Garage', 'Building Addition', 'Electrical Work', 'HVAC Work', 'Interior Alterations')),
     CONSTRAINT PK_permit_id PRIMARY KEY (permit_id),
     CONSTRAINT FK_customer_id FOREIGN KEY (customer_id) REFERENCES customer(customer_id) -- Add REFERENCES clause for foreign key
 );
@@ -107,24 +108,24 @@ INSERT INTO inspection_status_type (inspection_type) VALUES ('Pending')
 INSERT INTO inspection_status_type (inspection_type) VALUES ('Pass')
 INSERT INTO inspection_status_type (inspection_type) VALUES ('Fail')
 
-INSERT INTO users (username, password_hash, salt, user_role, employee, email, active) VALUES ('user1','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=', 'user',0 , 'testdata1@te.com',1);
-INSERT INTO users (username, password_hash, salt, user_role, employee, email, active) VALUES ('user2','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=', 'user',0 , 'testdata2@te.com',1);
-INSERT INTO users (username, password_hash, salt, user_role, employee, email, active) VALUES ('user3','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=', 'user',0 , 'testdata3@te.com',1);
-INSERT INTO users (username, password_hash, salt, user_role, employee, email, active) VALUES ('user4','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=', 'user',0 , 'testdata4@te.com',1);
-INSERT INTO users (username, password_hash, salt, user_role, employee, email, active) VALUES ('user5','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=', 'user',0 , 'testdata5@te.com',1);
-INSERT INTO users (username, password_hash, salt, user_role, employee, email, active) VALUES ('user6','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=', 'user',0 , 'testdata6@te.com',1);
-INSERT INTO users (username, password_hash, salt, user_role, employee, email, active) VALUES ('user7','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=', 'user',0 , 'testdata7@te.com',1);
-INSERT INTO users (username, password_hash, salt, user_role, employee, email, active) VALUES ('user8','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=', 'user',0 , 'testdata8@te.com',1);
-INSERT INTO users (username, password_hash, salt, user_role, employee, email, active) VALUES ('user9','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=', 'user',0 , 'testdata9@te.com',1);
-INSERT INTO users (username, password_hash, salt, user_role, employee, email, active) VALUES ('user10','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=', 'user',0 , 'testdata11@te.com',1);
-INSERT INTO users (username, password_hash, salt, user_role, employee, email, active) VALUES ('user11','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=', 'user',0 , 'testdata12@te.com',1);
-INSERT INTO users (username, password_hash, salt, user_role, employee, email, active) VALUES ('user12','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=', 'user',0 , 'testdata13@te.com',0);
-INSERT INTO users (username, password_hash, salt, user_role, employee, email, active) VALUES ('admin1','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=', 'admin', 1, 'employeeemail1@company.com', 1);
-INSERT INTO users (username, password_hash, salt, user_role, employee, email, active) VALUES ('admin2','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=', 'admin', 1,'employeeemail2@company.com', 1);
+INSERT INTO users (username, password_hash, salt, user_role, employee, email, active) VALUES ('user1','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=', 'user',0 , 'Tjohnsonson@te.com',1);
+INSERT INTO users (username, password_hash, salt, user_role, employee, email, active) VALUES ('DioTheAmigo','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=', 'user',0 , 'pbird123@te.com',1);
+INSERT INTO users (username, password_hash, salt, user_role, employee, email, active) VALUES ('JeffStewart','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=', 'user',0 , 'IAmHimothy@te.com',1);
+INSERT INTO users (username, password_hash, salt, user_role, employee, email, active) VALUES ('JohnnyRisky','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=', 'user',0 , 'Ludwig48@te.com',1);
+INSERT INTO users (username, password_hash, salt, user_role, employee, email, active) VALUES ('user5','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=', 'user',0 , 'TheHeidecker@te.com',1);
+INSERT INTO users (username, password_hash, salt, user_role, employee, email, active) VALUES ('user6','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=', 'user',0 , 'EricWareheimer6@te.com',1);
+INSERT INTO users (username, password_hash, salt, user_role, employee, email, active) VALUES ('user7','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=', 'user',0 , 'GettingStuck123@te.com',1);
+INSERT INTO users (username, password_hash, salt, user_role, employee, email, active) VALUES ('user8','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=', 'user',0 , 'LinuxUser56@te.com',1);
+INSERT INTO users (username, password_hash, salt, user_role, employee, email, active) VALUES ('user9','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=', 'user',0 , 'HeartNvidia@te.com',1);
+INSERT INTO users (username, password_hash, salt, user_role, employee, email, active) VALUES ('user10','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=', 'user',0 , 'HeartTechElevator@te.com',1);
+INSERT INTO users (username, password_hash, salt, user_role, employee, email, active) VALUES ('user11','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=', 'user',0 , 'Touchdown47@te.com',1);
+INSERT INTO users (username, password_hash, salt, user_role, employee, email, active) VALUES ('user12','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=', 'user',0 , 'LoneWolfplayer@te.com',0);
+INSERT INTO users (username, password_hash, salt, user_role, employee, email, active) VALUES ('admin1','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=', 'admin', 1, 'example3861@company.com', 1);
+INSERT INTO users (username, password_hash, salt, user_role, employee, email, active) VALUES ('admin2','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=', 'admin', 1,'CompanyMan@company.com', 1);
 INSERT INTO users (username, password_hash, salt, user_role, employee, email, active) VALUES ('kevin','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=', 'user', 0, 'keidleman@gmail.com', 1);
 
-INSERT INTO employee (user_id, employee_type) VALUES (4, 'admin');
-INSERT INTO employee (user_id, employee_type) VALUES ( 5, 'admin');
+INSERT INTO employee (user_id, employee_type) VALUES (13, 'admin');
+INSERT INTO employee (user_id, employee_type) VALUES (14, 'admin');
 
 INSERT INTO customer (user_id, contractor, address) VALUES (1, 1, '31 Spooner St.');
 INSERT INTO customer (user_id, contractor, address) VALUES (2, 1, '5001 Real St..');
@@ -135,6 +136,7 @@ INSERT INTO customer (user_id, contractor, address) VALUES (6, 1, '321 Pine Ln.'
 INSERT INTO customer (user_id, contractor, address) VALUES (7, 0, '654 Maple Ave.');
 INSERT INTO customer (user_id, contractor, address) VALUES (8, 0, '987 Oak St.');
 INSERT INTO customer (user_id, contractor, address) VALUES (9, 0, '159 Birch Rd.');
+INSERT INTO customer (user_id, contractor, address) VALUES (10, 0, '159 Birch Rd.');
 INSERT INTO customer (user_id, contractor, address) VALUES (11, 0, '753 Willow Ln.');
 INSERT INTO customer (user_id, contractor, address) VALUES (12, 0, '369 Cedar St.');
 INSERT INTO customer (user_id, contractor, address) VALUES (13, 1, '852 Maple Rd.');
@@ -143,9 +145,9 @@ INSERT INTO customer (user_id, contractor, address) VALUES (15, 0, '4621 Maple R
 
 
 
-INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1001, '31 Spooner St.', 'house', 0, 'Pending', 'none');
-INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1001, '4621 Grangerwood Ave.', 'house', 0, 'Approved', 'none');
-INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1002, '5001 Real St.', 'building', 1, 'Approved', 'none');
+INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1001, '31 Spooner St.', 'New Garage', 0, 'Pending', 'none');
+INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1001, '4621 Grangerwood Ave.', 'Building Addition', 0, 'Approved', 'none');
+INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1002, '5001 Real St.', 'New Garage', 1, 'Approved', 'none');
 INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1003, '123 Main St.', 'New Garage', 0, 'Pending', 'none');
 INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1004, '456 Oak Rd.', 'New Garage', 0, 'Approved', 'none');
 INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1005, '789 Elm St.', 'Building Addition', 0, 'Pending', 'none');
