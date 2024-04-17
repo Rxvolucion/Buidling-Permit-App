@@ -132,12 +132,13 @@ INSERT INTO customer (user_id, contractor, address) VALUES (3, 1, '123 Main St.'
 INSERT INTO customer (user_id, contractor, address) VALUES (4, 1, '456 Oak Rd.');
 INSERT INTO customer (user_id, contractor, address) VALUES (5, 0, '789 Elm St.');
 INSERT INTO customer (user_id, contractor, address) VALUES (6, 1, '321 Pine Ln.');
-INSERT INTO customer (user_id, contractor, address) VALUES (7, 1, '654 Maple Ave.');
+INSERT INTO customer (user_id, contractor, address) VALUES (7, 0, '654 Maple Ave.');
 INSERT INTO customer (user_id, contractor, address) VALUES (8, 0, '987 Oak St.');
 INSERT INTO customer (user_id, contractor, address) VALUES (9, 0, '159 Birch Rd.');
-INSERT INTO customer (user_id, contractor, address) VALUES (11, 1, '753 Willow Ln.');
-INSERT INTO customer (user_id, contractor, address) VALUES (12, 1, '369 Cedar St.');
+INSERT INTO customer (user_id, contractor, address) VALUES (11, 0, '753 Willow Ln.');
+INSERT INTO customer (user_id, contractor, address) VALUES (12, 0, '369 Cedar St.');
 INSERT INTO customer (user_id, contractor, address) VALUES (13, 1, '852 Maple Rd.');
+INSERT INTO customer (user_id, contractor, address) VALUES (14, 1, '852 Maple Rd.');
 INSERT INTO customer (user_id, contractor, address) VALUES (15, 0, '4621 Maple Rd.');
 
 

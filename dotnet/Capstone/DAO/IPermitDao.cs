@@ -15,6 +15,8 @@ namespace Capstone.DAO
         public List<PermitIdInspectionIdDTO> GetAllInspectionsAndPermits();
         public List<PermitArchiveDTO> GetAllInactivePermitsAndInspections();
         public Permit UpdatePermitCustomer(PermitCustomerEditDTO updatedPermitDTO);
+        public string BuildSqlSearchString(PermitSearchDTO permitSearchDTO);
+        public List<Permit> FilterPermits(PermitSearchDTO permitSearchDTO);
 
 
     }

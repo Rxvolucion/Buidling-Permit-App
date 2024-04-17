@@ -9,6 +9,8 @@ using Capstone.Exceptions;
 using Capstone.Models;
 using Capstone.Security;
 using Capstone.Security.Models;
+
+
 namespace Capstone.DAO
 {
     public class PermitSqlDao : IPermitDao
@@ -41,6 +43,51 @@ namespace Capstone.DAO
         {
             connectionString = dbConnectionString;
         }
+
+
+        public List<Permit> FilterPermits(PermitSearchDTO permitSearchDTO)
+        {
+            string sql = BuildSqlSearchString(permitSearchDTO);
+
+            List<Permit> permits = new List<Permit>();
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    if (permitSearchDTO.PermitId != 0)
+                    {
+                        cmd.Parameters.AddWithValue("@permit_id", permitSearchDTO.PermitId);
+                    }
+                    if (!string.IsNullOrEmpty(permitSearchDTO.PermitAddress))
+                    {
+                        cmd.Parameters.AddWithValue("@permit_address", permitSearchDTO.PermitAddress);
+                    }
+                    if (permitSearchDTO.CustomerId != 0)
+                    {
+                        cmd.Parameters.AddWithValue("@customer_id", permitSearchDTO.CustomerId);
+                    }
+                    if (!string.IsNullOrEmpty(permitSearchDTO.PermitType))
+                    {
+                        cmd.Parameters.AddWithValue("@permit_type", permitSearchDTO.PermitType);
+                    }
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Permit permit = new Permit();
+                            permit = MapRowToPermit(reader);
+                            permits.Add(permit);
+                        }
+                    }
+                }
+            }
+            return permits;
+
+        }
+
+
 
         public Permit UpdatePermitCustomer(PermitCustomerEditDTO updatedPermitDTO)
         {
@@ -275,6 +322,62 @@ namespace Capstone.DAO
                 }
             }
             return permits;
+        }
+
+        public string BuildSqlSearchString(PermitSearchDTO permitSearchDTO)
+        {
+            string perId = "";
+            string perAdd = "";
+            string custId = "";
+            string perType = "";
+
+            if (permitSearchDTO.PermitId != 0)
+            {
+                if (!string.IsNullOrEmpty(permitSearchDTO.PermitAddress) || permitSearchDTO.CustomerId!= 0 || !string.IsNullOrEmpty(permitSearchDTO.PermitType))
+                {
+                    perId = "permit_id = @permit_id AND ";
+                }
+                else
+                {
+                    perId = "permit_id = @permit_id ";
+                }
+            }
+
+            if (!string.IsNullOrEmpty(permitSearchDTO.PermitAddress))
+            {
+                if (permitSearchDTO.CustomerId != 0 || !string.IsNullOrEmpty(permitSearchDTO.PermitType))
+                {
+                    perAdd = "permit_address LIKE '%'+@permit_address+'%' AND ";
+                }
+                else
+                {
+                    perAdd = "permit_address LIKE '%'+@permit_address+'%' ";
+                }
+
+            }
+
+            if (permitSearchDTO.CustomerId != 0)
+            {
+                if (!string.IsNullOrEmpty(permitSearchDTO.PermitType))
+                {
+                    custId = "customer_id = @customer_id AND ";
+                }
+                else
+                {
+                    custId = "customer_id = @customer_id ";
+                }
+            }
+
+            if (!string.IsNullOrEmpty(permitSearchDTO.PermitType))
+            {
+                perType = "permit_type LIKE '%'+@permit_type+'%' ";
+            }
+
+            string searchPermitSql = "SELECT permit_id, active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details FROM permit WHERE " +
+            perId + perAdd + custId + perType + ";";
+
+            return searchPermitSql;
+
         }
 
         private Permit MapRowToPermit(SqlDataReader reader)

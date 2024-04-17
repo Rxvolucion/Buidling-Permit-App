@@ -27,6 +27,12 @@ namespace Capstone.Controllers
             this.userDao = userDao;
         }
 
+        [HttpGet("filter")]
+        public ActionResult<List<Permit>> GetPermit(PermitSearchDTO permitSearchDTO)
+        {
+            return Ok(permitDao.FilterPermits(permitSearchDTO));
+        }
+
         //[HttpGet("permit_status")]
         //public ActionResult<List<string>> GetPermitStatuses()
         //{
