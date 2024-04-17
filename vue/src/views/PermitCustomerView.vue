@@ -1,10 +1,19 @@
 <template>
     <div class="permit">
-        <h1>My Permits</h1>
-        <!--load create permit or edit permit component based on user selection-->
-        <permit v-for="permit in permits" v-bind:key="permit.permitId" v-bind:item="permit" />
+      <h1 class="mb-4">My Permits</h1>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-lg-4 mb-4" v-for="permit in permits" :key="permit.permitId">
+            <div class="card">
+              <div class="card-body">
+                <Permit :item="permit" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</template>
+  </template>
 
 <script>
 import Permit from '../components/Permit.vue';
@@ -89,4 +98,18 @@ export default {
 
 </script>
 
-<style></style>
+<style scoped>
+.permit {
+  
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 2rem;
+}
+
+.card {
+  background-color: #f5f5f5;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+</style>

@@ -1,10 +1,13 @@
 <template>
+    <h1 class="mb-4">Approve/Reject Permit for Inspection</h1>
     <div class="approve-reject-permit">
-            <h1>Approve/Reject Permit</h1>
-            <ApproveRejectPermit />
-        </div>
-
-</template>
+        <h3 class="mb-4">Permit ID: {{ this.$route.params.permitId }}</h3>
+      
+      <div class="container">
+        <ApproveRejectPermit />
+      </div>
+    </div>
+  </template>
 
 <script>
 import ApproveRejectPermit from '../components/ApproveRejectPermit.vue'
@@ -22,7 +25,12 @@ export default {
 </script>
 
 
-<style>
-
-
+<style scoped>
+.approve-reject-permit {
+    background-color: #c2bdbd75;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 2rem;
+}
 </style>

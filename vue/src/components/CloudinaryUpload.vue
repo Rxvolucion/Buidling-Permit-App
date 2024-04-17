@@ -1,6 +1,6 @@
 <template>
 
-    <button v-on:click="open" id="upload_widget" class="cloudinary-button btn btn-primary mw-50">Upload files</button>
+    <button v-on:click="open" id="upload_widget" class="cloudinary-button btn btn-primary mw-50">Upload File</button>
 
     <!-- <div class="container1 d-flex justify-content-center align-items-center min-vh-100">
         

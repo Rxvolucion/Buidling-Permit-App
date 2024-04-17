@@ -1,17 +1,12 @@
 <template>
     <!-- <h2>test</h2> -->
     <section :class="{ 'pending': isPending, 'pass': isPass, 'fail': isFail }" class="inspection">
-
-        
-
         <div class="inspection-info">
             <h3>Inspection Id: {{ item.inspectionId }}</h3>
-
             <p>
                 <a data-bs-toggle="collapse" href="#collapseInspectionInfo" role="button" aria-expanded="false" aria-controls="collapseInspectionInfo">More info
                 </a>
             </p>
-
             <div class="collapse" id="collapseInspectionInfo">
                 <div class="card card-body">
                     <p v-if="userRole == 'admin' ? true : false">Permit Id: {{ item.permitId }} </p>
@@ -19,30 +14,21 @@
                     <p>Date/Time: {{ dateTimeFormat }}</p>
                     <p>Inspection Status: {{ item.inspectionStatus }}</p>
                     <p>Notes: {{ item.notes }}</p>
-                </div>
-                
+                </div>       
             </div>
-
             <div v-if="userRole == 'admin' ? true : false">
                 <button type="button" class="btn btn-primary" v-on:click="this.$router.push({ name: 'inspectionEdit', params: { inspectionId: item.inspectionId, dateVariable: item.dateVariable } })">Edit</button>
             </div>
             <div v-if="userRole == 'admin' ? true : false">
                 <button type="button" class="btn btn-primary" v-on:click="this.$router.push({ name: 'inspectionUploadFile', params: { inspectionId: item.inspectionId } })">Upload Files</button>
             </div>
-        </div>
-        
-        
-        
+        </div>  
     </section>
-
-
-
 </template>
 
 <script>
 import { RouterLink } from 'vue-router';
 import PermitService from '../services/PermitService.js';
-
 
 export default {
     name: "inspection",
