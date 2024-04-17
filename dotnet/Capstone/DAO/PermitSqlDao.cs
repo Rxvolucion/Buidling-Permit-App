@@ -330,52 +330,56 @@ namespace Capstone.DAO
             string perAdd = "";
             string custId = "";
             string perType = "";
+            string searchPermitSql = "SELECT permit_id, active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details FROM permit";
 
-            if (permitSearchDTO.PermitId != 0)
+            if (permitSearchDTO.PermitId != 0 || !string.IsNullOrEmpty(permitSearchDTO.PermitAddress) || permitSearchDTO.CustomerId != 0 || !string.IsNullOrEmpty(permitSearchDTO.PermitType))
             {
-                if (!string.IsNullOrEmpty(permitSearchDTO.PermitAddress) || permitSearchDTO.CustomerId!= 0 || !string.IsNullOrEmpty(permitSearchDTO.PermitType))
+                if (permitSearchDTO.PermitId != 0)
                 {
-                    perId = "permit_id = @permit_id AND ";
-                }
-                else
-                {
-                    perId = "permit_id = @permit_id ";
-                }
-            }
-
-            if (!string.IsNullOrEmpty(permitSearchDTO.PermitAddress))
-            {
-                if (permitSearchDTO.CustomerId != 0 || !string.IsNullOrEmpty(permitSearchDTO.PermitType))
-                {
-                    perAdd = "permit_address LIKE '%'+@permit_address+'%' AND ";
-                }
-                else
-                {
-                    perAdd = "permit_address LIKE '%'+@permit_address+'%' ";
+                    if (!string.IsNullOrEmpty(permitSearchDTO.PermitAddress) || permitSearchDTO.CustomerId != 0 || !string.IsNullOrEmpty(permitSearchDTO.PermitType))
+                    {
+                        perId = "permit_id = @permit_id AND ";
+                    }
+                    else
+                    {
+                        perId = "permit_id = @permit_id ";
+                    }
                 }
 
-            }
+                if (!string.IsNullOrEmpty(permitSearchDTO.PermitAddress))
+                {
+                    if (permitSearchDTO.CustomerId != 0 || !string.IsNullOrEmpty(permitSearchDTO.PermitType))
+                    {
+                        perAdd = "permit_address LIKE '%'+@permit_address+'%' AND ";
+                    }
+                    else
+                    {
+                        perAdd = "permit_address LIKE '%'+@permit_address+'%' ";
+                    }
 
-            if (permitSearchDTO.CustomerId != 0)
-            {
+                }
+
+                if (permitSearchDTO.CustomerId != 0)
+                {
+                    if (!string.IsNullOrEmpty(permitSearchDTO.PermitType))
+                    {
+                        custId = "customer_id = @customer_id AND ";
+                    }
+                    else
+                    {
+                        custId = "customer_id = @customer_id ";
+                    }
+                }
+
                 if (!string.IsNullOrEmpty(permitSearchDTO.PermitType))
                 {
-                    custId = "customer_id = @customer_id AND ";
+                    perType = "permit_type LIKE '%'+@permit_type+'%' ";
                 }
-                else
-                {
-                    custId = "customer_id = @customer_id ";
-                }
-            }
 
-            if (!string.IsNullOrEmpty(permitSearchDTO.PermitType))
-            {
-                perType = "permit_type LIKE '%'+@permit_type+'%' ";
-            }
-
-            string searchPermitSql = "SELECT permit_id, active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details FROM permit WHERE " +
-            perId + perAdd + custId + perType + ";";
-
+                searchPermitSql = "SELECT permit_id, active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details FROM permit WHERE " +
+                perId + perAdd + custId + perType + ";";
+            } 
+            
             return searchPermitSql;
 
         }
