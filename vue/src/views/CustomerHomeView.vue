@@ -15,7 +15,7 @@
             <div class="card-body">
               <h5 class="card-title">Create Permit</h5>
               <p class="card-text">Go here to apply for a permit.</p>
-              <button type="button" class="btn btn-primary" v-on:click="this.$router.push({ name: 'createPermit' })">Apply</button>
+              <button type="button" class="btn btn-primary w-25" v-on:click="this.$router.push({ name: 'createPermit' })">Apply</button>
             </div>
           </div>
         </div>
@@ -24,7 +24,7 @@
             <div class="card-body">
               <h5 class="card-title">View My Permits</h5>
               <p class="card-text">Go here to view your permits.</p>
-              <button type="button" class="btn btn-primary" v-on:click="this.$router.push({ name: 'customerPermits', params: { userId: this.$store.state.user.userId } })">View</button>
+              <button type="button" class="btn btn-primary w-25" v-on:click="this.$router.push({ name: 'customerPermits', params: { userId: this.$store.state.user.userId } })">View</button>
             </div>
           </div>
         </div>
@@ -35,7 +35,7 @@
                     <div class="card-body">
                       <h5 class="card-title">Permit and Inspection History</h5>
                       <p class="card-text">Go here to view the history of permits and inspections.</p>
-                      <button type="button" class="btn btn-primary" v-on:click="this.$router.push({ name: 'archive' })">View</button>
+                      <button type="button" class="btn btn-primary w-25" v-on:click="this.$router.push({ name: 'archive' })">View</button>
                     </div>
                   </div>
                 </div>
