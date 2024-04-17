@@ -17,15 +17,21 @@
               Our mission is to empower our customers, whether they are tackling a small home renovation or large-scale commercial project, by providing them with the tools and support they need to get the job done right, on time, and with minimal hassle.
             </h4>
           </div> -->
-              <div class="home-description">
-                  <p class="card-title">KPJ Permit Manager is here to simplify the permit process for all our users, from the weekend DIY enthusiast, to the professional contractor and commercial developer.</p>
-                  <p class="card-title">
+              <div class="home-description card">
+                  <p class="card-text">KPJ Permit Manager is here to simplify the permit process for all our users, from the weekend DIY enthusiast, to the professional contractor and commercial developer.</p>
+                  <p class="card-text">
                     We understand the frustrations and complexities that come with navigating the permit system, which is why we have created a modern, user-friendly solution that streamlines the entire process. Our platform establishes a direct, efficient connection between the user and the inspector, eliminating the headaches and delays often associated with obtaining permits.
                   </p>
                   <p class="card-text">
                     Our mission is to empower our customers, whether they are tackling a small home renovation or large-scale commercial project, by providing them with the tools and support they need to get the job done right, on time, and with minimal hassle.
                   </p>
               </div>
+          </div>
+
+          <div class="reviews card">
+            <h4 class="card-title">Reviews</h4>
+            <blockquote class="card-text">"KPJ Permit Manager cut down the turnaround time on our residential building permits by months!"</blockquote>
+            <blockquote class="card-text">"It took hours for us to track inspections and permits but now it only takes us minutes!"</blockquote>
           </div>
 
           <div class="resources">
@@ -35,13 +41,12 @@
                 <div class="card">
                   <div class="card-body">
                     <h5 class="card-title">Building Codes</h5>
-                    <p class="card-text">Library of building codes available in each state through MuniCode:</p>
+                    <p class="card-text">Resources for building and zoning codes:</p>
                     <div class="text-center">
-                        <a href="https://library.municode.com/"><button type="button" class="btn btn-primary w-75">View</button></a>
+                        <a href="https://library.municode.com/"><button type="button" class="btn btn-primary w-75">Municode</button></a>
                     </div>
-                    <p class="card-text">City of Columbus Building and Zoning codes:</p>
                     <div class="text-center">
-                          <a href="https://www.columbus.gov/Templates/Detail.aspx?id=28467"><button type="button" class="btn btn-primary w-75">View</button></a>
+                          <a href="https://www.columbus.gov/Templates/Detail.aspx?id=28467"><button type="button" class="btn btn-primary w-75">City of Columbus Building and Zoning Codes</button></a>
                     </div>
                   </div>
                 </div>
@@ -49,14 +54,22 @@
               <div class="col-sm-6">
                 <div class="card">
                   <div class="card-body">
-                    <h5 class="card-title">Search Permit</h5>
-                    <p class="card-text">Go here to search for created permits to review them, approve, reject, close or open them.</p>
-                    <button type="button" class="btn btn-primary w-75" v-on:click="this.$router.push({ name: 'searchPermit' })">Search</button>
+                    <h5 class="card-title">Drawing Plans</h5>
+                    <p class="card-text">Resources for drawing building and construction plans:</p>
+                    <div class="text-center">
+                      <a href="https://www.roomsketcher.com/features/draw-floor-plans/"><button type="button" class="btn btn-primary w-75">Room Sketcher</button></a>
+                    </div>
+                    <div class="text-center">
+                        <a href="https://www.smartdraw.com/floor-plan/floor-plan-designer.htm"><button type="button" class="btn btn-primary w-75">SmartDraw</button></a>
+                    </div>
+                    <div class="text-center">
+                    <a href="https://www.homedepot.com/c/ab/how-to-draw-a-floor-plan/9ba683603be9fa5395fab90118babc83"><button type="button" class="btn btn-primary w-75">How To Draw A Floor Plan</button></a>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-sm-6">
                   <div class="card">
                     <div class="card-body">
@@ -88,7 +101,7 @@
                   </div>
               
 
-            </div>
+            </div> -->
 
           </div>
 
@@ -102,9 +115,9 @@
     </div>
     
 
-    <div class="d-flex justify-content-center mt-4">
+    <!-- <div class="d-flex justify-content-center mt-4">
       
-    </div>
+    </div> -->
 
   </section>
   
@@ -177,6 +190,14 @@ button {
 
 h5 {
   font-weight: bold;
+}
+
+blockquote {
+  font-style: italic;
+}
+
+.reviews {
+  margin-top: 2rem;
 }
 
 .max-w-800 {
