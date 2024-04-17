@@ -1,7 +1,7 @@
 <template>
     <div class="permit-create d-flex flex-column align-items-center justify-content-center min-vh-100">
       <div class="card p-5 shadow col-md-6 col-lg-4">
-        <h1 class="mb-4">Create a Permit</h1>
+        <h1 class="mb-4">Input Permit Information</h1>
         <form @submit.prevent="createPermit" class="form">
           <div class="form-group">
             <label for="permit-type-select">Permit Type</label>
@@ -241,7 +241,8 @@ export default {
 }
 
 .form { 
-  width: auto;
+    width: 100%;
+    max-width: 800px;
 }
 
 h1 {
