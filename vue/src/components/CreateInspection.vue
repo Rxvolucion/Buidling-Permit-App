@@ -1,7 +1,7 @@
 <template>
     <div class="permit-create d-flex flex-column align-items-center justify-content-center min-vh-100">
       <div class="card p-5 shadow col-md-6 col-lg-4">
-        <h1 class="mb-4">Create a Permit</h1>
+        <h1 class="mb-4">Inspection Request</h1>
         <form @submit.prevent="createPermit" class="form">
         <div class="form-group">
           <label for="inspection-date">Inspection Request Date</label>

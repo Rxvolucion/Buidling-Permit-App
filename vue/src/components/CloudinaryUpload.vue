@@ -1,9 +1,11 @@
 <template>
-    <div class="uw">
-        <h3>Upload Files</h3>
-        <button v-on:click="open" id="upload_widget" class="cloudinary-button">
-            Upload files
-        </button>
+  <div class="container1 d-flex justify-content-center align-items-center min-vh-100">
+    <div class="card p-5 shadow">
+      <h3 class="mb-4">Upload Files</h3>
+      <button v-on:click="open" id="upload_widget" class="cloudinary-button btn btn-primary">
+        Upload files
+      </button>
+    </div>
         <!-- <p>
             <a href="https://cloudinary.com/documentation/upload_widget" target="_blank">Upload Widget User Guide</a>
         </p>
@@ -173,6 +175,16 @@ export default {
 </script> -->
 
 <style scope>
+
+.container1 {
+  background-color: #bbb5b5;
+}
+
+.card {
+  width: 100%;
+  max-width: 500px;
+}
+
 
 button {
     margin: 0.5rem;
