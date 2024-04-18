@@ -1,7 +1,7 @@
 <template>
     <div>
       <h2 class="mb-4">Inspection ID: {{ $route.params.inspectionId }}</h2>
-      <h3 class="mb-4">Customer Preferred Date and Time: {{ $route.params.dateVariable }}</h3>
+      <h3 class="mb-4">Customer Preferred Date and Time: {{ dateTimeFormat }}</h3>
       <div class="container">
         <form @submit.prevent="editInspection" class="form">
           <div class="form-group">
@@ -64,6 +64,29 @@ export default {
         getInspectionTypeId() {
             return this.existingInspection.inspectionTypeId
             
+        },
+
+        dateTimeFormat() {
+            const date = new Date(this.$route.params.dateVariable);
+
+            // Options for date and time formatting
+            const options = {
+                weekday: 'long', // Full day of the week (e.g., "Monday")
+                year: 'numeric', // Full numeric year (e.g., "2024")
+                month: 'long', // Full month name (e.g., "April")
+                day: 'numeric', // Day of the month (e.g., "12")
+                hour: 'numeric', // Hour (e.g., "15" for 3 PM)
+                minute: 'numeric', // Minute (e.g., "30")
+                second: 'numeric', // Second (e.g., "45")
+                timeZoneName: 'short' // Short timezone name (e.g., "PST")
+            };
+
+            // Format the date and time using the options
+            const formattedDateTime = date.toLocaleString("en-US", options);
+
+
+            return formattedDateTime;
+
         },
 
         // filter inspection status types to get inspection status type by the inspection status selected by the customer
@@ -193,4 +216,16 @@ export default {
   border-radius: 0.5rem;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
+
+h2 {
+    /* margin-left: 5vw; */
+    text-align: center;
+}
+
+h3 {
+    /* margin-left: 5vw; */
+    text-align: center;
+    font-style: italic;
+}
+
 </style> 

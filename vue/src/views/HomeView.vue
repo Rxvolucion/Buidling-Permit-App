@@ -188,6 +188,10 @@ button {
     outline-color: black; */
 }
 
+h4 {
+  font-weight: bold;
+}
+
 h5 {
   font-weight: bold;
 }
