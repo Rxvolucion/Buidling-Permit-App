@@ -123,9 +123,13 @@ INSERT INTO users (username, password_hash, salt, user_role, employee, email, ac
 INSERT INTO users (username, password_hash, salt, user_role, employee, email, active) VALUES ('admin1','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=', 'admin', 1, 'example3861@company.com', 1);
 INSERT INTO users (username, password_hash, salt, user_role, employee, email, active) VALUES ('admin2','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=', 'admin', 1,'CompanyMan@company.com', 1);
 INSERT INTO users (username, password_hash, salt, user_role, employee, email, active) VALUES ('kevin','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=', 'user', 0, 'keidleman@gmail.com', 1);
+INSERT INTO users (username, password_hash, salt, user_role, employee, email, active) VALUES ('janedoe','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=', 'admin',0 , 'janedoe@example.com',1); --16
+INSERT INTO users (username, password_hash, salt, user_role, employee, email, active) VALUES ('johndoe','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=', 'user',0 , 'johndoe@example.com',1); --17
+INSERT INTO users (username, password_hash, salt, user_role, employee, email, active) VALUES ('mikesmith','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=', 'user',0 , 'mikesmith@example.com',1); --18
 
 INSERT INTO employee (user_id, employee_type) VALUES (13, 'admin');
 INSERT INTO employee (user_id, employee_type) VALUES (14, 'admin');
+INSERT INTO employee (user_id, employee_type) VALUES (16, 'admin');
 
 INSERT INTO customer (user_id, contractor, address) VALUES (1, 1, '31 Spooner St.');
 INSERT INTO customer (user_id, contractor, address) VALUES (2, 1, '5001 Real St..');
@@ -157,7 +161,7 @@ INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial
 INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1009, '159 Birch Rd.', 'HVAC Work', 0, 'Pending', 'none');
 INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1010, '753 Willow Ln.', 'HVAC Work', 1, 'Approved', 'none');
 INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (0, 1011, '369 Cedar St.', 'Interior Alterations', 0, 'Pending', 'none');
-INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1012, '852 Maple Rd.', 'Interior Alterations', 0, 'Approved', 'none');
+INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1011, '852 Maple Rd.', 'Interior Alterations', 0, 'Approved', 'none');
 INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1004, '456 Oak Rd.', 'Electrical Work', 0, 'Approved', 'none');
 INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1005, '789 Elm St.', 'Electrical Work', 0, 'Rejected', 'none');
 INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1006, '321 Pine Ln.', 'Electrical Work', 1, 'Rejected', 'none');
@@ -165,8 +169,10 @@ INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial
 INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1008, '987 Oak St.', 'New Garage', 0, 'Approved', 'none');
 INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1009, '159 Birch Rd.', 'New Garage', 0, 'Pending', 'none');
 INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1010, '753 Willow Ln.', 'Electrical Work', 1, 'Approved', 'none');
-INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1011, '369 Cedar St.', 'Electrical Work', 0, 'Pending', 'none');
-INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1012, '852 Maple Rd.', 'HVAC Work', 0, 'Pending', 'none');
+INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1011, '369 Cedar St.', 'Electrical Work', 0, 'Approved', 'none');
+INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1012, '852 Maple Rd.', 'HVAC Work', 0, 'Rejected', 'none');
+INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1012, '852 Maple Rd.', 'Interior Alterations', 0, 'Pending', 'none');
+INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1012, '852 Maple Rd.', 'New Garage', 0, 'Pending', 'none');
 
 INSERT INTO inspections (inspection_status_type_id, permit_id, inspection_type_id, date_variable, notes) VALUES (6001, 2007, 5001, '2024-04-10T12:00:00', null)
 INSERT INTO inspections (inspection_status_type_id, permit_id, inspection_type_id, date_variable, notes) VALUES (6001, 2007, 5002, '2024-05-10T12:00:00', null)
