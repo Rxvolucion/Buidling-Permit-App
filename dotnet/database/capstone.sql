@@ -149,30 +149,30 @@ INSERT INTO customer (user_id, contractor, address) VALUES (15, 0, '4621 Maple R
 
 
 
-INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1001, '31 Spooner St.', 'New Garage', 0, 'Pending', 'none');
-INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1001, '4621 Grangerwood Ave.', 'Building Addition', 0, 'Approved', 'none');
-INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1002, '5001 Real St.', 'New Garage', 1, 'Approved', 'none');
-INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1003, '123 Main St.', 'New Garage', 0, 'Pending', 'none');
-INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1004, '456 Oak Rd.', 'New Garage', 0, 'Approved', 'none');
-INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1005, '789 Elm St.', 'Building Addition', 0, 'Pending', 'none');
-INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (0, 1006, '321 Pine Ln.', 'Building Addition', 1, 'Approved', 'none');
-INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1007, '654 Maple Ave.', 'Electrical Work', 0, 'Pending', 'none');
-INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1008, '987 Oak St.', 'Electrical Work', 0, 'Approved', 'none');
-INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1009, '159 Birch Rd.', 'HVAC Work', 0, 'Pending', 'none');
-INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1010, '753 Willow Ln.', 'HVAC Work', 1, 'Approved', 'none');
-INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (0, 1011, '369 Cedar St.', 'Interior Alterations', 0, 'Pending', 'none');
-INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1011, '852 Maple Rd.', 'Interior Alterations', 0, 'Approved', 'none');
-INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1004, '456 Oak Rd.', 'Electrical Work', 0, 'Approved', 'none');
-INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1005, '789 Elm St.', 'Electrical Work', 0, 'Rejected', 'none');
-INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1006, '321 Pine Ln.', 'Electrical Work', 1, 'Rejected', 'none');
-INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (0, 1007, '654 Maple Ave.', 'Building Addition', 0, 'Pending', 'none');
-INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1008, '987 Oak St.', 'New Garage', 0, 'Approved', 'none');
-INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1009, '159 Birch Rd.', 'New Garage', 0, 'Pending', 'none');
-INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1010, '753 Willow Ln.', 'Electrical Work', 1, 'Approved', 'none');
-INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1011, '369 Cedar St.', 'Electrical Work', 0, 'Approved', 'none');
-INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1012, '852 Maple Rd.', 'HVAC Work', 0, 'Rejected', 'none');
-INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1012, '852 Maple Rd.', 'Interior Alterations', 0, 'Pending', 'none');
-INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1012, '852 Maple Rd.', 'New Garage', 0, 'Pending', 'none');
+INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1001, '31 Spooner St.', 'New Garage', 0, 'Pending', 'New two-car garage with footer foundation');
+INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1001, '4621 Grangerwood Ave.', 'Building Addition', 0, 'Approved', 'New 3-season room');
+INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1002, '5001 Real St.', 'New Garage', 1, 'Approved', 'New three-car garage with footer foundation');
+INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1003, '123 Main St.', 'New Garage', 0, 'Pending', 'New detached carport');
+INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1004, '456 Oak Rd.', 'New Garage', 0, 'Approved', 'New attached carport');
+INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1005, '789 Elm St.', 'Building Addition', 0, 'Pending', 'New bedroom and bathroom');
+INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (0, 1006, '321 Pine Ln.', 'Building Addition', 1, 'Approved', 'Mudroom connected to garage');
+INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1007, '654 Maple Ave.', 'Electrical Work', 0, 'Pending', 'Replace service panel with 100 amp service');
+INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1008, '987 Oak St.', 'Electrical Work', 0, 'Approved', 'Replace service panel with 200 amp service');
+INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1009, '159 Birch Rd.', 'HVAC Work', 0, 'Pending', 'Replace ductwork');
+INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1010, '753 Willow Ln.', 'HVAC Work', 1, 'Approved', 'Replace furnace');
+INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (0, 1011, '369 Cedar St.', 'Interior Alterations', 0, 'Pending', 'Convert bedroom to walk-in closet');
+INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1011, '852 Maple Rd.', 'Interior Alterations', 0, 'Approved', 'Convert bedroom to kitchen');
+INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1004, '456 Oak Rd.', 'Electrical Work', 0, 'Approved', 'Add 5 outlets to the bathrooms');
+INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1005, '789 Elm St.', 'Electrical Work', 0, 'Rejected', 'Add 6 outlets to the kitchen and bedrooms');
+INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1006, '321 Pine Ln.', 'Electrical Work', 1, 'Rejected', 'Add exterior outlets');
+INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (0, 1007, '654 Maple Ave.', 'Building Addition', 0, 'Pending', 'Two-story addition with bedrooms and bathrooms');
+INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (0, 1008, '987 Oak St.', 'New Garage', 0, 'Approved', 'New detached single-car garage');
+INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1009, '159 Birch Rd.', 'New Garage', 0, 'Pending', 'New attached single-car garage');
+INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1010, '753 Willow Ln.', 'Electrical Work', 1, 'Approved', 'Replace service panel with 150 amp service');
+INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1011, '369 Cedar St.', 'Electrical Work', 0, 'Approved', 'Move overhead lines to underground');
+INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1012, '852 Maple Rd.', 'HVAC Work', 0, 'Rejected', 'Replace furnace and AC');
+INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1012, '852 Maple Rd.', 'Interior Alterations', 0, 'Pending', 'Finish basement');
+INSERT INTO permit (active, customer_id, permit_address, permit_type, commercial, permit_status, customer_details) VALUES (1, 1012, '852 Maple Rd.', 'New Garage', 0, 'Pending', 'New two-story garage with living space above');
 
 INSERT INTO inspections (inspection_status_type_id, permit_id, inspection_type_id, date_variable, notes) VALUES (6001, 2007, 5001, '2024-04-10T12:00:00', null)
 INSERT INTO inspections (inspection_status_type_id, permit_id, inspection_type_id, date_variable, notes) VALUES (6001, 2007, 5002, '2024-05-10T12:00:00', null)

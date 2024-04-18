@@ -1,7 +1,7 @@
 <template>
-    <h1 class="mb-4">Approve/Reject Permit for Inspection</h1>
+    <h1 class="mb-4">Approve/Reject Permit</h1>
     <div class="approve-reject-permit">
-        <h3 class="mb-4">Permit ID: {{ this.$route.params.permitId }}</h3>
+        <!-- <h3 class="mb-4">Permit ID: {{ this.$route.params.permitId }}</h3> -->
       
       <div class="container">
         <ApproveRejectPermit />

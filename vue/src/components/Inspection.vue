@@ -82,11 +82,11 @@ export default {
 
         },
 
-        dateTimeFormat() {
+        // dateTimeFormat() {
             
-            const newDateTime = new Date(this.item.dateVariable)
-            return newDateTime;
-        },
+        //     const newDateTime = new Date(this.item.dateVariable)
+        //     return newDateTime;
+        // },
 
         isPending() {
             return this.item.inspectionStatus === "Pending"
