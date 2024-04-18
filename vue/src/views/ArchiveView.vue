@@ -1,6 +1,6 @@
 <template>
+  <h1 class="mb-4">Permit and Inspection History</h1>
     <div class="archive">
-      <h1 class="mb-4">Permit and Inspection History</h1>
       <div class="row">
         <div class="col-md-6 col-lg-4 mb-4" v-for="permitAndInspectionArchive in permitAndInspectionsArchive" :key="permitAndInspectionArchive.permitId">
           <div class="card">
@@ -49,11 +49,14 @@
   
   <style scoped>
   .archive {
-    padding: 2rem;
-
+    background-color: #c2bdbd75;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 2rem;
   }
   .card{
-    background-color: rgba(138, 133, 133, 0.534);
+    background-color: rgba(172, 168, 168, 0.534);
   }
   /* .card-body {
     font:

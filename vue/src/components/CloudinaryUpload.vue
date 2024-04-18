@@ -1,20 +1,18 @@
 <template>
-    <div class="uw">
-        <h3>Upload Files</h3>
-        <button v-on:click="open" id="upload_widget" class="cloudinary-button">
-            Upload files
-        </button>
-        <!-- <p>
-            <a href="https://cloudinary.com/documentation/upload_widget" target="_blank">Upload Widget User Guide</a>
-        </p>
-        <p>
-            <a href="https://cloudinary.com/documentation/upload_widget_reference" target="_blank">Upload Widget
-                Reference</a>
-        </p> -->
-    </div>
-    <!-- <div>
-        <button v-on:click="getCloudinaryFiles" id="get-cloudinary-files">Get Cloudinary Files</button>
+
+    <button v-on:click="open" id="upload_widget" class="cloudinary-button btn btn-primary mw-50">Upload File</button>
+
+    <!-- <div class="container1 d-flex justify-content-center align-items-center min-vh-100">
+        
+        <div class="card p-5 shadow">
+            <h3 class="mb-4">Upload Files</h3>
+            <div>
+                <button v-on:click="open" id="upload_widget" class="cloudinary-button btn btn-primary">Upload files</button>
+            </div>
+        </div>
+
     </div> -->
+    
 </template>
 
 <script>
@@ -172,15 +170,32 @@ export default {
 
 </script> -->
 
-<style scope>
+<style scoped>
+
+.container1 {
+  background-color: #bbb5b5;
+}
+
+.card {
+  width: 100%;
+  max-width: 500px;
+}
+
 
 button {
     margin: 0.5rem;
     background-color: #2c3e50;
     border-color: #2c3e50;
+    font-size: 2vw;
     
     /* background-color: rgb(95, 94, 94);
     outline-color: black; */
+}
+
+@media screen and (min-width: 900px) {
+    button {
+        font-size: 20px;
+    }
 }
 
 </style>

@@ -1,28 +1,36 @@
 <template>
-<div>
-    <h2>Permit ID: {{ this.$route.params.permitId }}</h2>
-    <h3>Permit Inspections</h3>
-</div>
-<div>
-    <section class="container">
-        <inspection v-for="inspection in permitInspections" v-bind:key="inspection.inspectionId" v-bind:item="inspection"/>
-    </section>
-</div>
-<div>
-    <form v-on:submit.prevent="editPermitStatus">
-        <label for="permit-status-select">New Permit Status: </label>
-        <!-- hard code the status selection options for user -->
-        <select name="permit-status-select" id="permit-status-select" v-model="updatedPermit.permitStatus" required>
-            <option value="">Please select the status</option>
-            <option value="Approved">Approve</option>
-            <option value="Rejected">Reject</option>
-        </select>
-        <button type="submit">Submit</button>
-    </form>
-</div>
+            <h3 class="mb-4">Permit ID: {{ this.$route.params.permitId }}</h3>
+    <div>
 
+      <div class="container">
 
-</template>
+        <form @submit.prevent="editPermitStatus" class="form">
+          <div class="form-group">
+            <label for="permit-status-select">New Permit Status:</label>
+            <select name="permit-status-select" id="permit-status-select" v-model="updatedPermit.permitStatus" class="form-control" required>
+              <option value="">Please select the status</option>
+              <option value="Approved">Approve</option>
+              <option value="Rejected">Reject</option>
+            </select>
+          </div>
+          <div class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-primary w-25 mt-4">Submit</button>
+          </div>
+        </form>
+      </div>
+      <div class="container mt-4">
+        <div class="row">
+          <div class="col-md-6 col-lg-4 mb-4" v-for="inspection in permitInspections" :key="inspection.inspectionId">
+            <div class="card">
+              <div class="card-body">
+                <Inspection :item="inspection" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
 
 
 <script>
@@ -121,7 +129,17 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
+.form {
+  background-color: #efededa8;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
 
-
+.card {
+  background-color: #f5f5f5;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
 </style>

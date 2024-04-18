@@ -1,28 +1,31 @@
 <template>
     <div>
-        <h2>Inspection ID: {{ $route.params.inspectionId }}</h2>
-        <h3>Customer Preferred Date and Time: {{ $route.params.dateVariable }}</h3> 
-        <!-- <p>{{ existingInspection }}</p> -->
-        <form @submit.prevent="editInspection">
-            <div>
-                <label for="inspection-date">New Inspection Date/Time: </label>
-                <input id="inspection-date" name="inspection-date" type="datetime-local" v-model="updatedInspection.DateVariable">
-            </div>
-            <div>
-                <label for="inspection-status-select">New Status: </label>
-                <select name="inspection-status-select" id="inspection-status-select" v-model="updatedInspection.InspectionStatus" required>
-                    <option value="">Please select the status</option>
-                    <option v-for="inspectionStatusType in inspectionStatusTypes" :value="inspectionStatusType.statusType">{{ inspectionStatusType.statusType }}</option>
-                </select>
-            </div>
-            <div>
-                <label for="inspection-notes">Notes: </label>
-                <textarea id="inspection-notes" name="inspection-notes" v-model="updatedInspection.Notes"></textarea>
-            </div>
-            <button type="submit">Submit</button>
+      <h2 class="mb-4">Inspection ID: {{ $route.params.inspectionId }}</h2>
+      <h3 class="mb-4">Customer Preferred Date and Time: {{ $route.params.dateVariable }}</h3>
+      <div class="container">
+        <form @submit.prevent="editInspection" class="form">
+          <div class="form-group">
+            <label for="inspection-date">New Inspection Date/Time:</label>
+            <input id="inspection-date" name="inspection-date" type="datetime-local" v-model="updatedInspection.DateVariable" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="inspection-status-select">New Status:</label>
+            <select name="inspection-status-select" id="inspection-status-select" v-model="updatedInspection.InspectionStatus" class="form-control" required>
+              <option value="">Please select the status</option>
+              <option v-for="inspectionStatusType in inspectionStatusTypes" :value="inspectionStatusType.statusType">{{ inspectionStatusType.statusType }}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="inspection-notes">Notes:</label>
+            <textarea id="inspection-notes" name="inspection-notes" v-model="updatedInspection.Notes" class="form-control"></textarea>
+          </div>
+          <div class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-primary mt-4">Submit</button>
+          </div>
         </form>
+      </div>
     </div>
-</template>
+  </template>
 
 <script>
 
@@ -183,4 +186,11 @@ export default {
     }
 }
 </script>
-<style></style> 
+<style scoped>
+.form {
+  background-color: #f5f5f57b;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+</style> 

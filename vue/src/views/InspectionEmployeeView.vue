@@ -1,13 +1,19 @@
 <template>
+    <h1 class="mb-4">Inspection Requests</h1>
     <div class="inspections">
-        <h1>Inspection Requests</h1>
-        <section class="container">
-            <inspection v-for="inspection in inspections" v-bind:key="inspection.inspectionId" v-bind:item="inspection"/>
-            
-        </section>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-lg-4 mb-4" v-for="inspection in inspections" :key="inspection.inspectionId">
+            <div class="card">
+              <div class="card-body">
+                <Inspection :item="inspection" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-
-</template>
+  </template>
 
 
 <script>
@@ -60,7 +66,20 @@ export default {
 </script>
 
 
-<style>
+<style scoped>
+.inspections {
+    background-color: #c2bdbd75;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 2rem;
+  padding: 2rem;
+}
 
 
+.card {
+  background-color: #f5f5f5;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
 </style>
